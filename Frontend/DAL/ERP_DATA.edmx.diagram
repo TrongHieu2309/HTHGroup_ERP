@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="306a30733ea0463fbb146a46b047d5de" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.BAOHIEM" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.BOPHAN" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.CHI" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.CHITIETNHAPKHO" Width="1.5" PointX="18.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.CHITIETXUATKHO" Width="1.5" PointX="21.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.CHITIETHOADON" Width="1.5" PointX="18.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.CHUCVU" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.HOADON" Width="1.5" PointX="16" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.KHACHHANG" Width="1.5" PointX="13.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.KHOHANG" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.LOAICA" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.LOAICONG" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.LUONG" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.NGUOIDUNG" Width="1.5" PointX="13" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.NHACUNGCAP" Width="1.5" PointX="10.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.NHANSU" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.NHAPKHO" Width="1.5" PointX="13" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.PHANLOAIMATHANG" Width="1.5" PointX="13.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.PHANQUYEN" Width="1.5" PointX="13" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.PHONGBAN" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.PHUCAP" Width="1.5" PointX="6" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.PHUCAPNV" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.QUYEN" Width="1.5" PointX="10.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.SANPHAM" Width="1.5" PointX="16" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.TANGCA" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.TINHCONG" Width="1.5" PointX="8.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.TONKHO" Width="1.5" PointX="18.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.THU" Width="1.5" PointX="5.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.TRINHDO" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.VAITRO" Width="1.5" PointX="10.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLY_ERPH1Model.XUATKHO" Width="1.5" PointX="19" PointY="15.625" IsExpanded="true" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_BAOHIEM_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHANSU_BOPHAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CHI_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTNHAPKHO_NHAPKHO" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTNHAPKHO_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTXUATKHO_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTXUATKHO_XUATKHO" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTHOADON_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_CTHOADON_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHANSU_CHUCVU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_HOADON_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHAPKHO_KHOHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TONKHO_KHOHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_XUATKHO_KHOHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TANGCA_LOAICA" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TINHCONG_LOAICONG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_LUONG_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NGUOIDUNG_VAITRO" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHAPKHO_NHACUNGCAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_SANPHAM_NHACUNGCAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHANSU_PHONGBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_NHANSU_TRINHDO" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_PHUCAPNV_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TANGCA_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TINHCONG_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_THU_NHANSU" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_SANPHAM_PHANLOAIMATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_PHANQUYEN_QUYEN" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_PHANQUYEN_VAITRO" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_PHUCAPNV_PHUCAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLY_ERPH1Model.FK_TONKHO_SANPHAM" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
