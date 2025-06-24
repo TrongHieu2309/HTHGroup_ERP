@@ -13,7 +13,7 @@ namespace BLL.QL_KHACH_HANG
     {
         private readonly string baseUrl = "https://localhost:7086"; // Đúng với port backend
 
-        public async Task<Dictionary<int, string>> GetCustomerDictionaryAsync()
+        public async Task<Dictionary<int, string>> GetCustomerDictionaryAsync() // lấy dữ liệu lên comboBox
         {
             var list = await GetAllCustomersAsync();
             return list.ToDictionary(kh => kh.MaKH, kh => $"{kh.TenKhachHang}");
