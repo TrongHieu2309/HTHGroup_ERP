@@ -10,20 +10,13 @@ namespace ERP.Infrastructure.Data.Configurations
         {
             builder.ToTable("PHONGBAN");
 
-            // Primary Key
-            builder.HasKey(d => d.Id);
-
-            builder.Property(d => d.Id)
-                   .ValueGeneratedOnAdd();
-
+            // MaPhongBan là khóa chính và tự động tăng
+            builder.HasKey(d => d.MaPhongBan);
             builder.Property(d => d.MaPhongBan)
-                   .IsRequired()
-                   .HasMaxLength(20)
-                   .HasColumnType("varchar(20)");
+                   .ValueGeneratedOnAdd() // Tự tăng
+                   .HasColumnType("int");
 
-            builder.HasIndex(d => d.MaPhongBan)
-                   .IsUnique();
-
+            // TenPhongBan: nvarchar(100), not null
             builder.Property(d => d.TenPhongBan)
                    .IsRequired()
                    .HasMaxLength(100)

@@ -28,7 +28,7 @@ namespace ERP.Api.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var created = await service.CreateAsync(input);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            return CreatedAtAction(nameof(GetById), new { id = created.MaPhongBan }, created);
         }
 
         [HttpPut("{id}")]

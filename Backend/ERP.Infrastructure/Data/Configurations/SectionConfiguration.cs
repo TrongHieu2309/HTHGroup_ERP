@@ -8,26 +8,17 @@ namespace ERP.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Section> builder)
         {
-            // Tên bảng
+            // Đặt tên bảng
             builder.ToTable("BOPHAN");
 
-            // Khóa chính
-            builder.HasKey(s => s.Id);
+            // Thiết lập MaBoPhan là khóa chính và tự động tăng
+            builder.HasKey(s => s.MaBoPhan);
 
-            // Tự sinh giá trị Id nếu là Identity
-            builder.Property(s => s.Id)
-                   .ValueGeneratedOnAdd();
-
-            // MaBoPhan: varchar(20), not null, unique
             builder.Property(s => s.MaBoPhan)
-                   .IsRequired()
-                   .HasMaxLength(20)
-                   .HasColumnType("varchar(20)");
+                   .ValueGeneratedOnAdd() // Tự tăng
+                   .HasColumnType("int");
 
-            builder.HasIndex(s => s.MaBoPhan)
-                   .IsUnique();
-
-            // TenBoPhan: nvarchar(100), not null
+            // Thiết lập TenBoPhan: nvarchar(100), bắt buộc
             builder.Property(s => s.TenBoPhan)
                    .IsRequired()
                    .HasMaxLength(100)

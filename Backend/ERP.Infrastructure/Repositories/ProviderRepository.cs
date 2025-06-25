@@ -5,58 +5,60 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Infrastructure.Repositories
 {
-    public class ProviderRepository(AppDbContext dbContext) : IProviderRepository
+    public class ProviderRepository : IProviderRepository
     {
+        private readonly AppDbContext _dbContext;
+
+        public ProviderRepository(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         // Thêm Nhà cung cấp mới
         public async Task<ProviderEntity> AddProviderAsync(ProviderEntity entity)
         {
-            entity.Id = 0; // Assuming Id is auto-incremented in the database
-            dbContext.Providers.Add(entity);
-            await dbContext.SaveChangesAsync();
+            await _dbContext.Providers.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        // GET ALL Providers
+        // Lấy tất cả Nhà cung cấp
         public async Task<IEnumerable<ProviderEntity>> GetProviders()
         {
-            return await dbContext.Providers.ToListAsync();
+            return await _dbContext.Providers.ToListAsync();
         }
 
-        // GET Provider by Id
-        public async Task<ProviderEntity> GetProviderByIdAsync(int id)
+        // Lấy nhà cung cấp theo Id
+        public async Task<ProviderEntity?> GetProviderByIdAsync(int id)
         {
-            return await dbContext.Providers.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Providers.FindAsync(id);
         }
 
-        // UPDATE Nhà cung cấp
-        public async Task<ProviderEntity> UpdateProviderAsync(int id, ProviderEntity entity)
+        // Cập nhật Nhà cung cấp
+        public async Task<ProviderEntity?> UpdateProviderAsync(int id, ProviderEntity entity)
         {
-            var provider = await dbContext.Providers.FirstOrDefaultAsync(x => x.Id == id);
-            if (provider != null)
-            {
-                provider.MaNCC = entity.MaNCC;
-                provider.TenNCC = entity.TenNCC;
-                provider.DiaChi = entity.DiaChi;
-                provider.MoTa = entity.MoTa;
-                provider.SoDienThoai = entity.SoDienThoai;
-                provider.Email = entity.Email;
-                provider.NguoiTiepNhan = entity.NguoiTiepNhan;
-                await dbContext.SaveChangesAsync();
-                return provider;
-            }
-            return entity;
+            var existing = await _dbContext.Providers.FindAsync(id);
+            if (existing == null) return null;
+
+            existing.TenNCC = entity.TenNCC;
+            existing.DiaChi = entity.DiaChi;
+            existing.MoTa = entity.MoTa;
+            existing.SoDienThoai = entity.SoDienThoai;
+            existing.Email = entity.Email;
+            existing.NguoiTiepNhan = entity.NguoiTiepNhan;
+
+            await _dbContext.SaveChangesAsync();
+            return existing;
         }
 
-        // DELETE Nhà cung cấp
+        // Xóa Nhà cung cấp
         public async Task<bool> DeleteProviderAsync(int id)
         {
-            var provider = await dbContext.Providers.FirstOrDefaultAsync(x => x.Id == id);
-            if (provider != null)
-            {
-                dbContext.Providers.Remove(provider);
-                return await dbContext.SaveChangesAsync() > 0;
-            }
-            return false;
+            var provider = await _dbContext.Providers.FindAsync(id);
+            if (provider == null) return false;
+
+            _dbContext.Providers.Remove(provider);
+            return await _dbContext.SaveChangesAsync() > 0;
         }
     }
 }

@@ -12,7 +12,6 @@ namespace ERP.Application.Services
             var entities = await repository.GetAllSectionsAsync();
             return entities.Select(s => new SectionDto
             {
-                Id = s.Id,
                 MaBoPhan = s.MaBoPhan,
                 TenBoPhan = s.TenBoPhan
             });
@@ -25,7 +24,6 @@ namespace ERP.Application.Services
 
             return new SectionDto
             {
-                Id = section.Id,
                 MaBoPhan = section.MaBoPhan,
                 TenBoPhan = section.TenBoPhan
             };
@@ -35,7 +33,6 @@ namespace ERP.Application.Services
         {
             var entity = new Section
             {
-                MaBoPhan = input.MaBoPhan,
                 TenBoPhan = input.TenBoPhan
             };
 
@@ -43,7 +40,6 @@ namespace ERP.Application.Services
 
             return new SectionDto
             {
-                Id = created.Id,
                 MaBoPhan = created.MaBoPhan,
                 TenBoPhan = created.TenBoPhan
             };
@@ -53,7 +49,6 @@ namespace ERP.Application.Services
         {
             var entity = new Section
             {
-                MaBoPhan = input.MaBoPhan,
                 TenBoPhan = input.TenBoPhan
             };
 
@@ -62,7 +57,6 @@ namespace ERP.Application.Services
 
             return new SectionDto
             {
-                Id = updated.Id,
                 MaBoPhan = updated.MaBoPhan,
                 TenBoPhan = updated.TenBoPhan
             };

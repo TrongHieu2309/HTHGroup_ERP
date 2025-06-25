@@ -3,8 +3,7 @@
     public class Section
     {
         // bảng bộ phận
-        public int Id { get; set; } // PK
-        public string MaBoPhan { get; set; } = null!; // mã bộ phận unique varchar 20 notnull
+        public int MaBoPhan { get; set; } // khóa chính, tự động tăng, int not null
         public string TenBoPhan { get; set; } = null!; //tên bộ phận nvarchar 100 not null
 
         // navigation property to Employee

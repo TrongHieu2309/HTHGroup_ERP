@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250620214709_added_18Tables_done")]
-    partial class added_18Tables_done
+    [Migration("20250625085718_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,26 +172,18 @@ namespace ERP.Infrastructure.Migrations
 
             modelBuilder.Entity("ERP.Core.Entities.Department", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MaPhongBan")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("MaPhongBan")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaPhongBan"));
 
                     b.Property<string>("TenPhongBan")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaPhongBan")
-                        .IsUnique();
+                    b.HasKey("MaPhongBan");
 
                     b.ToTable("PHONGBAN", (string)null);
                 });
@@ -523,11 +515,11 @@ namespace ERP.Infrastructure.Migrations
 
             modelBuilder.Entity("ERP.Core.Entities.ProviderEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MaNCC")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaNCC"));
 
                     b.Property<string>("DiaChi")
                         .IsRequired()
@@ -536,10 +528,6 @@ namespace ERP.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
-
-                    b.Property<string>("MaNCC")
-                        .IsRequired()
-                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("MoTa")
                         .IsRequired()
@@ -557,12 +545,9 @@ namespace ERP.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                    b.HasKey("MaNCC");
 
-                    b.HasIndex("MaNCC")
-                        .IsUnique();
-
-                    b.ToTable("NhaCungCap", (string)null);
+                    b.ToTable("NHACUNGCAP", (string)null);
                 });
 
             modelBuilder.Entity("ERP.Core.Entities.Receipt", b =>
@@ -732,26 +717,18 @@ namespace ERP.Infrastructure.Migrations
 
             modelBuilder.Entity("ERP.Core.Entities.Section", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MaBoPhan")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("MaBoPhan")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaBoPhan"));
 
                     b.Property<string>("TenBoPhan")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaBoPhan")
-                        .IsUnique();
+                    b.HasKey("MaBoPhan");
 
                     b.ToTable("BOPHAN", (string)null);
                 });

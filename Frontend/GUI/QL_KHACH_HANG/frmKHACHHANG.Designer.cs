@@ -374,7 +374,7 @@
             this.txtTICHDIEM.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTICHDIEM.Location = new System.Drawing.Point(14, 68);
             this.txtTICHDIEM.Name = "txtTICHDIEM";
-            this.txtTICHDIEM.Size = new System.Drawing.Size(433, 22);
+            this.txtTICHDIEM.Size = new System.Drawing.Size(436, 22);
             this.txtTICHDIEM.TabIndex = 26;
             // 
             // txtTENKH
@@ -385,7 +385,7 @@
             this.txtTENKH.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENKH.Location = new System.Drawing.Point(13, 41);
             this.txtTENKH.Name = "txtTENKH";
-            this.txtTENKH.Size = new System.Drawing.Size(418, 22);
+            this.txtTENKH.Size = new System.Drawing.Size(421, 22);
             this.txtTENKH.TabIndex = 25;
             // 
             // splitContainer1
@@ -513,7 +513,7 @@
             this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDT.Location = new System.Drawing.Point(13, 98);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(418, 22);
+            this.txtSDT.Size = new System.Drawing.Size(421, 22);
             this.txtSDT.TabIndex = 27;
             // 
             // txtDIACHI
@@ -524,7 +524,7 @@
             this.txtDIACHI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDIACHI.Location = new System.Drawing.Point(13, 68);
             this.txtDIACHI.Name = "txtDIACHI";
-            this.txtDIACHI.Size = new System.Drawing.Size(418, 22);
+            this.txtDIACHI.Size = new System.Drawing.Size(421, 22);
             this.txtDIACHI.TabIndex = 26;
             // 
             // txtMAKH
@@ -536,7 +536,7 @@
             this.txtMAKH.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMAKH.Location = new System.Drawing.Point(13, 14);
             this.txtMAKH.Name = "txtMAKH";
-            this.txtMAKH.Size = new System.Drawing.Size(418, 22);
+            this.txtMAKH.Size = new System.Drawing.Size(421, 22);
             this.txtMAKH.TabIndex = 24;
             // 
             // splitContainer4
@@ -591,7 +591,7 @@
             this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGHICHU.Location = new System.Drawing.Point(14, 41);
             this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(433, 22);
+            this.txtGHICHU.Size = new System.Drawing.Size(436, 22);
             this.txtGHICHU.TabIndex = 25;
             // 
             // txtEMAIL
@@ -602,7 +602,7 @@
             this.txtEMAIL.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEMAIL.Location = new System.Drawing.Point(14, 14);
             this.txtEMAIL.Name = "txtEMAIL";
-            this.txtEMAIL.Size = new System.Drawing.Size(433, 22);
+            this.txtEMAIL.Size = new System.Drawing.Size(436, 22);
             this.txtEMAIL.TabIndex = 20;
             // 
             // frmKHACHHANG

@@ -1,24 +1,88 @@
-﻿using DAL;
-using System;
+﻿using ERP.Application.DTOs;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BLL
+namespace BLL.QL_NHAN_SU
 {
     public class BOPHAN_BLL
     {
-        QUANLY_ERPH1Entities1 db = new QUANLY_ERPH1Entities1();
+        private readonly string baseUrl = "https://localhost:7086";
 
-        public List<BOPHAN> GetList()
+        // Lấy tất cả bộ phận
+        public async Task<List<SectionDto>> GetAllSectionsAsync()
         {
-            try
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{baseUrl}/api/Section");
+
+            if (response.IsSuccessStatusCode)
             {
-                return db.BOPHANs.ToList();
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<SectionDto>>(json);
             }
-            catch (Exception ex)
+
+            return new List<SectionDto>();
+        }
+
+        // Lấy 1 bộ phận theo ID
+        public async Task<SectionDto?> GetSectionByIdAsync(int id)
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{baseUrl}/api/Section/{id}");
+
+            if (response.IsSuccessStatusCode)
             {
-                throw new Exception("Error retrieving BOPHAN list: " + ex.Message);
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<SectionDto>(json);
             }
+
+            return null;
+        }
+
+        // Tạo mới bộ phận
+        public async Task<string> CreateSectionAsync(SectionInputDto input)
+        {
+            using var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(input);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync($"{baseUrl}/api/Section", content);
+            return response.IsSuccessStatusCode
+                ? "Thêm bộ phận thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
+        }
+
+        // Cập nhật bộ phận
+        public async Task<string> UpdateSectionAsync(int id, SectionInputDto input)
+        {
+            using var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(input);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"{baseUrl}/api/Section/{id}", content);
+            return response.IsSuccessStatusCode
+                ? "Cập nhật bộ phận thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
+        }
+
+        // Xóa bộ phận
+        public async Task<string> DeleteSectionAsync(int id)
+        {
+            using var client = new HttpClient();
+            var response = await client.DeleteAsync($"{baseUrl}/api/Section/{id}");
+            return response.IsSuccessStatusCode
+                ? "Xóa bộ phận thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
+        }
+
+        // Dùng để load dữ liệu lên ComboBox: "MaBoPhan: TenBoPhan"
+        public async Task<Dictionary<int, string>> GetSectionDictionaryAsync()
+        {
+            var list = await GetAllSectionsAsync();
+            return list.ToDictionary(bp => bp.MaBoPhan, bp => $"{bp.MaBoPhan} - {bp.TenBoPhan}");
         }
     }
 }

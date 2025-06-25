@@ -11,10 +11,10 @@ namespace ERP.Core.Interfaces
         Task<IEnumerable<ProviderEntity>> GetProviders();
 
         // Get Provider by Id
-        Task<ProviderEntity> GetProviderByIdAsync(int id);
+        Task<ProviderEntity?> GetProviderByIdAsync(int id);
 
         // Update Nhà cung cấp
-        Task<ProviderEntity> UpdateProviderAsync(int id, ProviderEntity entity);
+        Task<ProviderEntity?> UpdateProviderAsync(int id, ProviderEntity entity);
 
         // Xoá Nhà cung cấp
         Task<bool> DeleteProviderAsync(int id);

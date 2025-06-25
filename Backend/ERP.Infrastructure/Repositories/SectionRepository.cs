@@ -7,19 +7,19 @@ namespace ERP.Infrastructure.Repositories
 {
     public class SectionRepository(AppDbContext dbContext) : ISectionRepository
     {
-        // Lấy tất cả bộ phận
         public async Task<IEnumerable<Section>> GetAllSectionsAsync()
         {
-            return await dbContext.Sections.ToListAsync();
+            return await dbContext.Sections
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        // Lấy bộ phận theo Id
-        public async Task<Section?> GetSectionByIdAsync(int id)
+        public async Task<Section?> GetSectionByIdAsync(int maBoPhan)
         {
-            return await dbContext.Sections.FirstOrDefaultAsync(s => s.Id == id);
+            return await dbContext.Sections
+                .FirstOrDefaultAsync(s => s.MaBoPhan == maBoPhan);
         }
 
-        // Thêm bộ phận mới
         public async Task<Section> AddSectionAsync(Section entity)
         {
             await dbContext.Sections.AddAsync(entity);
@@ -27,26 +27,27 @@ namespace ERP.Infrastructure.Repositories
             return entity;
         }
 
-        // Cập nhật bộ phận
-        public async Task<Section?> UpdateSectionAsync(int id, Section entity)
+        public async Task<Section?> UpdateSectionAsync(int maBoPhan, Section entity)
         {
-            var existing = await dbContext.Sections.FirstOrDefaultAsync(s => s.Id == id);
+            var existing = await dbContext.Sections
+                .FirstOrDefaultAsync(s => s.MaBoPhan == maBoPhan);
+
             if (existing is null) return null;
 
-            existing.MaBoPhan = entity.MaBoPhan;
             existing.TenBoPhan = entity.TenBoPhan;
 
             await dbContext.SaveChangesAsync();
             return existing;
         }
 
-        // Xoá bộ phận
-        public async Task<bool> DeleteSectionAsync(int id)
+        public async Task<bool> DeleteSectionAsync(int maBoPhan)
         {
-            var section = await dbContext.Sections.FirstOrDefaultAsync(s => s.Id == id);
-            if (section is null) return false;
+            var existing = await dbContext.Sections
+                .FirstOrDefaultAsync(s => s.MaBoPhan == maBoPhan);
 
-            dbContext.Sections.Remove(section);
+            if (existing is null) return false;
+
+            dbContext.Sections.Remove(existing);
             return await dbContext.SaveChangesAsync() > 0;
         }
     }

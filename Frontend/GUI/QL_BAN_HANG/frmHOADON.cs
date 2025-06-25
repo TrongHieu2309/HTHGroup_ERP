@@ -14,6 +14,7 @@ namespace GUI.QL_BAN_HANG
     public partial class frmHOADON : DevExpress.XtraEditors.XtraForm
     {
         private readonly HOADON_BLL db = new HOADON_BLL();
+        private readonly CHITIETHOADON_BLL detailBLL = new CHITIETHOADON_BLL();
         private bool isEditMode = false;
 
         public frmHOADON()
@@ -30,7 +31,6 @@ namespace GUI.QL_BAN_HANG
             foreach (var item in dict)
             {
                 comboMAKH.Properties.Items.Add($"{item.Key}: {item.Value}");
-                Console.WriteLine(item.Value);
             }
         }
 
@@ -71,10 +71,10 @@ namespace GUI.QL_BAN_HANG
         private async void frmHOADON_Load(object sender, EventArgs e)
         {
             await LoadComboBoxMAKHAsync();
+            await LoadReceiptsAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
-
 
         private void frmHOADON_Resize(object sender, EventArgs e)
         {
@@ -112,6 +112,14 @@ namespace GUI.QL_BAN_HANG
                 var confirm = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
                 if (confirm == DialogResult.Yes)
                 {
+                    // Xóa chi tiết hóa đơn trước
+                    var details = await detailBLL.GetDetailsByReceiptIdAsync(id);
+                    foreach (var d in details)
+                    {
+                        await detailBLL.DeleteDetailAsync(d.Id);
+                    }
+
+                    // Xóa hóa đơn
                     var result = await db.DeleteReceiptAsync(id);
                     MessageBox.Show(result, "Thông báo");
                     await LoadReceiptsAsync();
@@ -126,7 +134,7 @@ namespace GUI.QL_BAN_HANG
             var dto = new ReceiptDto
             {
                 MaHD = int.TryParse(txtMAHD.Text, out int id) ? id : 0,
-                MaKH = int.TryParse(comboMAKH.Text, out int makh) ? makh : 0,
+                MaKH = int.TryParse(comboMAKH.Text.Split(':')[0], out int makh) ? makh : 0,
                 LoaiHD = txtLOAIHD.Text.Trim(),
                 NgayLap = dateEditNGAYLAP.DateTime,
                 NguoiLap = txtNGUOILAP.Text.Trim(),
@@ -134,18 +142,42 @@ namespace GUI.QL_BAN_HANG
                 TrangThai = txtTRANGTHAI.Text.Trim()
             };
 
-            string result;
+            var detailDto = new ReceiptDetailInputDto
+            {
+                MaSP = int.TryParse(comboMASP.Text, out int masp) ? masp : 0,
+                SoLuong = int.TryParse(txtSOLUONG.Text, out int sl) ? sl : 0,
+                DonGia = long.TryParse(txtDONGIA.Text, out long dg) ? dg : 0,
+                ChietKhau = float.TryParse(txtCHIETKHAU.Text, out float ck) ? ck : 0,
+                VAT = float.TryParse(txtVAT.Text, out float vat) ? vat : 0,
+                GhiChu = txtGHICHU.Text
+            };
+
+            string result = "";
+
             if (isEditMode && dto.MaHD > 0)
             {
                 result = await db.UpdateReceiptAsync(dto.MaHD, dto);
+
+                detailDto.MaHD = dto.MaHD;
+                int idCT = int.TryParse(txtID.Text, out int tmpId) ? tmpId : 0;
+                if (idCT > 0)
+                {
+                    result += "\n" + await detailBLL.UpdateDetailAsync(idCT, detailDto);
+                }
             }
             else
             {
                 result = await db.CreateReceiptAsync(dto);
+                var ds = await db.GetAllReceiptsAsync();
+                var newHD = ds.OrderByDescending(x => x.MaHD).FirstOrDefault();
+                if (newHD != null)
+                {
+                    detailDto.MaHD = newHD.MaHD;
+                    result += "\n" + await detailBLL.CreateDetailAsync(detailDto);
+                }
             }
 
             MessageBox.Show(result, "Thông báo");
-
             await LoadReceiptsAsync();
             _showHide(true);
             groupNhap.Enabled = false;
@@ -166,7 +198,7 @@ namespace GUI.QL_BAN_HANG
             this.Close();
         }
 
-        private void gridView1_RowClick_1(object sender, RowClickEventArgs e)
+        private async void gridView1_RowClick_1(object sender, RowClickEventArgs e)
         {
             barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
@@ -189,6 +221,19 @@ namespace GUI.QL_BAN_HANG
                         txtNGUOILAP.Text = hoadon.NguoiLap;
                         txtTONGTIEN.Text = hoadon.TongTien.ToString();
                         txtTRANGTHAI.Text = hoadon.TrangThai;
+
+                        var details = await detailBLL.GetDetailsByReceiptIdAsync(hoadon.MaHD);
+                        if (details.Count > 0)
+                        {
+                            var detail = details[0];
+                            txtID.Text = detail.Id.ToString();
+                            comboMASP.Text = detail.MaSP.ToString();
+                            txtSOLUONG.Text = detail.SoLuong.ToString();
+                            txtDONGIA.Text = detail.DonGia.ToString();
+                            txtCHIETKHAU.Text = detail.ChietKhau.ToString();
+                            txtVAT.Text = detail.VAT.ToString();
+                            txtGHICHU.Text = detail.GhiChu;
+                        }
                     }
                 }
             }

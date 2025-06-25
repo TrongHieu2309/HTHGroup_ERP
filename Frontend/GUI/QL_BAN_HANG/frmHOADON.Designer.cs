@@ -308,7 +308,7 @@
             this.txtNGUOILAP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNGUOILAP.Location = new System.Drawing.Point(17, 128);
             this.txtNGUOILAP.Name = "txtNGUOILAP";
-            this.txtNGUOILAP.Size = new System.Drawing.Size(413, 22);
+            this.txtNGUOILAP.Size = new System.Drawing.Size(419, 22);
             this.txtNGUOILAP.TabIndex = 28;
             // 
             // label6
@@ -331,7 +331,7 @@
             this.comboMASP.Name = "comboMASP";
             this.comboMASP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMASP.Size = new System.Drawing.Size(426, 20);
+            this.comboMASP.Size = new System.Drawing.Size(432, 20);
             this.comboMASP.TabIndex = 28;
             // 
             // txtDONGIA
@@ -342,7 +342,7 @@
             this.txtDONGIA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDONGIA.Location = new System.Drawing.Point(12, 98);
             this.txtDONGIA.Name = "txtDONGIA";
-            this.txtDONGIA.Size = new System.Drawing.Size(426, 22);
+            this.txtDONGIA.Size = new System.Drawing.Size(432, 22);
             this.txtDONGIA.TabIndex = 27;
             // 
             // txtID
@@ -354,7 +354,7 @@
             this.txtID.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(12, 14);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(426, 22);
+            this.txtID.Size = new System.Drawing.Size(432, 22);
             this.txtID.TabIndex = 20;
             // 
             // groupBox1
@@ -596,7 +596,7 @@
             this.txtLOAIHD.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLOAIHD.Location = new System.Drawing.Point(17, 70);
             this.txtLOAIHD.Name = "txtLOAIHD";
-            this.txtLOAIHD.Size = new System.Drawing.Size(413, 22);
+            this.txtLOAIHD.Size = new System.Drawing.Size(419, 22);
             this.txtLOAIHD.TabIndex = 32;
             // 
             // comboMAKH
@@ -609,7 +609,7 @@
             this.comboMAKH.Name = "comboMAKH";
             this.comboMAKH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMAKH.Size = new System.Drawing.Size(413, 20);
+            this.comboMAKH.Size = new System.Drawing.Size(419, 20);
             this.comboMAKH.TabIndex = 31;
             // 
             // label7
@@ -636,7 +636,7 @@
             this.txtMAHD.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMAHD.Location = new System.Drawing.Point(17, 14);
             this.txtMAHD.Name = "txtMAHD";
-            this.txtMAHD.Size = new System.Drawing.Size(413, 22);
+            this.txtMAHD.Size = new System.Drawing.Size(419, 22);
             this.txtMAHD.TabIndex = 24;
             // 
             // txtSOLUONG
@@ -647,7 +647,7 @@
             this.txtSOLUONG.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSOLUONG.Location = new System.Drawing.Point(12, 68);
             this.txtSOLUONG.Name = "txtSOLUONG";
-            this.txtSOLUONG.Size = new System.Drawing.Size(426, 22);
+            this.txtSOLUONG.Size = new System.Drawing.Size(432, 22);
             this.txtSOLUONG.TabIndex = 26;
             // 
             // splitContainer1
@@ -811,7 +811,7 @@
             this.txtTRANGTHAI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTRANGTHAI.Location = new System.Drawing.Point(17, 190);
             this.txtTRANGTHAI.Name = "txtTRANGTHAI";
-            this.txtTRANGTHAI.Size = new System.Drawing.Size(413, 22);
+            this.txtTRANGTHAI.Size = new System.Drawing.Size(419, 22);
             this.txtTRANGTHAI.TabIndex = 35;
             // 
             // txtTONGTIEN
@@ -822,7 +822,7 @@
             this.txtTONGTIEN.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTONGTIEN.Location = new System.Drawing.Point(17, 159);
             this.txtTONGTIEN.Name = "txtTONGTIEN";
-            this.txtTONGTIEN.Size = new System.Drawing.Size(413, 22);
+            this.txtTONGTIEN.Size = new System.Drawing.Size(419, 22);
             this.txtTONGTIEN.TabIndex = 34;
             // 
             // dateEditNGAYLAP
@@ -838,7 +838,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditNGAYLAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditNGAYLAP.Size = new System.Drawing.Size(413, 20);
+            this.dateEditNGAYLAP.Size = new System.Drawing.Size(419, 20);
             this.dateEditNGAYLAP.TabIndex = 33;
             // 
             // splitContainer4
@@ -921,7 +921,7 @@
             this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGHICHU.Location = new System.Drawing.Point(12, 190);
             this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(426, 22);
+            this.txtGHICHU.Size = new System.Drawing.Size(432, 22);
             this.txtGHICHU.TabIndex = 31;
             // 
             // txtVAT
@@ -932,7 +932,7 @@
             this.txtVAT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVAT.Location = new System.Drawing.Point(12, 159);
             this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(426, 22);
+            this.txtVAT.Size = new System.Drawing.Size(432, 22);
             this.txtVAT.TabIndex = 30;
             // 
             // txtCHIETKHAU
@@ -943,7 +943,7 @@
             this.txtCHIETKHAU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCHIETKHAU.Location = new System.Drawing.Point(12, 128);
             this.txtCHIETKHAU.Name = "txtCHIETKHAU";
-            this.txtCHIETKHAU.Size = new System.Drawing.Size(426, 22);
+            this.txtCHIETKHAU.Size = new System.Drawing.Size(432, 22);
             this.txtCHIETKHAU.TabIndex = 29;
             // 
             // frmHOADON

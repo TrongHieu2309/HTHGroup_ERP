@@ -13,7 +13,8 @@ namespace ERP.Infrastructure.Data.Configurations
             // PK: MaChucVu
             builder.HasKey(jt => jt.MaChucVu);
             builder.Property(jt => jt.MaChucVu)
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .HasColumnType("int");
 
             // TenChucVu: nvarchar(100) not null
             builder.Property(jt => jt.TenChucVu)

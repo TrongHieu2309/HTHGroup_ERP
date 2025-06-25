@@ -9,16 +9,12 @@ namespace ERP.Infrastructure.Repositories
     {
         public async Task<IEnumerable<Department>> GetAllAsync()
         {
-            return await dbContext.Departments
-                .Include(d => d.Employees)
-                .ToListAsync();
+            return await dbContext.Departments.ToListAsync();
         }
 
-        public async Task<Department?> GetByIdAsync(int id)
+        public async Task<Department?> GetByIdAsync(int maPhongBan)
         {
-            return await dbContext.Departments
-                .Include(d => d.Employees)
-                .FirstOrDefaultAsync(d => d.Id == id);
+            return await dbContext.Departments.FindAsync(maPhongBan);
         }
 
         public async Task<Department> AddAsync(Department entity)
@@ -28,21 +24,20 @@ namespace ERP.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task<Department?> UpdateAsync(int id, Department entity)
+        public async Task<Department?> UpdateAsync(int maPhongBan, Department entity)
         {
-            var existing = await dbContext.Departments.FindAsync(id);
+            var existing = await dbContext.Departments.FindAsync(maPhongBan);
             if (existing is null) return null;
 
-            existing.MaPhongBan = entity.MaPhongBan;
             existing.TenPhongBan = entity.TenPhongBan;
 
             await dbContext.SaveChangesAsync();
             return existing;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int maPhongBan)
         {
-            var entity = await dbContext.Departments.FindAsync(id);
+            var entity = await dbContext.Departments.FindAsync(maPhongBan);
             if (entity is null) return false;
 
             dbContext.Departments.Remove(entity);

@@ -11,7 +11,6 @@ namespace ERP.Application.Services
         => (await repo.GetProviders())
            .Select(p => new ProviderDto
            {
-               Id = p.Id,
                MaNCC = p.MaNCC,
                TenNCC = p.TenNCC,
                DiaChi = p.DiaChi,
@@ -26,7 +25,6 @@ namespace ERP.Application.Services
             var p = await repo.GetProviderByIdAsync(id);
             return p is null ? null : new ProviderDto
             {
-                Id = p.Id,
                 MaNCC = p.MaNCC,
                 TenNCC = p.TenNCC,
                 DiaChi = p.DiaChi,
@@ -41,7 +39,6 @@ namespace ERP.Application.Services
         {
             var entity = new ProviderEntity
             {
-                MaNCC = input.MaNCC,
                 TenNCC = input.TenNCC,
                 DiaChi = input.DiaChi,
                 MoTa = input.MoTa,
@@ -54,7 +51,6 @@ namespace ERP.Application.Services
 
             return new ProviderDto
             {
-                Id = result.Id,
                 MaNCC = result.MaNCC,
                 TenNCC = result.TenNCC,
                 DiaChi = result.DiaChi,
@@ -69,8 +65,7 @@ namespace ERP.Application.Services
         {
             var entity = new ProviderEntity
             {
-                Id = id, // Gán Id để repository biết cập nhật bản ghi nào
-                MaNCC = input.MaNCC,
+                MaNCC = id,
                 TenNCC = input.TenNCC,
                 DiaChi = input.DiaChi,
                 MoTa = input.MoTa,
@@ -80,9 +75,8 @@ namespace ERP.Application.Services
             };
 
             var updated = await repo.UpdateProviderAsync(id, entity);
-            return updated.Id != id ? null : new ProviderDto
+            return updated.MaNCC != id ? null : new ProviderDto
             {
-                Id = updated.Id,
                 MaNCC = updated.MaNCC,
                 TenNCC = updated.TenNCC,
                 DiaChi = updated.DiaChi,

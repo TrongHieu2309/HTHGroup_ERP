@@ -9,19 +9,13 @@ namespace ERP.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<ProviderEntity> builder)
         {
             // Đặt tên bảng
-            builder.ToTable("NhaCungCap");
+            builder.ToTable("NHACUNGCAP");
 
-            // Khoá chính và identity cho ID
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id)
-                .ValueGeneratedOnAdd(); // Tự động tăng id
-
-            // MaNCC: đặt mã dựa theo tên NCC, not null
+            // Thiết lập MaNCC là khóa chính và tự tăng
+            builder.HasKey(p => p.MaNCC);
             builder.Property(p => p.MaNCC)
-                .HasColumnType("varchar(15)")
-                .IsRequired();
-            builder.HasIndex(p => p.MaNCC)
-                .IsUnique();
+                .ValueGeneratedOnAdd() // tự động tăng
+                .HasColumnType("int");
 
             // TenNCC, not null
             builder.Property(p => p.TenNCC)

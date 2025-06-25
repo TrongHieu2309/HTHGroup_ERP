@@ -4,8 +4,7 @@ namespace ERP.Application.DTOs
 {
     public class ProviderDto
     {
-        public int Id { get; set; }
-        public string MaNCC { get; set; } = null!;
+        public int MaNCC { get; set; }
         public string TenNCC { get; set; } = null!;
         public string DiaChi { get; set; } = null!;
         public string MoTa { get; set; } = null!;
@@ -16,9 +15,6 @@ namespace ERP.Application.DTOs
 
     public class ProviderInputDto
     {
-        [Required(ErrorMessage = "Mã NCC không được bỏ trống")]
-        public string MaNCC { get; set; } = null!;
-
         [Required(ErrorMessage = "Tên NCC không được bỏ trống")]
         public string TenNCC { get; set; } = null!;
 

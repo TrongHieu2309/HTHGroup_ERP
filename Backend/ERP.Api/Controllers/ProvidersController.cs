@@ -29,7 +29,7 @@ namespace ERP.Api.Controllers
                 return BadRequest(ModelState);
 
             var created = await providerService.AddProviderAsync(input);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            return CreatedAtAction(nameof(GetById), new { id = created.MaNCC }, created);
         }
 
         [HttpPut("{id}")]

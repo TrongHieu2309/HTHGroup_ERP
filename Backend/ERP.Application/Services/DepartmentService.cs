@@ -12,7 +12,6 @@ namespace ERP.Application.Services
             var departments = await repository.GetAllAsync();
             return departments.Select(d => new DepartmentDto
             {
-                Id = d.Id,
                 MaPhongBan = d.MaPhongBan,
                 TenPhongBan = d.TenPhongBan
             });
@@ -23,7 +22,6 @@ namespace ERP.Application.Services
             var d = await repository.GetByIdAsync(id);
             return d is null ? null : new DepartmentDto
             {
-                Id = d.Id,
                 MaPhongBan = d.MaPhongBan,
                 TenPhongBan = d.TenPhongBan
             };
@@ -33,14 +31,12 @@ namespace ERP.Application.Services
         {
             var department = new Department
             {
-                MaPhongBan = input.MaPhongBan,
                 TenPhongBan = input.TenPhongBan
             };
 
             var created = await repository.AddAsync(department);
             return new DepartmentDto
             {
-                Id = created.Id,
                 MaPhongBan = created.MaPhongBan,
                 TenPhongBan = created.TenPhongBan
             };
@@ -50,13 +46,11 @@ namespace ERP.Application.Services
         {
             var updated = await repository.UpdateAsync(id, new Department
             {
-                MaPhongBan = input.MaPhongBan,
                 TenPhongBan = input.TenPhongBan
             });
 
             return updated is null ? null : new DepartmentDto
             {
-                Id = updated.Id,
                 MaPhongBan = updated.MaPhongBan,
                 TenPhongBan = updated.TenPhongBan
             };

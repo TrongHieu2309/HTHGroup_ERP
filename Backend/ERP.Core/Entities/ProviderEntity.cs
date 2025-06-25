@@ -2,8 +2,7 @@
 {
     public class ProviderEntity
     {
-        public int Id { get; set; }
-        public string MaNCC { get; set; } = null!;
+        public int MaNCC { get; set; }
         public string TenNCC { get; set; } = null!;
         public string DiaChi { get; set; } = null!;
         public string MoTa { get; set; } = null!;

@@ -158,7 +158,7 @@
             this.txtTRANGTHAI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTRANGTHAI.Location = new System.Drawing.Point(13, 97);
             this.txtTRANGTHAI.Name = "txtTRANGTHAI";
-            this.txtTRANGTHAI.Size = new System.Drawing.Size(406, 22);
+            this.txtTRANGTHAI.Size = new System.Drawing.Size(409, 22);
             this.txtTRANGTHAI.TabIndex = 24;
             // 
             // dateNGAYNHAP
@@ -173,7 +173,7 @@
             this.dateNGAYNHAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNGAYNHAP.Properties.MaskSettings.Set("mask", "d");
-            this.dateNGAYNHAP.Size = new System.Drawing.Size(406, 20);
+            this.dateNGAYNHAP.Size = new System.Drawing.Size(409, 20);
             this.dateNGAYNHAP.TabIndex = 1;
             // 
             // txtDONGIA
@@ -183,7 +183,7 @@
             this.txtDONGIA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDONGIA.Location = new System.Drawing.Point(13, 14);
             this.txtDONGIA.Name = "txtDONGIA";
-            this.txtDONGIA.Size = new System.Drawing.Size(406, 22);
+            this.txtDONGIA.Size = new System.Drawing.Size(409, 22);
             this.txtDONGIA.TabIndex = 20;
             // 
             // groupBox1
@@ -357,7 +357,7 @@
             this.txtSOLUONGTON.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSOLUONGTON.Location = new System.Drawing.Point(13, 41);
             this.txtSOLUONGTON.Name = "txtSOLUONGTON";
-            this.txtSOLUONGTON.Size = new System.Drawing.Size(406, 22);
+            this.txtSOLUONGTON.Size = new System.Drawing.Size(409, 22);
             this.txtSOLUONGTON.TabIndex = 25;
             // 
             // barManager1
@@ -653,7 +653,7 @@
             this.comboMAMATHANG.Name = "comboMAMATHANG";
             this.comboMAMATHANG.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMAMATHANG.Size = new System.Drawing.Size(379, 20);
+            this.comboMAMATHANG.Size = new System.Drawing.Size(382, 20);
             this.comboMAMATHANG.TabIndex = 28;
             // 
             // comboMANCC
@@ -666,7 +666,7 @@
             this.comboMANCC.Name = "comboMANCC";
             this.comboMANCC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMANCC.Size = new System.Drawing.Size(379, 20);
+            this.comboMANCC.Size = new System.Drawing.Size(382, 20);
             this.comboMANCC.TabIndex = 27;
             // 
             // txtMOTA
@@ -677,7 +677,7 @@
             this.txtMOTA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMOTA.Location = new System.Drawing.Point(14, 68);
             this.txtMOTA.Name = "txtMOTA";
-            this.txtMOTA.Size = new System.Drawing.Size(379, 22);
+            this.txtMOTA.Size = new System.Drawing.Size(382, 22);
             this.txtMOTA.TabIndex = 26;
             // 
             // txtTENSP
@@ -688,7 +688,7 @@
             this.txtTENSP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENSP.Location = new System.Drawing.Point(14, 41);
             this.txtTENSP.Name = "txtTENSP";
-            this.txtTENSP.Size = new System.Drawing.Size(379, 22);
+            this.txtTENSP.Size = new System.Drawing.Size(382, 22);
             this.txtTENSP.TabIndex = 25;
             // 
             // txtMASP
@@ -700,7 +700,7 @@
             this.txtMASP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMASP.Location = new System.Drawing.Point(14, 14);
             this.txtMASP.Name = "txtMASP";
-            this.txtMASP.Size = new System.Drawing.Size(379, 22);
+            this.txtMASP.Size = new System.Drawing.Size(382, 22);
             this.txtMASP.TabIndex = 24;
             // 
             // contextMenuStrip1

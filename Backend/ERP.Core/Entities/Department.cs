@@ -3,8 +3,7 @@
     public class Department
     {
         // bảng phòng ban
-        public int Id { get; set; } // PK
-        public string MaPhongBan { get; set; } = null!; // unique varchar 20 not null
+        public int MaPhongBan { get; set; }
         public string TenPhongBan { get; set; } = null!; // nvarchar 100 not null
 
         // navigation property to Employee

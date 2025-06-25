@@ -32,7 +32,7 @@ namespace ERP.Api.Controllers
                 return BadRequest(ModelState);
 
             var result = await service.CreateSectionAsync(input);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            return CreatedAtAction(nameof(GetById), new { id = result.MaBoPhan }, result);
         }
 
         // PUT: api/section/5
