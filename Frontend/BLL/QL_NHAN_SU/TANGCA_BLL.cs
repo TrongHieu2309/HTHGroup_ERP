@@ -1,24 +1,75 @@
-﻿using DAL;
+﻿using ERP.Application.DTOs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL
 {
     public class TANGCA_BLL
     {
-        QUANLY_ERPH1Entities1 db = new QUANLY_ERPH1Entities1();
+        private readonly string baseUrl = "https://localhost:7086";
 
-        public List<TANGCA> GetList()
+        // Lấy toàn bộ danh sách tăng ca
+        public async Task<List<ExtraShiftDto>> GetAllAsync()
         {
-            try
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{baseUrl}/api/ExtraShift");
+            if (response.IsSuccessStatusCode)
             {
-                return db.TANGCAs.ToList();
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<ExtraShiftDto>>(json);
             }
-            catch (Exception ex)
+            return new List<ExtraShiftDto>();
+        }
+
+        // Lấy thông tin tăng ca theo ID
+        public async Task<ExtraShiftDto?> GetByIdAsync(int id)
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{baseUrl}/api/ExtraShift/{id}");
+            if (response.IsSuccessStatusCode)
             {
-                throw new Exception("Error retrieving insurance data: " + ex.Message);
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ExtraShiftDto>(json);
             }
+            return null;
+        }
+
+        // Tạo mới một ca tăng ca
+        public async Task<string> CreateAsync(ExtraShiftInputDto input)
+        {
+            using var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(input);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"{baseUrl}/api/ExtraShift", content);
+            return response.IsSuccessStatusCode
+                ? "Thêm ca tăng ca thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
+        }
+
+        // Cập nhật ca tăng ca
+        public async Task<string> UpdateAsync(int id, ExtraShiftInputDto input)
+        {
+            using var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(input);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"{baseUrl}/api/ExtraShift/{id}", content);
+            return response.IsSuccessStatusCode
+                ? "Cập nhật ca tăng ca thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
+        }
+
+        // Xóa ca tăng ca
+        public async Task<string> DeleteAsync(int id)
+        {
+            using var client = new HttpClient();
+            var response = await client.DeleteAsync($"{baseUrl}/api/ExtraShift/{id}");
+            return response.IsSuccessStatusCode
+                ? "Xóa ca tăng ca thành công!"
+                : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
         }
     }
 }

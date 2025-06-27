@@ -376,7 +376,7 @@
             // gridColMATD
             // 
             this.gridColMATD.Caption = "Mã trình độ";
-            this.gridColMATD.FieldName = "MATD";
+            this.gridColMATD.FieldName = "MaTDHV";
             this.gridColMATD.Name = "gridColMATD";
             this.gridColMATD.Visible = true;
             this.gridColMATD.VisibleIndex = 0;
@@ -384,8 +384,8 @@
             // 
             // gridColTENTD
             // 
-            this.gridColTENTD.Caption = "Tên trình độ";
-            this.gridColTENTD.FieldName = "TENTD";
+            this.gridColTENTD.Caption = "Trình độ học vấn";
+            this.gridColTENTD.FieldName = "TrinhDoHocVan";
             this.gridColTENTD.Name = "gridColTENTD";
             this.gridColTENTD.Visible = true;
             this.gridColTENTD.VisibleIndex = 1;

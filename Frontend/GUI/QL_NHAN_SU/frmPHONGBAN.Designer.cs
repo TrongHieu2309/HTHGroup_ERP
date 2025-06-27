@@ -244,7 +244,7 @@
             // gridColMAPB
             // 
             this.gridColMAPB.Caption = "Mã phòng ban";
-            this.gridColMAPB.FieldName = "MAPB";
+            this.gridColMAPB.FieldName = "MaPhongBan";
             this.gridColMAPB.Name = "gridColMAPB";
             this.gridColMAPB.Visible = true;
             this.gridColMAPB.VisibleIndex = 0;
@@ -253,7 +253,7 @@
             // gridColTENPB
             // 
             this.gridColTENPB.Caption = "Tên phòng ban";
-            this.gridColTENPB.FieldName = "TENPB";
+            this.gridColTENPB.FieldName = "TenPhongBan";
             this.gridColTENPB.Name = "gridColTENPB";
             this.gridColTENPB.Visible = true;
             this.gridColTENPB.VisibleIndex = 1;

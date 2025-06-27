@@ -63,7 +63,6 @@
             this.barbtnLuu = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnHuybo = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -83,7 +82,6 @@
             this.gridColTEN_LOAICA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColHESO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar4 = new DevExpress.XtraBars.Bar();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -124,8 +122,7 @@
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -140,7 +137,6 @@
             this.barbtnThoat});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 6;
-            this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -232,18 +228,6 @@
             this.barbtnThoat.SuperTip = superToolTip6;
             this.barbtnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThoat_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -256,9 +240,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 573);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 613);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1132, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1132, 0);
             // 
             // barDockControlLeft
             // 
@@ -266,7 +250,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 549);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 589);
             // 
             // barDockControlRight
             // 
@@ -274,7 +258,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1132, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 549);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 589);
             // 
             // splitContainer1
             // 
@@ -290,8 +274,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1132, 549);
-            this.splitContainer1.SplitterDistance = 122;
+            this.splitContainer1.Size = new System.Drawing.Size(1132, 589);
+            this.splitContainer1.SplitterDistance = 130;
             this.splitContainer1.TabIndex = 36;
             // 
             // groupNhap
@@ -301,7 +285,7 @@
             this.groupNhap.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupNhap.Location = new System.Drawing.Point(0, 0);
             this.groupNhap.Name = "groupNhap";
-            this.groupNhap.Size = new System.Drawing.Size(1132, 122);
+            this.groupNhap.Size = new System.Drawing.Size(1132, 130);
             this.groupNhap.TabIndex = 0;
             this.groupNhap.TabStop = false;
             this.groupNhap.Text = "Mục nhập liệu";
@@ -326,7 +310,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtHESO);
             this.splitContainer2.Panel2.Controls.Add(this.txtMALC);
             this.splitContainer2.Panel2.Controls.Add(this.txtTENLC);
-            this.splitContainer2.Size = new System.Drawing.Size(1126, 98);
+            this.splitContainer2.Size = new System.Drawing.Size(1126, 106);
             this.splitContainer2.SplitterDistance = 160;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -390,7 +374,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1132, 423);
+            this.groupBox1.Size = new System.Drawing.Size(1132, 455);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bảng dữ liệu";
@@ -402,7 +386,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1126, 399);
+            this.gridControl1.Size = new System.Drawing.Size(1126, 431);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -428,32 +412,33 @@
             // gridColMA_LOAICA
             // 
             this.gridColMA_LOAICA.Caption = "Mã Loại ca";
-            this.gridColMA_LOAICA.FieldName = "MA_LOAICA";
+            this.gridColMA_LOAICA.FieldName = "MaLoaiCa";
             this.gridColMA_LOAICA.Name = "gridColMA_LOAICA";
             this.gridColMA_LOAICA.Visible = true;
             this.gridColMA_LOAICA.VisibleIndex = 0;
-            this.gridColMA_LOAICA.Width = 102;
+            this.gridColMA_LOAICA.Width = 211;
             // 
             // gridColTEN_LOAICA
             // 
             this.gridColTEN_LOAICA.Caption = "Tên loại ca";
-            this.gridColTEN_LOAICA.FieldName = "TEN_LOAICA";
+            this.gridColTEN_LOAICA.FieldName = "CaLamViec";
             this.gridColTEN_LOAICA.Name = "gridColTEN_LOAICA";
             this.gridColTEN_LOAICA.Visible = true;
             this.gridColTEN_LOAICA.VisibleIndex = 1;
+            this.gridColTEN_LOAICA.Width = 443;
             // 
             // gridColHESO
             // 
             this.gridColHESO.Caption = "Hệ số tăng ca";
-            this.gridColHESO.FieldName = "HESO_TANGCA";
+            this.gridColHESO.FieldName = "HeSoTangCa";
             this.gridColHESO.Name = "gridColHESO";
+            this.gridColHESO.UnboundDataType = typeof(decimal);
             this.gridColHESO.Visible = true;
             this.gridColHESO.VisibleIndex = 2;
+            this.gridColHESO.Width = 447;
             // 
             // barManager2
             // 
-            this.barManager2.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar4});
             this.barManager2.DockControls.Add(this.barDockControl1);
             this.barManager2.DockControls.Add(this.barDockControl2);
             this.barManager2.DockControls.Add(this.barDockControl3);
@@ -467,19 +452,6 @@
             this.barButtonItem5,
             this.barButtonItem6});
             this.barManager2.MaxItemId = 6;
-            this.barManager2.StatusBar = this.bar4;
-            // 
-            // bar4
-            // 
-            this.bar4.BarName = "Status bar";
-            this.bar4.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar4.DockCol = 0;
-            this.bar4.DockRow = 0;
-            this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar4.OptionsBar.AllowQuickCustomization = false;
-            this.bar4.OptionsBar.DrawDragBorder = false;
-            this.bar4.OptionsBar.UseWholeRow = true;
-            this.bar4.Text = "Status bar";
             // 
             // barDockControl1
             // 
@@ -493,9 +465,9 @@
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 593);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 613);
             this.barDockControl2.Manager = this.barManager2;
-            this.barDockControl2.Size = new System.Drawing.Size(1132, 20);
+            this.barDockControl2.Size = new System.Drawing.Size(1132, 0);
             // 
             // barDockControl3
             // 
@@ -503,7 +475,7 @@
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControl3.Location = new System.Drawing.Point(0, 0);
             this.barDockControl3.Manager = this.barManager2;
-            this.barDockControl3.Size = new System.Drawing.Size(0, 593);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 613);
             // 
             // barDockControl4
             // 
@@ -511,7 +483,7 @@
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControl4.Location = new System.Drawing.Point(1132, 0);
             this.barDockControl4.Manager = this.barManager2;
-            this.barDockControl4.Size = new System.Drawing.Size(0, 593);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 613);
             // 
             // barButtonItem1
             // 
@@ -628,7 +600,6 @@
         private DevExpress.XtraBars.BarButtonItem barbtnLuu;
         private DevExpress.XtraBars.BarButtonItem barbtnHuybo;
         private DevExpress.XtraBars.BarButtonItem barbtnThoat;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -639,7 +610,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraBars.BarManager barManager2;
-        private DevExpress.XtraBars.Bar bar4;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;

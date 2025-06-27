@@ -1,13 +1,19 @@
 ﻿using BLL;
-using DAL;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
+using GUI.QL_TAI_CHINH_GUI;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_TAICHINH
 {
     public partial class frmPHUCAP : DevExpress.XtraEditors.XtraForm
     {
+        private readonly PHUCAP_BLL db = new PHUCAP_BLL();
+        private bool isEditMode = false;
+
         public frmPHUCAP()
         {
             InitializeComponent();
@@ -29,10 +35,15 @@ namespace GUI.QL_TAICHINH
             txtSOTIEN.Text = string.Empty;
         }
 
-        private void frmPHUCAP_Load(object sender, EventArgs e)
+        private async Task LoadDataAsync()
         {
-            PHUCAP_BLL db = new PHUCAP_BLL();
-            gridControl1.DataSource = db.GetList();
+            var list = await db.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private async void frmPHUCAP_Load(object sender, EventArgs e)
+        {
+            await LoadDataAsync();
             _showHide(true);
             groupNhap.Enabled = false;
         }
@@ -45,37 +56,90 @@ namespace GUI.QL_TAICHINH
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnXoa.Enabled = false;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (int.TryParse(txtMAPC.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await db.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTENPC.Text) || string.IsNullOrWhiteSpace(txtSOTIEN.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo");
+                return;
+            }
+
+            if (!decimal.TryParse(txtSOTIEN.Text, out decimal sotien))
+            {
+                MessageBox.Show("Số tiền không hợp lệ!", "Cảnh báo");
+                return;
+            }
+
+            var input = new AllowanceInputDto
+            {
+                TenPhuCap = txtTENPC.Text.Trim(),
+                SoTien = sotien
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMAPC.Text, out int id))
+            {
+                result = await db.UpdateAsync(id, input);
+            }
+            else
+            {
+                result = await db.CreateAsync(input);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmPHUCAPNV phucapNVForm)
+                {
+                    await phucapNVForm.LoadComboDataAsync();
+                    break;
+                }
+            }
+
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -83,23 +147,22 @@ namespace GUI.QL_TAICHINH
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
+            barbtnLuu.Enabled = false;
+            groupNhap.Enabled = false;
 
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var data = view?.GetRow(e.RowHandle) as AllowanceDto;
+                if (data != null)
                 {
-                    var phucap = view.GetRow(e.RowHandle) as PHUCAP;
-                    if (phucap != null)
-                    {
-                        txtMAPC.Text = phucap.MAPC.ToString();
-                        txtTENPC.Text = phucap.TENPC;
-                        txtSOTIEN.Text = phucap.SOTIEN.ToString();
-                    }
+                    txtMAPC.Text = data.MaPC.ToString();
+                    txtTENPC.Text = data.TenPhuCap;
+                    txtSOTIEN.Text = data.SoTien.ToString("N0");
                 }
             }
         }

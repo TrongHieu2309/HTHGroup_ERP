@@ -27,7 +27,6 @@ namespace ERP.Application.DTOs
         [StringLength(20, ErrorMessage = "Số bảo hiểm không vượt quá 20 ký tự")]
         public string SoBH { get; set; } = null!;
 
-        [StringLength(100, ErrorMessage = "Tên bệnh viện không vượt quá 100 ký tự")]
         public string? BenhVien { get; set; }
 
         [Required(ErrorMessage = "Ngày cấp là bắt buộc")]

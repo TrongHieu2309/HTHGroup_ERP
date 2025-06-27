@@ -63,7 +63,6 @@
             this.gridColMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColMA_LOAICA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar4 = new DevExpress.XtraBars.Bar();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -82,7 +81,6 @@
             this.barbtnLuu = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnHuybo = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -127,7 +125,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1132, 364);
+            this.groupBox1.Size = new System.Drawing.Size(1132, 391);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bảng dữ liệu";
@@ -139,7 +137,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1126, 340);
+            this.gridControl1.Size = new System.Drawing.Size(1126, 367);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -167,7 +165,7 @@
             // gridColMA_TANGCA
             // 
             this.gridColMA_TANGCA.Caption = "Mã tăng ca";
-            this.gridColMA_TANGCA.FieldName = "MA_TANGCA";
+            this.gridColMA_TANGCA.FieldName = "MaTangCa";
             this.gridColMA_TANGCA.Name = "gridColMA_TANGCA";
             this.gridColMA_TANGCA.Visible = true;
             this.gridColMA_TANGCA.VisibleIndex = 0;
@@ -176,7 +174,7 @@
             // gridColNGAY
             // 
             this.gridColNGAY.Caption = "Ngày tăng ca";
-            this.gridColNGAY.FieldName = "NGAY";
+            this.gridColNGAY.FieldName = "Ngay";
             this.gridColNGAY.Name = "gridColNGAY";
             this.gridColNGAY.Visible = true;
             this.gridColNGAY.VisibleIndex = 1;
@@ -185,7 +183,7 @@
             // gridColSOGIO
             // 
             this.gridColSOGIO.Caption = "Số giờ tăng ca";
-            this.gridColSOGIO.FieldName = "SOGIO";
+            this.gridColSOGIO.FieldName = "SoGio";
             this.gridColSOGIO.Name = "gridColSOGIO";
             this.gridColSOGIO.UnboundDataType = typeof(System.DateOnly);
             this.gridColSOGIO.Visible = true;
@@ -195,7 +193,7 @@
             // gridColMANV
             // 
             this.gridColMANV.Caption = "Mã nhân viên";
-            this.gridColMANV.FieldName = "MANV";
+            this.gridColMANV.FieldName = "MaNV";
             this.gridColMANV.Name = "gridColMANV";
             this.gridColMANV.Visible = true;
             this.gridColMANV.VisibleIndex = 3;
@@ -204,7 +202,7 @@
             // gridColMA_LOAICA
             // 
             this.gridColMA_LOAICA.Caption = "Mã loại ca";
-            this.gridColMA_LOAICA.FieldName = "MA_LOAICA";
+            this.gridColMA_LOAICA.FieldName = "MaLoaiCa";
             this.gridColMA_LOAICA.Name = "gridColMA_LOAICA";
             this.gridColMA_LOAICA.Visible = true;
             this.gridColMA_LOAICA.VisibleIndex = 4;
@@ -212,8 +210,6 @@
             // 
             // barManager2
             // 
-            this.barManager2.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar4});
             this.barManager2.DockControls.Add(this.barDockControl1);
             this.barManager2.DockControls.Add(this.barDockControl2);
             this.barManager2.DockControls.Add(this.barDockControl3);
@@ -227,19 +223,6 @@
             this.barButtonItem5,
             this.barButtonItem6});
             this.barManager2.MaxItemId = 6;
-            this.barManager2.StatusBar = this.bar4;
-            // 
-            // bar4
-            // 
-            this.bar4.BarName = "Status bar";
-            this.bar4.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar4.DockCol = 0;
-            this.bar4.DockRow = 0;
-            this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar4.OptionsBar.AllowQuickCustomization = false;
-            this.bar4.OptionsBar.DrawDragBorder = false;
-            this.bar4.OptionsBar.UseWholeRow = true;
-            this.bar4.Text = "Status bar";
             // 
             // barDockControl1
             // 
@@ -253,9 +236,9 @@
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 570);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 610);
             this.barDockControl2.Manager = this.barManager2;
-            this.barDockControl2.Size = new System.Drawing.Size(1132, 20);
+            this.barDockControl2.Size = new System.Drawing.Size(1132, 0);
             // 
             // barDockControl3
             // 
@@ -263,7 +246,7 @@
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControl3.Location = new System.Drawing.Point(0, 24);
             this.barDockControl3.Manager = this.barManager2;
-            this.barDockControl3.Size = new System.Drawing.Size(0, 546);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 586);
             // 
             // barDockControl4
             // 
@@ -271,7 +254,7 @@
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControl4.Location = new System.Drawing.Point(1132, 24);
             this.barDockControl4.Manager = this.barManager2;
-            this.barDockControl4.Size = new System.Drawing.Size(0, 546);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 586);
             // 
             // barButtonItem1
             // 
@@ -342,8 +325,7 @@
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -358,7 +340,6 @@
             this.barbtnThoat});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 6;
-            this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -450,18 +431,6 @@
             this.barbtnThoat.SuperTip = superToolTip6;
             this.barbtnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThoat_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -474,9 +443,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 590);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 610);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1132, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1132, 0);
             // 
             // barDockControlLeft
             // 
@@ -484,7 +453,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 566);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 586);
             // 
             // barDockControlRight
             // 
@@ -492,7 +461,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1132, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 566);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 586);
             // 
             // splitContainer1
             // 
@@ -508,8 +477,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1132, 546);
-            this.splitContainer1.SplitterDistance = 178;
+            this.splitContainer1.Size = new System.Drawing.Size(1132, 586);
+            this.splitContainer1.SplitterDistance = 191;
             this.splitContainer1.TabIndex = 29;
             // 
             // groupNhap
@@ -519,7 +488,7 @@
             this.groupNhap.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupNhap.Location = new System.Drawing.Point(0, 0);
             this.groupNhap.Name = "groupNhap";
-            this.groupNhap.Size = new System.Drawing.Size(1132, 178);
+            this.groupNhap.Size = new System.Drawing.Size(1132, 191);
             this.groupNhap.TabIndex = 0;
             this.groupNhap.TabStop = false;
             this.groupNhap.Text = "Mục nhập liệu";
@@ -549,7 +518,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.txtSOGIO);
             this.splitContainer2.Panel2.Controls.Add(this.dateNGAY);
             this.splitContainer2.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer2.Size = new System.Drawing.Size(1126, 154);
+            this.splitContainer2.Size = new System.Drawing.Size(1126, 167);
             this.splitContainer2.SplitterDistance = 160;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -624,6 +593,7 @@
             this.comboMALC.Name = "comboMALC";
             this.comboMALC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboMALC.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMALC.Size = new System.Drawing.Size(930, 20);
             this.comboMALC.TabIndex = 3;
             // 
@@ -637,6 +607,7 @@
             this.comboMANV.Name = "comboMANV";
             this.comboMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMANV.Size = new System.Drawing.Size(930, 20);
             this.comboMANV.TabIndex = 2;
             // 
@@ -645,9 +616,10 @@
             this.txtSOGIO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSOGIO.Location = new System.Drawing.Point(15, 62);
+            this.txtSOGIO.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSOGIO.Location = new System.Drawing.Point(15, 63);
             this.txtSOGIO.Name = "txtSOGIO";
-            this.txtSOGIO.Size = new System.Drawing.Size(930, 25);
+            this.txtSOGIO.Size = new System.Drawing.Size(930, 22);
             this.txtSOGIO.TabIndex = 1;
             // 
             // dateNGAY
@@ -663,6 +635,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNGAY.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNGAY.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dateNGAY.Size = new System.Drawing.Size(930, 20);
             this.dateNGAY.TabIndex = 0;
             // 
@@ -719,7 +692,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColMANV;
         private DevExpress.XtraGrid.Columns.GridColumn gridColMA_LOAICA;
         private DevExpress.XtraBars.BarManager barManager2;
-        private DevExpress.XtraBars.Bar bar4;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
@@ -735,7 +707,6 @@
         private DevExpress.XtraBars.BarButtonItem barbtnLuu;
         private DevExpress.XtraBars.BarButtonItem barbtnHuybo;
         private DevExpress.XtraBars.BarButtonItem barbtnThoat;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

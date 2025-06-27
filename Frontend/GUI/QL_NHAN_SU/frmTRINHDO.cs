@@ -1,19 +1,30 @@
-﻿using BLL;
-using DAL;
+﻿using BLL.QL_KHACH_HANG;
+using BLL.QL_TRINH_DO;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI
 {
     public partial class frmTRINHDO : DevExpress.XtraEditors.XtraForm
     {
+        private bool isEditMode = false;
+
         public frmTRINHDO()
         {
             InitializeComponent();
         }
 
-        void _showHide(bool kt)
+        private async Task LoadTrinhDoListAsync()
+        {
+            var bll = new TRINHDO_BLL();
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private void _showHide(bool kt)
         {
             barbtnThem.Enabled = kt;
             barbtnSua.Enabled = !kt;
@@ -21,77 +32,89 @@ namespace GUI
             barbtnLuu.Enabled = !kt;
             barbtnHuybo.Enabled = !kt;
         }
-        private void frmTRINHDO_Load(object sender, EventArgs e)
+
+        private void _clearInput()
         {
-            TRINHDO_BLL db = new TRINHDO_BLL();
-            gridControl1.DataSource = db.GetList();
+            txtMATD.Text = string.Empty;
+            txtTENTD.Text = string.Empty;
+        }
+
+        private async void frmTRINHDO_Load(object sender, EventArgs e)
+        {
+            await LoadTrinhDoListAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
+            isEditMode = false;
+            _clearInput();
             groupNhap.Enabled = true;
-            txtMATD.Text = string.Empty;
-            txtTENTD.Text = string.Empty;
+            _showHide(false);
         }
 
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (string.IsNullOrEmpty(txtMATD.Text))
+            {
+                MessageBox.Show("Vui lòng chọn trình độ để sửa!", "Thông báo");
+                return;
+            }
+
+            isEditMode = true;
+            groupNhap.Enabled = true;
+            _showHide(false);
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var bll = new TRINHDO_BLL();
+            var dto = new EducationLevelInputDto
+            {
+                TrinhDoHocVan = txtTENTD.Text.Trim()
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMATD.Text, out var id))
+            {
+                result = await bll.UpdateAsync(id, dto);
+            }
+            else
+            {
+                result = await bll.CreateAsync(dto);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmNHANSU nhansuForm)
+                {
+                    await nhansuForm.LoadComboBoxAsync();
+                    break;
+                }
+            }
+
+            await LoadTrinhDoListAsync();
             groupNhap.Enabled = false;
-            txtMATD.Text = string.Empty;
-            txtTENTD.Text = string.Empty;
+            _clearInput();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
             groupNhap.Enabled = false;
-            txtMATD.Text = string.Empty;
-            txtTENTD.Text = string.Empty;
+            _clearInput();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
-        }
-
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-
-            barbtnSua.Enabled = true;
-            barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
-            barbtnHuybo.Enabled = false;
-            groupNhap.Enabled = false;
-
-            if (e.RowHandle >= 0)
-            {
-                var view = sender as GridView;
-                if (view != null)
-                {
-                    var trinhdo = view.GetRow(e.RowHandle) as TRINHDO;
-                    if (trinhdo != null)
-                    {
-                        txtMATD.Text = trinhdo.MATD.ToString();
-                        txtTENTD.Text = trinhdo.TENTD;
-                    }
-                }
-            }
-        }
-
-        private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
         }
 
         private void frmTRINHDO_Resize(object sender, EventArgs e)
@@ -100,11 +123,41 @@ namespace GUI
             splitContainer2.SplitterDistance = 182;
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            txtMATD.Text = string.Empty;
-            txtTENTD.Text = string.Empty;
+            if (int.TryParse(txtMATD.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var bll = new TRINHDO_BLL();
+                    var result = await bll.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadTrinhDoListAsync();
+                    _clearInput();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
+        {
+            barbtnSua.Enabled = true;
+            barbtnXoa.Enabled = true;
+            barbtnLuu.Enabled = false;
+            barbtnHuybo.Enabled = true;
+            groupNhap.Enabled = false;
+
+            if (e.RowHandle >= 0)
+            {
+                var view = sender as GridView;
+                var item = view?.GetRow(e.RowHandle) as EducationLevelDto;
+                if (item != null)
+                {
+                    txtMATD.Text = item.MaTDHV.ToString();
+                    txtTENTD.Text = item.TrinhDoHocVan;
+                }
+            }
         }
     }
 }

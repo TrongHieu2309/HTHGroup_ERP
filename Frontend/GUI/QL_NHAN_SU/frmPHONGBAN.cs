@@ -1,8 +1,9 @@
-﻿using BLL;
-using DAL;
+﻿using BLL.QL_NHAN_SU;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI
 {
@@ -13,12 +14,13 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void frmPHONGBAN_Load(object sender, EventArgs e)
+        private bool isEditMode = false;
+
+        private async Task LoadDataAsync()
         {
-            PHONGBAN_BLL db = new PHONGBAN_BLL();
-            gridControl1.DataSource = db.GetList();
-            groupNhap.Enabled = false;
-            _showHide(true);
+            var bll = new PHONGBAN_BLL();
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
         }
 
         void _showHide(bool kt)
@@ -30,40 +32,103 @@ namespace GUI
             barbtnHuybo.Enabled = !kt;
         }
 
-        private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        void _groupEmpty()
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
             txtMAPB.Text = string.Empty;
             txtTENPB.Text = string.Empty;
+        }
+
+        private async void frmPHONGBAN_Load(object sender, EventArgs e)
+        {
+            await LoadDataAsync();
+            groupNhap.Enabled = false;
+            _showHide(true);
+        }
+
+        private void frmPHONGBAN_Resize(object sender, EventArgs e)
+        {
+            splitContainer1.SplitterDistance = 93;
+            splitContainer2.SplitterDistance = 154;
+        }
+
+        private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            isEditMode = false;
+            groupNhap.Enabled = true;
+            _showHide(false);
+            _groupEmpty();
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (int.TryParse(txtMAPB.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var bll = new PHONGBAN_BLL();
+                    var result = await bll.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var bll = new PHONGBAN_BLL();
+
+            var dto = new DepartmentInputDto
+            {
+                TenPhongBan = txtTENPB.Text.Trim()
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMAPB.Text, out int id))
+            {
+                // Cập nhật
+                result = await bll.UpdateAsync(id, dto);
+            }
+            else
+            {
+                // Thêm mới
+                result = await bll.AddAsync(dto);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmNHANSU nhansuForm)
+                {
+                    await nhansuForm.LoadComboBoxAsync();
+                    break;
+                }
+            }
+
+            await LoadDataAsync();
+            _groupEmpty();
             _showHide(true);
             groupNhap.Enabled = false;
-            txtMAPB.Text = string.Empty;
-            txtTENPB.Text = string.Empty;
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             _showHide(true);
             groupNhap.Enabled = false;
-            txtMAPB.Text = string.Empty;
-            txtTENPB.Text = string.Empty;
+            _groupEmpty();
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -84,27 +149,14 @@ namespace GUI
                 var view = sender as GridView;
                 if (view != null)
                 {
-                    var phongban = view.GetRow(e.RowHandle) as PHONGBAN;
+                    var phongban = view.GetRow(e.RowHandle) as DepartmentDto;
                     if (phongban != null)
                     {
-                        txtMAPB.Text = phongban.MAPB.ToString();
-                        txtTENPB.Text = phongban.TENPB;
+                        txtMAPB.Text = phongban.MaPhongBan.ToString();
+                        txtTENPB.Text = phongban.TenPhongBan;
                     }
                 }
             }
-        }
-
-        private void frmPHONGBAN_Resize(object sender, EventArgs e)
-        {
-            splitContainer1.SplitterDistance = 93;
-            splitContainer2.SplitterDistance = 154;
-        }
-
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
-            txtMAPB.Text = string.Empty;
-            txtTENPB.Text = string.Empty;
         }
     }
 }

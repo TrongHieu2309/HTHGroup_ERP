@@ -2,7 +2,6 @@
 using DevExpress.XtraGrid.Views.Grid;
 using ERP.Application.DTOs;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -56,10 +55,7 @@ namespace GUI
         {
             isEditMode = false;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
+            _showHide(false);
             _groupEmpty();
         }
 
@@ -67,10 +63,7 @@ namespace GUI
         {
             isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
         private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -92,39 +85,39 @@ namespace GUI
 
         private async void barbtnLuu_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //var bll = new BOPHAN_BLL();
+            var bll = new BOPHAN_BLL();
 
-            //var inputDto = new SectionInputDto
-            //{
-            //    //MaBP = int.TryParse(txtMABP.Text, out var id) ? id : 0,
-            //    TenBoPhan = txtTENBP.Text.Trim()
-            //};
+            var dto = new SectionInputDto
+            {
+                TenBoPhan = txtTENBP.Text.Trim()
+            };
 
-            //string result;
-            //if (isEditMode && int.TryParse(txtMABP.Text, out int id))
-            //{
-            //    var all = await bll.GetAllSectionsAsync();
-            //    //var existing = all.Find(x => x.MaBoPhan == inputDto.MaBoPhan);
-            //    if (existing != null)
-            //    {
-            //        result = await bll.UpdateSectionAsync(existing.MaBoPhan, inputDto);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Không tìm thấy mã bộ phận để cập nhật!", "Lỗi");
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    result = await bll.CreateSectionAsync(inputDto);
-            //}
+            string result;
 
-            //MessageBox.Show(result, "Thông báo");
-            //await LoadSectionListAsync();
+            if (isEditMode && int.TryParse(txtMABP.Text, out int id))
+            {
+                result = await bll.UpdateSectionAsync(id, dto);
+            }
+            else
+            {
+                result = await bll.CreateSectionAsync(dto);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmNHANSU nhansuForm)
+                {
+                    await nhansuForm.LoadComboBoxAsync();
+                    break;
+                }
+            }
+
+            await LoadSectionListAsync();
+            _groupEmpty();
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
             isEditMode = false;
         }
 
@@ -157,8 +150,8 @@ namespace GUI
                     var section = view.GetRow(e.RowHandle) as SectionDto;
                     if (section != null)
                     {
-                        //txtMABP.Text = section.MaBoPhan;
-                        //txtTENBP.Text = section.TenBoPhan;
+                        txtMABP.Text = section.MaBoPhan.ToString();
+                        txtTENBP.Text = section.TenBoPhan;
                     }
                 }
             }

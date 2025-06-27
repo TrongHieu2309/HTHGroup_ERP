@@ -742,10 +742,8 @@ namespace ERP.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<float>("HeSoTangCa")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("real")
-                        .HasDefaultValue(1f);
+                    b.Property<double>("HeSoTangCa")
+                        .HasColumnType("float");
 
                     b.HasKey("MaLoaiCa");
 

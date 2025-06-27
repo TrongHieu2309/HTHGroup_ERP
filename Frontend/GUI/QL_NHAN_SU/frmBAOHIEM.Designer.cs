@@ -388,7 +388,7 @@
             this.txtMABH.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMABH.Location = new System.Drawing.Point(12, 14);
             this.txtMABH.Name = "txtMABH";
-            this.txtMABH.Size = new System.Drawing.Size(422, 22);
+            this.txtMABH.Size = new System.Drawing.Size(416, 22);
             this.txtMABH.TabIndex = 24;
             // 
             // txtSOBH
@@ -399,7 +399,7 @@
             this.txtSOBH.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSOBH.Location = new System.Drawing.Point(12, 97);
             this.txtSOBH.Name = "txtSOBH";
-            this.txtSOBH.Size = new System.Drawing.Size(422, 22);
+            this.txtSOBH.Size = new System.Drawing.Size(416, 22);
             this.txtSOBH.TabIndex = 23;
             // 
             // comboMANV
@@ -412,7 +412,8 @@
             this.comboMANV.Name = "comboMANV";
             this.comboMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMANV.Size = new System.Drawing.Size(422, 20);
+            this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMANV.Size = new System.Drawing.Size(416, 20);
             this.comboMANV.TabIndex = 22;
             // 
             // comboLOAIBH
@@ -429,7 +430,8 @@
             "BHYT",
             "BHTN",
             "BHXH"});
-            this.comboLOAIBH.Size = new System.Drawing.Size(422, 20);
+            this.comboLOAIBH.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboLOAIBH.Size = new System.Drawing.Size(416, 20);
             this.comboLOAIBH.TabIndex = 21;
             // 
             // splitContainer4
@@ -503,10 +505,11 @@
             this.txtTINHTRANG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTINHTRANG.Enabled = false;
             this.txtTINHTRANG.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTINHTRANG.Location = new System.Drawing.Point(17, 97);
             this.txtTINHTRANG.Name = "txtTINHTRANG";
-            this.txtTINHTRANG.Size = new System.Drawing.Size(406, 22);
+            this.txtTINHTRANG.Size = new System.Drawing.Size(412, 22);
             this.txtTINHTRANG.TabIndex = 24;
             // 
             // dateNGAYHETHAN
@@ -521,7 +524,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNGAYHETHAN.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNGAYHETHAN.Size = new System.Drawing.Size(406, 20);
+            this.dateNGAYHETHAN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateNGAYHETHAN.Size = new System.Drawing.Size(412, 20);
             this.dateNGAYHETHAN.TabIndex = 1;
             // 
             // dateNGAYCAP
@@ -536,7 +540,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNGAYCAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNGAYCAP.Size = new System.Drawing.Size(406, 20);
+            this.dateNGAYCAP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateNGAYCAP.Size = new System.Drawing.Size(412, 20);
             this.dateNGAYCAP.TabIndex = 0;
             // 
             // txtBENHVIEN
@@ -547,7 +552,7 @@
             this.txtBENHVIEN.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBENHVIEN.Location = new System.Drawing.Point(17, 14);
             this.txtBENHVIEN.Name = "txtBENHVIEN";
-            this.txtBENHVIEN.Size = new System.Drawing.Size(406, 22);
+            this.txtBENHVIEN.Size = new System.Drawing.Size(412, 22);
             this.txtBENHVIEN.TabIndex = 20;
             // 
             // groupBox1
@@ -599,7 +604,7 @@
             // gridColMABH
             // 
             this.gridColMABH.Caption = "Mã bảo hiểm";
-            this.gridColMABH.FieldName = "MABH";
+            this.gridColMABH.FieldName = "MaBH";
             this.gridColMABH.Name = "gridColMABH";
             this.gridColMABH.Visible = true;
             this.gridColMABH.VisibleIndex = 0;
@@ -608,7 +613,7 @@
             // gridColMANV
             // 
             this.gridColMANV.Caption = "Mã nhân viên";
-            this.gridColMANV.FieldName = "MANV";
+            this.gridColMANV.FieldName = "MaNV";
             this.gridColMANV.Name = "gridColMANV";
             this.gridColMANV.Visible = true;
             this.gridColMANV.VisibleIndex = 1;
@@ -617,7 +622,7 @@
             // gridColLOAIBH
             // 
             this.gridColLOAIBH.Caption = "Loại bảo hiểm";
-            this.gridColLOAIBH.FieldName = "LOAIBH";
+            this.gridColLOAIBH.FieldName = "LoaiBH";
             this.gridColLOAIBH.Name = "gridColLOAIBH";
             this.gridColLOAIBH.UnboundDataType = typeof(System.DateOnly);
             this.gridColLOAIBH.Visible = true;
@@ -627,7 +632,7 @@
             // gridColSOBH
             // 
             this.gridColSOBH.Caption = "Số bảo hiểm";
-            this.gridColSOBH.FieldName = "SOBH";
+            this.gridColSOBH.FieldName = "SoBH";
             this.gridColSOBH.Name = "gridColSOBH";
             this.gridColSOBH.Visible = true;
             this.gridColSOBH.VisibleIndex = 3;
@@ -636,7 +641,7 @@
             // gridColBENHVIEN
             // 
             this.gridColBENHVIEN.Caption = "Bệnh viện";
-            this.gridColBENHVIEN.FieldName = "BENHVIEN";
+            this.gridColBENHVIEN.FieldName = "BenhVien";
             this.gridColBENHVIEN.Name = "gridColBENHVIEN";
             this.gridColBENHVIEN.Visible = true;
             this.gridColBENHVIEN.VisibleIndex = 4;
@@ -645,7 +650,7 @@
             // gridColNGAYCAP
             // 
             this.gridColNGAYCAP.Caption = "Ngày cấp";
-            this.gridColNGAYCAP.FieldName = "NGAYCAP";
+            this.gridColNGAYCAP.FieldName = "NgayCap";
             this.gridColNGAYCAP.Name = "gridColNGAYCAP";
             this.gridColNGAYCAP.Visible = true;
             this.gridColNGAYCAP.VisibleIndex = 5;
@@ -654,7 +659,7 @@
             // gridColNGAYHETHAN
             // 
             this.gridColNGAYHETHAN.Caption = "Ngày hết hạn";
-            this.gridColNGAYHETHAN.FieldName = "NGAY_HETHAN";
+            this.gridColNGAYHETHAN.FieldName = "NgayHetHan";
             this.gridColNGAYHETHAN.Name = "gridColNGAYHETHAN";
             this.gridColNGAYHETHAN.Visible = true;
             this.gridColNGAYHETHAN.VisibleIndex = 6;
@@ -663,7 +668,7 @@
             // gridColTINHTRANG
             // 
             this.gridColTINHTRANG.Caption = "Tình trạng";
-            this.gridColTINHTRANG.FieldName = "TINHTRANG";
+            this.gridColTINHTRANG.FieldName = "TinhTrang";
             this.gridColTINHTRANG.Name = "gridColTINHTRANG";
             this.gridColTINHTRANG.Visible = true;
             this.gridColTINHTRANG.VisibleIndex = 7;

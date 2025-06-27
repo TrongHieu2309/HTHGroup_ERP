@@ -1,13 +1,21 @@
 ﻿using BLL;
-using DAL;
+using BLL.QL_NHAN_SU;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_NHANSU
 {
     public partial class frmTINHCONG : DevExpress.XtraEditors.XtraForm
     {
+        private readonly TINHCONG_BLL db = new TINHCONG_BLL();
+        private readonly LOAICONG_BLL loaicongBLL = new LOAICONG_BLL();
+        private readonly NHANSU_BLL nhanSuBLL = new NHANSU_BLL();
+        private bool isEditMode = false;
+
         public frmTINHCONG()
         {
             InitializeComponent();
@@ -27,15 +35,57 @@ namespace GUI.QL_NHANSU
             txtMATC.Text = string.Empty;
             comboMANV.SelectedIndex = -1;
             dateNGAY.EditValue = null;
-            timeEditGIORA.EditValue = null;
             timeEditGIOVAO.EditValue = null;
+            timeEditGIORA.EditValue = null;
             comboMALC.SelectedIndex = -1;
         }
 
-        private void frmTINHCONG_Load(object sender, EventArgs e)
+        private void ConfigureTimeEdit()
         {
-            TINHCONG_BLL db = new TINHCONG_BLL();
-            gridControl1.DataSource = db.GetList();
+            timeEditGIOVAO.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            timeEditGIOVAO.Properties.DisplayFormat.FormatString = "HH:mm";
+            timeEditGIOVAO.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            timeEditGIOVAO.Properties.EditFormat.FormatString = "HH:mm";
+            timeEditGIOVAO.Properties.Mask.EditMask = "HH:mm";
+
+            timeEditGIORA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            timeEditGIORA.Properties.DisplayFormat.FormatString = "HH:mm";
+            timeEditGIORA.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            timeEditGIORA.Properties.EditFormat.FormatString = "HH:mm";
+            timeEditGIORA.Properties.Mask.EditMask = "HH:mm";
+        }
+
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return -1;
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return int.TryParse(parts[0], out int key) ? key : -1;
+        }
+
+        private async Task LoadDataAsync()
+        {
+            var list = await db.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        public async Task LoadCombosAsync()
+        {
+            var nvDict = await nhanSuBLL.GetEmployeeDictionaryAsync();
+            comboMANV.Properties.Items.Clear();
+            foreach (var item in nvDict)
+                comboMANV.Properties.Items.Add($"{item.Key}: {item.Value}");
+
+            var caDict = await loaicongBLL.GetDayTypeDictionaryAsync();
+            comboMALC.Properties.Items.Clear();
+            foreach (var item in caDict)
+                comboMALC.Properties.Items.Add($"{item.Key}: {item.Value}");
+        }
+
+        private async void frmTINHCONG_Load(object sender, EventArgs e)
+        {
+            ConfigureTimeEdit();
+            await LoadCombosAsync();
+            await LoadDataAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
@@ -48,41 +98,77 @@ namespace GUI.QL_NHANSU
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (int.TryParse(txtMATC.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await db.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (comboMANV.EditValue == null || comboMALC.EditValue == null || dateNGAY.EditValue == null)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo");
+                return;
+            }
+
+            var input = new WorkRecordInputDto
+            {
+                MaNhanVien = ExtractKeyFromCombo(comboMANV),
+                MaLoaiCong = ExtractKeyFromCombo(comboMALC),
+                Ngay = dateNGAY.DateTime,
+                GioVao = ((DateTime)timeEditGIOVAO.EditValue).TimeOfDay,
+                GioRa = ((DateTime)timeEditGIORA.EditValue).TimeOfDay
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMATC.Text, out int id))
+            {
+                result = await db.UpdateAsync(id, input);
+            }
+            else
+            {
+                result = await db.CreateAsync(input);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -90,9 +176,9 @@ namespace GUI.QL_NHANSU
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = false;
+            barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
             barbtnLuu.Enabled = false;
@@ -101,18 +187,15 @@ namespace GUI.QL_NHANSU
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var data = view?.GetRow(e.RowHandle) as WorkRecordDto;
+                if (data != null)
                 {
-                    var tinhcong = view.GetRow(e.RowHandle) as TINHCONG;
-                    if (tinhcong != null)
-                    {
-                        txtMATC.Text = tinhcong.MATC.ToString();
-                        dateNGAY.EditValue = tinhcong.NGAY;
-                        timeEditGIOVAO.EditValue = tinhcong.GIOVAO;
-                        timeEditGIORA.EditValue = tinhcong.GIORA;
-                        comboMANV.EditValue = tinhcong.MANV;
-                        comboMALC.EditValue = tinhcong.MALC;
-                    }
+                    txtMATC.Text = data.MaTinhCong.ToString();
+                    dateNGAY.EditValue = data.Ngay;
+                    timeEditGIOVAO.EditValue = DateTime.Today.Add(data.GioVao);
+                    timeEditGIORA.EditValue = DateTime.Today.Add(data.GioRa);
+                    comboMANV.EditValue = data.MaNhanVien;
+                    comboMALC.EditValue = data.MaLoaiCong;
                 }
             }
         }

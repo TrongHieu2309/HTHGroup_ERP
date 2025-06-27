@@ -1,5 +1,4 @@
-﻿// Bổ sung vào HOADON_BLL.cs
-using ERP.Application.DTOs;
+﻿using ERP.Application.DTOs;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;

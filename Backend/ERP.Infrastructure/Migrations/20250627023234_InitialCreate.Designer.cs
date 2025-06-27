@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250625085718_InitialCreate")]
+    [Migration("20250627023234_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -745,10 +745,8 @@ namespace ERP.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<float>("HeSoTangCa")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("real")
-                        .HasDefaultValue(1f);
+                    b.Property<double>("HeSoTangCa")
+                        .HasColumnType("float");
 
                     b.HasKey("MaLoaiCa");
 

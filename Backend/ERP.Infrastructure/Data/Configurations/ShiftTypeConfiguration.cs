@@ -20,7 +20,7 @@ namespace ERP.Infrastructure.Data.Configurations
 
             builder.Property(s => s.HeSoTangCa)
                 .IsRequired()
-                .HasDefaultValue(1.0f);
+                .HasColumnType("float");
         }
     }
 }

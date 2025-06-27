@@ -12,6 +12,12 @@ namespace BLL.QL_NHAN_SU
     {
         private readonly string baseUrl = "https://localhost:7086";
 
+        public async Task<Dictionary<int, string>> GetSectionDictionaryAsync() // lấy dữ liệu lên comboBox
+        {
+            var list = await GetAllSectionsAsync();
+            return list.ToDictionary(bp => bp.MaBoPhan, bp => $"{bp.TenBoPhan}");
+        }
+
         // Lấy tất cả bộ phận
         public async Task<List<SectionDto>> GetAllSectionsAsync()
         {
@@ -78,11 +84,5 @@ namespace BLL.QL_NHAN_SU
                 : $"Lỗi: {await response.Content.ReadAsStringAsync()}";
         }
 
-        // Dùng để load dữ liệu lên ComboBox: "MaBoPhan: TenBoPhan"
-        public async Task<Dictionary<int, string>> GetSectionDictionaryAsync()
-        {
-            var list = await GetAllSectionsAsync();
-            return list.ToDictionary(bp => bp.MaBoPhan, bp => $"{bp.MaBoPhan} - {bp.TenBoPhan}");
-        }
     }
 }

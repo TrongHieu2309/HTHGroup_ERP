@@ -1,13 +1,23 @@
 ﻿using BLL;
-using DAL;
+using BLL.QL_NHAN_SU;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI
 {
     public partial class frmTANGCA : DevExpress.XtraEditors.XtraForm
     {
+        private readonly TANGCA_BLL db = new TANGCA_BLL();
+        private readonly NHANSU_BLL nhanSuBLL = new NHANSU_BLL();
+        private readonly LOAICA_BLL loaiCaBLL = new LOAICA_BLL();
+        private bool isEditMode = false;
+
         public frmTANGCA()
         {
             InitializeComponent();
@@ -26,17 +36,43 @@ namespace GUI
         {
             txtMATC.Text = string.Empty;
             comboMANV.SelectedIndex = -1;
+            comboMALC.SelectedIndex = -1;
             dateNGAY.EditValue = null;
             txtSOGIO.Text = string.Empty;
-            comboMALC.SelectedIndex = -1;
         }
 
-        private void frmTANGCA_Load(object sender, EventArgs e)
+        private async Task LoadDataAsync()
         {
-            TANGCA_BLL db = new TANGCA_BLL();
-            gridControl1.DataSource = db.GetList();
-            groupNhap.Enabled = false;
+            var list = await db.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        public async Task LoadCombosAsync()
+        {
+            var nvDict = await nhanSuBLL.GetEmployeeDictionaryAsync();
+            comboMANV.Properties.Items.Clear();
+            foreach (var item in nvDict)
+                comboMANV.Properties.Items.Add($"{item.Key}: {item.Value}");
+
+            var caDict = await loaiCaBLL.GetShiftTypeDictionaryAsync();
+            comboMALC.Properties.Items.Clear();
+            foreach (var item in caDict)
+                comboMALC.Properties.Items.Add($"{item.Key}: {item.Value}");
+        }
+
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return -1;
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return int.TryParse(parts[0], out int key) ? key : -1;
+        }
+
+        private async void frmTANGCA_Load(object sender, EventArgs e)
+        {
+            await LoadCombosAsync();
+            await LoadDataAsync();
             _showHide(true);
+            groupNhap.Enabled = false;
         }
 
         private void frmTANGCA_Resize(object sender, EventArgs e)
@@ -47,41 +83,72 @@ namespace GUI
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (int.TryParse(txtMATC.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await db.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!int.TryParse(txtSOGIO.Text, out int sogio) || sogio < 1 || sogio > 24)
+            {
+                MessageBox.Show("Số giờ tăng ca phải từ 1 đến 24!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var input = new ExtraShiftInputDto
+            {
+                Ngay = dateNGAY.DateTime,
+                SoGio = sogio,
+                MaNV = ExtractKeyFromCombo(comboMANV),
+                MaLoaiCa = ExtractKeyFromCombo(comboMALC)
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMATC.Text, out int id))
+                result = await db.UpdateAsync(id, input);
+            else
+                result = await db.CreateAsync(input);
+
+            MessageBox.Show(result, "Thông báo");
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -89,28 +156,25 @@ namespace GUI
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = false;
+            _showHide(true);
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
             groupNhap.Enabled = false;
 
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var data = view?.GetRow(e.RowHandle) as ExtraShiftDto;
+
+                if (data != null)
                 {
-                    var tangCa = view.GetRow(e.RowHandle) as TANGCA; // Lấy đối tượng TANGCA
-                    if (tangCa != null)
-                    {
-                        txtMATC.Text = tangCa.MA_TANGCA.ToString();
-                        dateNGAY.EditValue = tangCa.NGAY;
-                        txtSOGIO.Text = tangCa.SOGIO.ToString();
-                        comboMALC.EditValue = tangCa.MA_LOAICA;
-                        comboMANV.EditValue = tangCa.MANV;
-                    }
+                    txtMATC.Text = data.MaTangCa.ToString();
+                    dateNGAY.DateTime = data.Ngay;
+                    txtSOGIO.Text = data.SoGio.ToString();
+                    comboMANV.SelectedItem = $"{data.MaNV}: {data.HoTenNV}";
+                    comboMALC.SelectedItem = $"{data.MaLoaiCa}: {data.CaLamViec}";
                 }
             }
         }

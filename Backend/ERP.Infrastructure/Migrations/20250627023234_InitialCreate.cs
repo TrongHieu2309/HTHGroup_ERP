@@ -78,7 +78,7 @@ namespace ERP.Infrastructure.Migrations
                     MaLoaiCa = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CaLamViec = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    HeSoTangCa = table.Column<float>(type: "real", nullable: false, defaultValue: 1f)
+                    HeSoTangCa = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

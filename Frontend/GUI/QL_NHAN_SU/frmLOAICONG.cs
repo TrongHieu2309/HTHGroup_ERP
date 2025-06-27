@@ -1,13 +1,18 @@
 ﻿using BLL;
-using DAL;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Linq;
+using System.Globalization;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_NHANSU
 {
     public partial class frmLOAICONG : DevExpress.XtraEditors.XtraForm
     {
+        private readonly LOAICONG_BLL db = new LOAICONG_BLL();
+        private bool isEditMode = false;
+
         public frmLOAICONG()
         {
             InitializeComponent();
@@ -29,10 +34,15 @@ namespace GUI.QL_NHANSU
             txtHESO.Text = string.Empty;
         }
 
-        private void frmLOAICONG_Load(object sender, EventArgs e)
+        private async Task LoadDataAsync()
         {
-            LOAICONG_BLL db = new LOAICONG_BLL();
-            gridControl1.DataSource = db.GetList();
+            var list = await db.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private async void frmLOAICONG_Load(object sender, EventArgs e)
+        {
+            await LoadDataAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
@@ -45,41 +55,84 @@ namespace GUI.QL_NHANSU
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (int.TryParse(txtMALC.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await db.DeleteAsync(id);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!float.TryParse(txtHESO.Text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out float heso))
+            {
+                MessageBox.Show("Hệ số tăng ca không hợp lệ!");
+                return;
+            }
+
+            var input = new DayTypeInputDto
+            {
+                TenLoaiCong = txtTENLC.Text.Trim(),
+                HeSo = heso
+            };
+
+            string result;
+
+            if (isEditMode && int.TryParse(txtMALC.Text, out int id))
+            {
+                result = await db.UpdateAsync(id, input);
+            }
+            else
+            {
+                result = await db.CreateAsync(input);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmTINHCONG tinhcongForm)
+                {
+                    await tinhcongForm.LoadCombosAsync();
+                    break;
+                }
+            }
+
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -87,9 +140,9 @@ namespace GUI.QL_NHANSU
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = false;
+            barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
             barbtnLuu.Enabled = false;
@@ -98,22 +151,15 @@ namespace GUI.QL_NHANSU
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var data = view?.GetRow(e.RowHandle) as DayTypeDto;
+
+                if (data != null)
                 {
-                    var loaicong = view.GetRow(e.RowHandle) as LOAICONG;
-                    if (loaicong != null)
-                    {
-                        txtMALC.Text = loaicong.MALC.ToString();
-                        txtTENLC.Text = loaicong.TENLC;
-                        txtHESO.Text = loaicong.HESO.ToString();
-                    }
+                    txtMALC.Text = data.MaLoaiCong.ToString();
+                    txtTENLC.Text = data.TenLoaiCong;
+                    txtHESO.Text = data.HeSo.ToString("0.##", CultureInfo.InvariantCulture);
                 }
             }
-        }
-
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

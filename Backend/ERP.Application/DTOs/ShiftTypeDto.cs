@@ -16,6 +16,6 @@ namespace ERP.Application.DTOs
         public string CaLamViec { get; set; } = null!;
 
         [Range(1.0, float.MaxValue, ErrorMessage = "Hệ số tăng ca phải lớn hơn hoặc bằng 1.0")]
-        public float HeSoTangCa { get; set; } = 1.0f;
+        public float HeSoTangCa { get; set; }
     }
 }
