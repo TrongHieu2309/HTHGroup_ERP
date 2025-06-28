@@ -37,10 +37,13 @@ namespace ERP.Application.Services
             var existing = await repository.GetByUsernameAsync(dto.TenDangNhap);
             if (existing != null) return null;
 
+            // băm mật khẩu
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+
             var user = new User
             {
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = dto.MatKhau, // TODO: băm mật khẩu khi triển khai thật
+                MatKhau = hashedPassword, // TODO: băm mật khẩu khi triển khai thật
                 MaVaiTro = dto.MaVaiTro
             };
 
@@ -58,6 +61,9 @@ namespace ERP.Application.Services
             var user = await repository.LoginAsync(dto.TenDangNhap, dto.MatKhau);
             if (user == null) return null;
 
+            var isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
+            if (!isPasswordValid) return null;
+
             return new UserDto
             {
                 Id = user.Id,
@@ -72,7 +78,7 @@ namespace ERP.Application.Services
             {
                 Id = id,
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = dto.MatKhau,
+                MatKhau = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau),
                 MaVaiTro = dto.MaVaiTro
             };
 
