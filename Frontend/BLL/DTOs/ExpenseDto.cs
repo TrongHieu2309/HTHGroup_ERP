@@ -7,7 +7,7 @@ namespace ERP.Application.DTOs
     {
         public int MaChi { get; set; }
         public int MaNV { get; set; }
-        public string HoTenNV { get; set; } = null!; // Tên nhân viên từ navigation property
+        public string HoTenNV { get; set; } = null!;
         public DateTime NgayChi { get; set; }
         public string NoiDung { get; set; } = null!;
         public decimal SoTien { get; set; }

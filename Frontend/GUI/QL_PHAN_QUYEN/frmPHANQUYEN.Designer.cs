@@ -203,7 +203,7 @@
             this.comboBoxEditMAQUYEN.Name = "comboBoxEditMAQUYEN";
             this.comboBoxEditMAQUYEN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMAQUYEN.Size = new System.Drawing.Size(911, 20);
+            this.comboBoxEditMAQUYEN.Size = new System.Drawing.Size(917, 20);
             this.comboBoxEditMAQUYEN.TabIndex = 5;
             // 
             // barManager2
@@ -329,7 +329,7 @@
             this.comboBoxEditMAVT.Name = "comboBoxEditMAVT";
             this.comboBoxEditMAVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMAVT.Size = new System.Drawing.Size(911, 20);
+            this.comboBoxEditMAVT.Size = new System.Drawing.Size(917, 20);
             this.comboBoxEditMAVT.TabIndex = 4;
             // 
             // txtHANHDONG
@@ -339,7 +339,7 @@
             this.txtHANHDONG.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHANHDONG.Location = new System.Drawing.Point(3, 66);
             this.txtHANHDONG.Name = "txtHANHDONG";
-            this.txtHANHDONG.Size = new System.Drawing.Size(911, 22);
+            this.txtHANHDONG.Size = new System.Drawing.Size(917, 22);
             this.txtHANHDONG.TabIndex = 3;
             // 
             // groupBox1

@@ -47,19 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtGHICHU = new System.Windows.Forms.TextBox();
-            this.txtNGUOICHI = new System.Windows.Forms.TextBox();
-            this.txtSOTIEN = new System.Windows.Forms.TextBox();
-            this.gridColNOIDUNG = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColNGUOICHI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNOIDUNG = new System.Windows.Forms.TextBox();
-            this.dateEditNGAY = new DevExpress.XtraEditors.DateEdit();
+            this.comboNGUOICHI = new DevExpress.XtraEditors.ComboBoxEdit();
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barbtnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -72,6 +60,18 @@
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
+            this.txtGHICHU = new System.Windows.Forms.TextBox();
+            this.txtSOTIEN = new System.Windows.Forms.TextBox();
+            this.gridColNOIDUNG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColNGUOICHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNOIDUNG = new System.Windows.Forms.TextBox();
+            this.dateEditNGAY = new DevExpress.XtraEditors.DateEdit();
             this.comboMANV = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupNhap = new System.Windows.Forms.GroupBox();
             this.gridColSOTIEN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,6 +87,8 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOICHI.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -97,7 +99,6 @@
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAY.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboMANV.Properties)).BeginInit();
             this.groupNhap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -135,8 +136,8 @@
             // 
             // splitContainer4.Panel2
             // 
+            this.splitContainer4.Panel2.Controls.Add(this.comboNGUOICHI);
             this.splitContainer4.Panel2.Controls.Add(this.txtGHICHU);
-            this.splitContainer4.Panel2.Controls.Add(this.txtNGUOICHI);
             this.splitContainer4.Panel2.Controls.Add(this.txtSOTIEN);
             this.splitContainer4.Size = new System.Drawing.Size(531, 141);
             this.splitContainer4.SplitterDistance = 173;
@@ -172,169 +173,19 @@
             this.label8.TabIndex = 25;
             this.label8.Text = "&7. Ghi chú:";
             // 
-            // txtGHICHU
+            // comboNGUOICHI
             // 
-            this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.comboNGUOICHI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGHICHU.Location = new System.Drawing.Point(14, 74);
-            this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(331, 25);
-            this.txtGHICHU.TabIndex = 13;
-            // 
-            // txtNGUOICHI
-            // 
-            this.txtNGUOICHI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOICHI.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNGUOICHI.Location = new System.Drawing.Point(14, 43);
-            this.txtNGUOICHI.Name = "txtNGUOICHI";
-            this.txtNGUOICHI.Size = new System.Drawing.Size(331, 25);
-            this.txtNGUOICHI.TabIndex = 12;
-            // 
-            // txtSOTIEN
-            // 
-            this.txtSOTIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSOTIEN.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSOTIEN.Location = new System.Drawing.Point(14, 13);
-            this.txtSOTIEN.Name = "txtSOTIEN";
-            this.txtSOTIEN.Size = new System.Drawing.Size(331, 25);
-            this.txtSOTIEN.TabIndex = 11;
-            // 
-            // gridColNOIDUNG
-            // 
-            this.gridColNOIDUNG.Caption = "Nội dung";
-            this.gridColNOIDUNG.FieldName = "NOIDUNG";
-            this.gridColNOIDUNG.Name = "gridColNOIDUNG";
-            this.gridColNOIDUNG.Visible = true;
-            this.gridColNOIDUNG.VisibleIndex = 4;
-            this.gridColNOIDUNG.Width = 149;
-            // 
-            // gridColNGUOICHI
-            // 
-            this.gridColNGUOICHI.Caption = "Người chi";
-            this.gridColNGUOICHI.FieldName = "NGUOICHI";
-            this.gridColNGUOICHI.Name = "gridColNGUOICHI";
-            this.gridColNGUOICHI.Visible = true;
-            this.gridColNGUOICHI.VisibleIndex = 5;
-            this.gridColNGUOICHI.Width = 149;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.IsSplitterFixed = true;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 21);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1072, 141);
-            this.splitContainer2.SplitterDistance = 540;
-            this.splitContainer2.SplitterWidth = 1;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.IsSplitterFixed = true;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.label4);
-            this.splitContainer3.Panel1.Controls.Add(this.label3);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Controls.Add(this.label1);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.txtNOIDUNG);
-            this.splitContainer3.Panel2.Controls.Add(this.dateEditNGAY);
-            this.splitContainer3.Panel2.Controls.Add(this.comboMANV);
-            this.splitContainer3.Panel2.Controls.Add(this.txtMACHI);
-            this.splitContainer3.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer3.Size = new System.Drawing.Size(540, 141);
-            this.splitContainer3.SplitterDistance = 149;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 15);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "&2. Mã nhân viên:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "&1. Mã chi:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 15);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "&4. Nội dung:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "&3. Ngày chi:";
-            // 
-            // txtNOIDUNG
-            // 
-            this.txtNOIDUNG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNOIDUNG.Location = new System.Drawing.Point(13, 104);
-            this.txtNOIDUNG.Name = "txtNOIDUNG";
-            this.txtNOIDUNG.Size = new System.Drawing.Size(360, 25);
-            this.txtNOIDUNG.TabIndex = 10;
-            // 
-            // dateEditNGAY
-            // 
-            this.dateEditNGAY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateEditNGAY.EditValue = null;
-            this.dateEditNGAY.Location = new System.Drawing.Point(13, 76);
-            this.dateEditNGAY.MenuManager = this.barManager2;
-            this.dateEditNGAY.Name = "dateEditNGAY";
-            this.dateEditNGAY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboNGUOICHI.Location = new System.Drawing.Point(14, 46);
+            this.comboNGUOICHI.MenuManager = this.barManager2;
+            this.comboNGUOICHI.Name = "comboNGUOICHI";
+            this.comboNGUOICHI.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditNGAY.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditNGAY.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.DateTimeMaskManager));
-            this.dateEditNGAY.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.dateEditNGAY.Properties.MaskSettings.Set("mask", "d");
-            this.dateEditNGAY.Size = new System.Drawing.Size(360, 20);
-            this.dateEditNGAY.TabIndex = 9;
+            this.comboNGUOICHI.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboNGUOICHI.Size = new System.Drawing.Size(331, 20);
+            this.comboNGUOICHI.TabIndex = 11;
             // 
             // barManager2
             // 
@@ -477,6 +328,160 @@
             this.barDockControl4.Manager = this.barManager2;
             this.barDockControl4.Size = new System.Drawing.Size(0, 538);
             // 
+            // txtGHICHU
+            // 
+            this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGHICHU.Location = new System.Drawing.Point(14, 74);
+            this.txtGHICHU.Name = "txtGHICHU";
+            this.txtGHICHU.Size = new System.Drawing.Size(331, 25);
+            this.txtGHICHU.TabIndex = 13;
+            // 
+            // txtSOTIEN
+            // 
+            this.txtSOTIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSOTIEN.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSOTIEN.Location = new System.Drawing.Point(14, 13);
+            this.txtSOTIEN.Name = "txtSOTIEN";
+            this.txtSOTIEN.Size = new System.Drawing.Size(331, 25);
+            this.txtSOTIEN.TabIndex = 11;
+            // 
+            // gridColNOIDUNG
+            // 
+            this.gridColNOIDUNG.Caption = "Nội dung";
+            this.gridColNOIDUNG.FieldName = "NoiDung";
+            this.gridColNOIDUNG.Name = "gridColNOIDUNG";
+            this.gridColNOIDUNG.Visible = true;
+            this.gridColNOIDUNG.VisibleIndex = 3;
+            this.gridColNOIDUNG.Width = 149;
+            // 
+            // gridColNGUOICHI
+            // 
+            this.gridColNGUOICHI.Caption = "Người chi";
+            this.gridColNGUOICHI.FieldName = "NguoiChi";
+            this.gridColNGUOICHI.Name = "gridColNGUOICHI";
+            this.gridColNGUOICHI.Visible = true;
+            this.gridColNGUOICHI.VisibleIndex = 5;
+            this.gridColNGUOICHI.Width = 149;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 21);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
+            this.splitContainer2.Size = new System.Drawing.Size(1072, 141);
+            this.splitContainer2.SplitterDistance = 540;
+            this.splitContainer2.SplitterWidth = 1;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.IsSplitterFixed = true;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.label4);
+            this.splitContainer3.Panel1.Controls.Add(this.label3);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.txtNOIDUNG);
+            this.splitContainer3.Panel2.Controls.Add(this.dateEditNGAY);
+            this.splitContainer3.Panel2.Controls.Add(this.comboMANV);
+            this.splitContainer3.Panel2.Controls.Add(this.txtMACHI);
+            this.splitContainer3.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainer3.Size = new System.Drawing.Size(540, 141);
+            this.splitContainer3.SplitterDistance = 149;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 15);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "&2. Mã nhân viên:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "&1. Mã chi:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 109);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 15);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "&4. Nội dung:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 15);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "&3. Ngày chi:";
+            // 
+            // txtNOIDUNG
+            // 
+            this.txtNOIDUNG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNOIDUNG.Location = new System.Drawing.Point(13, 104);
+            this.txtNOIDUNG.Name = "txtNOIDUNG";
+            this.txtNOIDUNG.Size = new System.Drawing.Size(360, 25);
+            this.txtNOIDUNG.TabIndex = 10;
+            // 
+            // dateEditNGAY
+            // 
+            this.dateEditNGAY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateEditNGAY.EditValue = null;
+            this.dateEditNGAY.Location = new System.Drawing.Point(13, 76);
+            this.dateEditNGAY.MenuManager = this.barManager2;
+            this.dateEditNGAY.Name = "dateEditNGAY";
+            this.dateEditNGAY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditNGAY.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditNGAY.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.DateTimeMaskManager));
+            this.dateEditNGAY.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.dateEditNGAY.Properties.MaskSettings.Set("mask", "d");
+            this.dateEditNGAY.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateEditNGAY.Size = new System.Drawing.Size(360, 20);
+            this.dateEditNGAY.TabIndex = 9;
+            // 
             // comboMANV
             // 
             this.comboMANV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -487,6 +492,7 @@
             this.comboMANV.Name = "comboMANV";
             this.comboMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMANV.Size = new System.Drawing.Size(360, 20);
             this.comboMANV.TabIndex = 1;
             // 
@@ -507,16 +513,16 @@
             // gridColSOTIEN
             // 
             this.gridColSOTIEN.Caption = "Số tiền";
-            this.gridColSOTIEN.FieldName = "SOTIEN";
+            this.gridColSOTIEN.FieldName = "SoTien";
             this.gridColSOTIEN.Name = "gridColSOTIEN";
             this.gridColSOTIEN.Visible = true;
-            this.gridColSOTIEN.VisibleIndex = 3;
+            this.gridColSOTIEN.VisibleIndex = 4;
             this.gridColSOTIEN.Width = 170;
             // 
             // gridColMACHI
             // 
             this.gridColMACHI.Caption = "Mã chi";
-            this.gridColMACHI.FieldName = "MACHI";
+            this.gridColMACHI.FieldName = "MaChi";
             this.gridColMACHI.Name = "gridColMACHI";
             this.gridColMACHI.Visible = true;
             this.gridColMACHI.VisibleIndex = 0;
@@ -547,7 +553,7 @@
             // gridColMANV
             // 
             this.gridColMANV.Caption = "Mã nhân viên";
-            this.gridColMANV.FieldName = "MANV";
+            this.gridColMANV.FieldName = "MaNV";
             this.gridColMANV.Name = "gridColMANV";
             this.gridColMANV.Visible = true;
             this.gridColMANV.VisibleIndex = 1;
@@ -556,7 +562,7 @@
             // gridColNGAYCHI
             // 
             this.gridColNGAYCHI.Caption = "Ngày chi";
-            this.gridColNGAYCHI.FieldName = "NGAYCHI";
+            this.gridColNGAYCHI.FieldName = "NgayChi";
             this.gridColNGAYCHI.Name = "gridColNGAYCHI";
             this.gridColNGAYCHI.Visible = true;
             this.gridColNGAYCHI.VisibleIndex = 2;
@@ -565,7 +571,7 @@
             // gridColGHICHU
             // 
             this.gridColGHICHU.Caption = "Ghi chú";
-            this.gridColGHICHU.FieldName = "GHICHU";
+            this.gridColGHICHU.FieldName = "GhiChu";
             this.gridColGHICHU.Name = "gridColGHICHU";
             this.gridColGHICHU.Visible = true;
             this.gridColGHICHU.VisibleIndex = 6;
@@ -632,6 +638,8 @@
             this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOICHI.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -644,7 +652,6 @@
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAY.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAY.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboMANV.Properties)).EndInit();
             this.groupNhap.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -667,7 +674,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtGHICHU;
-        private System.Windows.Forms.TextBox txtNGUOICHI;
         private System.Windows.Forms.TextBox txtSOTIEN;
         private DevExpress.XtraGrid.Columns.GridColumn gridColNOIDUNG;
         private DevExpress.XtraGrid.Columns.GridColumn gridColNGUOICHI;
@@ -702,5 +708,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColSOTIEN;
         private DevExpress.XtraGrid.Columns.GridColumn gridColGHICHU;
         private DevExpress.XtraEditors.ComboBoxEdit comboMANV;
+        private DevExpress.XtraEditors.ComboBoxEdit comboNGUOICHI;
     }
 }

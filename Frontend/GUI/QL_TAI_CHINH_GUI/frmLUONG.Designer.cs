@@ -116,8 +116,8 @@
             // 
             // gridColNAM
             // 
-            this.gridColNAM.Caption = "Năm phụ cấp";
-            this.gridColNAM.FieldName = "NAM";
+            this.gridColNAM.Caption = "Năm nhận lương";
+            this.gridColNAM.FieldName = "Nam";
             this.gridColNAM.Name = "gridColNAM";
             this.gridColNAM.Visible = true;
             this.gridColNAM.VisibleIndex = 3;
@@ -126,7 +126,7 @@
             // gridColMANV
             // 
             this.gridColMANV.Caption = "Mã nhân viên";
-            this.gridColMANV.FieldName = "MANV";
+            this.gridColMANV.FieldName = "MaNV";
             this.gridColMANV.Name = "gridColMANV";
             this.gridColMANV.Visible = true;
             this.gridColMANV.VisibleIndex = 1;
@@ -135,7 +135,7 @@
             // gridColMALUONG
             // 
             this.gridColMALUONG.Caption = "Mã lương";
-            this.gridColMALUONG.FieldName = "MALUONG";
+            this.gridColMALUONG.FieldName = "MaLuong";
             this.gridColMALUONG.Name = "gridColMALUONG";
             this.gridColMALUONG.Visible = true;
             this.gridColMALUONG.VisibleIndex = 0;
@@ -166,8 +166,8 @@
             // 
             // gridColTHANG
             // 
-            this.gridColTHANG.Caption = "Tháng phụ cấp";
-            this.gridColTHANG.FieldName = "THANG";
+            this.gridColTHANG.Caption = "Tháng nhận lương";
+            this.gridColTHANG.FieldName = "Thang";
             this.gridColTHANG.Name = "gridColTHANG";
             this.gridColTHANG.Visible = true;
             this.gridColTHANG.VisibleIndex = 2;
@@ -176,7 +176,7 @@
             // gridColLUONGCB
             // 
             this.gridColLUONGCB.Caption = "Lương cơ bản";
-            this.gridColLUONGCB.FieldName = "LUONGCB";
+            this.gridColLUONGCB.FieldName = "LuongCoBan";
             this.gridColLUONGCB.Name = "gridColLUONGCB";
             this.gridColLUONGCB.Visible = true;
             this.gridColLUONGCB.VisibleIndex = 4;
@@ -185,7 +185,7 @@
             // gridColTONG_TANGCA
             // 
             this.gridColTONG_TANGCA.Caption = "Tổng tiền tăng ca";
-            this.gridColTONG_TANGCA.FieldName = "TONGTC";
+            this.gridColTONG_TANGCA.FieldName = "TongTC";
             this.gridColTONG_TANGCA.Name = "gridColTONG_TANGCA";
             this.gridColTONG_TANGCA.Visible = true;
             this.gridColTONG_TANGCA.VisibleIndex = 5;
@@ -194,7 +194,7 @@
             // gridColTONGPC
             // 
             this.gridColTONGPC.Caption = "Tổng tiền phụ cấp";
-            this.gridColTONGPC.FieldName = "TONGPC";
+            this.gridColTONGPC.FieldName = "TongPC";
             this.gridColTONGPC.Name = "gridColTONGPC";
             this.gridColTONGPC.Visible = true;
             this.gridColTONGPC.VisibleIndex = 6;
@@ -203,7 +203,7 @@
             // gridColTHUCLINH
             // 
             this.gridColTHUCLINH.Caption = "Thực lĩnh";
-            this.gridColTHUCLINH.FieldName = "THUCLINH";
+            this.gridColTHUCLINH.FieldName = "ThucLinh";
             this.gridColTHUCLINH.Name = "gridColTHUCLINH";
             this.gridColTHUCLINH.Visible = true;
             this.gridColTHUCLINH.VisibleIndex = 7;
@@ -503,6 +503,7 @@
             this.dateEditNAM.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.DateTimeMaskManager));
             this.dateEditNAM.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.dateEditNAM.Properties.MaskSettings.Set("mask", "yyyy");
+            this.dateEditNAM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dateEditNAM.Size = new System.Drawing.Size(378, 20);
             this.dateEditNAM.TabIndex = 10;
             // 
@@ -522,6 +523,7 @@
             this.dateEditTHANG.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.DateTimeMaskManager));
             this.dateEditTHANG.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.dateEditTHANG.Properties.MaskSettings.Set("mask", "MM");
+            this.dateEditTHANG.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dateEditTHANG.Size = new System.Drawing.Size(378, 20);
             this.dateEditTHANG.TabIndex = 9;
             // 
@@ -535,8 +537,10 @@
             this.comboMANV.Name = "comboMANV";
             this.comboMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMANV.Size = new System.Drawing.Size(378, 20);
             this.comboMANV.TabIndex = 1;
+            this.comboMANV.SelectedIndexChanged += new System.EventHandler(this.comboMANV_SelectedIndexChanged);
             // 
             // txtMALUONG
             // 
@@ -620,6 +624,7 @@
             this.txtTHUCLINH.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTHUCLINH.Enabled = false;
             this.txtTHUCLINH.Location = new System.Drawing.Point(15, 104);
             this.txtTHUCLINH.Name = "txtTHUCLINH";
             this.txtTHUCLINH.Size = new System.Drawing.Size(341, 25);
@@ -630,6 +635,7 @@
             this.txtTONGPC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTONGPC.Enabled = false;
             this.txtTONGPC.Location = new System.Drawing.Point(15, 74);
             this.txtTONGPC.Name = "txtTONGPC";
             this.txtTONGPC.Size = new System.Drawing.Size(341, 25);
@@ -640,6 +646,7 @@
             this.txtTONG_TANGCA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTONG_TANGCA.Enabled = false;
             this.txtTONG_TANGCA.Location = new System.Drawing.Point(15, 43);
             this.txtTONG_TANGCA.Name = "txtTONG_TANGCA";
             this.txtTONG_TANGCA.Size = new System.Drawing.Size(341, 25);
@@ -654,6 +661,8 @@
             this.txtLUONGCB.Name = "txtLUONGCB";
             this.txtLUONGCB.Size = new System.Drawing.Size(341, 25);
             this.txtLUONGCB.TabIndex = 11;
+            this.txtLUONGCB.TextChanged += new System.EventHandler(this.txtLUONGCB_TextChanged);
+            this.txtLUONGCB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLUONGCB_KeyDown);
             // 
             // frmLUONG
             // 

@@ -1,19 +1,28 @@
 ﻿using BLL.QL_TAI_CHINH_BLL;
-using DAL;
+using BLL.QL_NHAN_SU;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_TAI_CHINH_GUI
 {
-    public partial class frmKHOANTHU : DevExpress.XtraEditors.XtraForm
+    public partial class frmKHOANTHU : XtraForm
     {
+        private readonly KHOANTHU_BLL thuBLL = new KHOANTHU_BLL();
+        private readonly NHANSU_BLL nhanSuBLL = new NHANSU_BLL();
+        private bool isEditMode = false;
+
         public frmKHOANTHU()
         {
             InitializeComponent();
         }
 
-        void _showHide(bool kt)
+        private void _showHide(bool kt)
         {
             barbtnThem.Enabled = kt;
             barbtnSua.Enabled = !kt;
@@ -22,21 +31,50 @@ namespace GUI.QL_TAI_CHINH_GUI
             barbtnHuybo.Enabled = !kt;
         }
 
-        void _groupEmpty()
+        private void _groupEmpty()
         {
             txtMATHU.Text = string.Empty;
             comboMANV.SelectedIndex = -1;
             dateEditNGAY.EditValue = null;
             txtNOIDUNG.Text = string.Empty;
             txtSOTIEN.Text = string.Empty;
-            txtNGUOITHU.Text = string.Empty;
+            comboBoxNGUOITHU.SelectedIndex = -1;
             txtGHICHU.Text = string.Empty;
         }
 
-        private void frmKHOANTHU_Load(object sender, EventArgs e)
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
         {
-            KHOANTHU_BLL db = new KHOANTHU_BLL();
-            gridControl1.DataSource = db.GetList();
+            if (combo.SelectedItem == null) return -1;
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return int.TryParse(parts[0], out int key) ? key : -1;
+        }
+
+        private async Task LoadComboNhanVienAsync()
+        {
+            var dict = await nhanSuBLL.GetEmployeeDictionaryAsync();
+
+            // Load comboMANV
+            comboMANV.Properties.Items.Clear();
+            foreach (var item in dict)
+                comboMANV.Properties.Items.Add($"{item.Key}: {item.Value}");
+
+            // Load comboBoxNGUOITHU
+            comboBoxNGUOITHU.Properties.Items.Clear();
+            foreach (var item in dict)
+                comboBoxNGUOITHU.Properties.Items.Add(item.Value); // chỉ cần tên
+        }
+
+
+        private async Task LoadGridDataAsync()
+        {
+            var list = await thuBLL.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private async void frmKHOANTHU_Load(object sender, EventArgs e)
+        {
+            await LoadComboNhanVienAsync();
+            await LoadGridDataAsync();
             _showHide(true);
             groupNhap.Enabled = false;
         }
@@ -50,45 +88,90 @@ namespace GUI.QL_TAI_CHINH_GUI
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnXoa.Enabled = false;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (!int.TryParse(txtMATHU.Text, out int id)) return;
+
+            var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                var result = await thuBLL.DeleteAsync(id);
+                MessageBox.Show(result, "Thông báo");
+                await LoadGridDataAsync();
+                _groupEmpty();
+                _showHide(true);
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (comboMANV.SelectedItem == null ||
+                dateEditNGAY.EditValue == null ||
+                string.IsNullOrWhiteSpace(txtNOIDUNG.Text) ||
+                string.IsNullOrWhiteSpace(txtSOTIEN.Text) ||
+                comboBoxNGUOITHU.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo");
+                return;
+            }
+
+            if (!decimal.TryParse(txtSOTIEN.Text, out decimal soTien))
+            {
+                MessageBox.Show("Số tiền không hợp lệ!", "Cảnh báo");
+                return;
+            }
+
+            var input = new RevenueInputDto
+            {
+                MaNV = ExtractKeyFromCombo(comboMANV),
+                NgayThu = Convert.ToDateTime(dateEditNGAY.EditValue),
+                NoiDung = txtNOIDUNG.Text.Trim(),
+                SoTien = soTien,
+                NguoiThu = comboBoxNGUOITHU.Text.Trim(),
+                GhiChu = txtGHICHU.Text.Trim()
+            };
+
+            string result;
+            if (isEditMode && int.TryParse(txtMATHU.Text, out int id))
+                result = await thuBLL.UpdateAsync(id, input);
+            else
+                result = await thuBLL.CreateAsync(input);
+
+            MessageBox.Show(result, "Thông báo");
+            await LoadGridDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
@@ -96,21 +179,23 @@ namespace GUI.QL_TAI_CHINH_GUI
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var data = view?.GetRow(e.RowHandle) as RevenueDto;
+                if (data != null)
                 {
-                    var thu = view.GetRow(e.RowHandle) as THU;
-                    if (thu != null)
-                    {
-                        txtMATHU.Text = thu.MATHU.ToString();
-                        comboMANV.Text = thu.MANV.ToString();
-                        dateEditNGAY.EditValue = thu.NGAYTHU;
-                        txtNOIDUNG.Text = thu.NOIDUNG;
-                        txtSOTIEN.Text = thu.SOTIEN.ToString();
-                        txtNGUOITHU.Text = thu.NGUOITHU;
-                        txtGHICHU.Text = thu.GHICHU;
-                    }
+                    txtMATHU.Text = data.MaThu.ToString();
+                    comboMANV.Text = data.MaNV.ToString();
+                    dateEditNGAY.EditValue = data.NgayThu;
+                    txtNOIDUNG.Text = data.NoiDung;
+                    txtSOTIEN.Text = data.SoTien.ToString("0.##");
+                    comboBoxNGUOITHU.Text = data.NguoiThu;
+                    txtGHICHU.Text = data.GhiChu;
                 }
             }
+        }
+
+        private void comboMANV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

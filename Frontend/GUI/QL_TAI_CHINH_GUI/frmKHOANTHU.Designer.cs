@@ -67,8 +67,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxNGUOITHU = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtGHICHU = new System.Windows.Forms.TextBox();
-            this.txtNGUOITHU = new System.Windows.Forms.TextBox();
             this.txtSOTIEN = new System.Windows.Forms.TextBox();
             this.gridColNOIDUNG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColNGUOITHU = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -95,6 +95,7 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxNGUOITHU.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -354,8 +355,10 @@
             this.comboMANV.Name = "comboMANV";
             this.comboMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMANV.Size = new System.Drawing.Size(371, 20);
             this.comboMANV.TabIndex = 1;
+            this.comboMANV.SelectedIndexChanged += new System.EventHandler(this.comboMANV_SelectedIndexChanged);
             // 
             // txtMATHU
             // 
@@ -403,8 +406,8 @@
             // 
             // splitContainer4.Panel2
             // 
+            this.splitContainer4.Panel2.Controls.Add(this.comboBoxNGUOITHU);
             this.splitContainer4.Panel2.Controls.Add(this.txtGHICHU);
-            this.splitContainer4.Panel2.Controls.Add(this.txtNGUOITHU);
             this.splitContainer4.Panel2.Controls.Add(this.txtSOTIEN);
             this.splitContainer4.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer4.Size = new System.Drawing.Size(548, 142);
@@ -421,6 +424,19 @@
             this.label8.TabIndex = 25;
             this.label8.Text = "&7. Ghi chú:";
             // 
+            // comboBoxNGUOITHU
+            // 
+            this.comboBoxNGUOITHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxNGUOITHU.Location = new System.Drawing.Point(14, 48);
+            this.comboBoxNGUOITHU.MenuManager = this.barManager2;
+            this.comboBoxNGUOITHU.Name = "comboBoxNGUOITHU";
+            this.comboBoxNGUOITHU.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxNGUOITHU.Size = new System.Drawing.Size(342, 20);
+            this.comboBoxNGUOITHU.TabIndex = 11;
+            // 
             // txtGHICHU
             // 
             this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -430,16 +446,6 @@
             this.txtGHICHU.Name = "txtGHICHU";
             this.txtGHICHU.Size = new System.Drawing.Size(342, 25);
             this.txtGHICHU.TabIndex = 13;
-            // 
-            // txtNGUOITHU
-            // 
-            this.txtNGUOITHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOITHU.Location = new System.Drawing.Point(14, 43);
-            this.txtNGUOITHU.Name = "txtNGUOITHU";
-            this.txtNGUOITHU.Size = new System.Drawing.Size(342, 25);
-            this.txtNGUOITHU.TabIndex = 12;
             // 
             // txtSOTIEN
             // 
@@ -454,7 +460,7 @@
             // gridColNOIDUNG
             // 
             this.gridColNOIDUNG.Caption = "Nội dung";
-            this.gridColNOIDUNG.FieldName = "NOIDUNG";
+            this.gridColNOIDUNG.FieldName = "NoiDung";
             this.gridColNOIDUNG.Name = "gridColNOIDUNG";
             this.gridColNOIDUNG.Visible = true;
             this.gridColNOIDUNG.VisibleIndex = 4;
@@ -463,7 +469,7 @@
             // gridColNGUOITHU
             // 
             this.gridColNGUOITHU.Caption = "Người thu";
-            this.gridColNGUOITHU.FieldName = "NGUOITHU";
+            this.gridColNGUOITHU.FieldName = "NguoiThu";
             this.gridColNGUOITHU.Name = "gridColNGUOITHU";
             this.gridColNGUOITHU.Visible = true;
             this.gridColNGUOITHU.VisibleIndex = 5;
@@ -491,7 +497,7 @@
             // gridColSOTIEN
             // 
             this.gridColSOTIEN.Caption = "Số tiền";
-            this.gridColSOTIEN.FieldName = "SOTIEN";
+            this.gridColSOTIEN.FieldName = "SoTien";
             this.gridColSOTIEN.Name = "gridColSOTIEN";
             this.gridColSOTIEN.Visible = true;
             this.gridColSOTIEN.VisibleIndex = 3;
@@ -500,7 +506,7 @@
             // gridColMANV
             // 
             this.gridColMANV.Caption = "Mã nhân viên";
-            this.gridColMANV.FieldName = "MANV";
+            this.gridColMANV.FieldName = "MaNV";
             this.gridColMANV.Name = "gridColMANV";
             this.gridColMANV.Visible = true;
             this.gridColMANV.VisibleIndex = 1;
@@ -509,7 +515,7 @@
             // gridColMATHU
             // 
             this.gridColMATHU.Caption = "Mã thu";
-            this.gridColMATHU.FieldName = "MATHU";
+            this.gridColMATHU.FieldName = "MaThu";
             this.gridColMATHU.Name = "gridColMATHU";
             this.gridColMATHU.Visible = true;
             this.gridColMATHU.VisibleIndex = 0;
@@ -540,7 +546,7 @@
             // gridColNGAYTHU
             // 
             this.gridColNGAYTHU.Caption = "Ngày thu";
-            this.gridColNGAYTHU.FieldName = "NGAYTHU";
+            this.gridColNGAYTHU.FieldName = "NgayThu";
             this.gridColNGAYTHU.Name = "gridColNGAYTHU";
             this.gridColNGAYTHU.Visible = true;
             this.gridColNGAYTHU.VisibleIndex = 2;
@@ -549,7 +555,7 @@
             // gridColGHICHU
             // 
             this.gridColGHICHU.Caption = "Ghi chú";
-            this.gridColGHICHU.FieldName = "GHICHU";
+            this.gridColGHICHU.FieldName = "GhiChu";
             this.gridColGHICHU.Name = "gridColGHICHU";
             this.gridColGHICHU.Visible = true;
             this.gridColGHICHU.VisibleIndex = 6;
@@ -640,6 +646,7 @@
             this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxNGUOITHU.Properties)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -684,7 +691,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtGHICHU;
-        private System.Windows.Forms.TextBox txtNGUOITHU;
         private System.Windows.Forms.TextBox txtSOTIEN;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -700,5 +706,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboMANV;
         private System.Windows.Forms.TextBox txtMATHU;
         private System.Windows.Forms.TextBox txtNOIDUNG;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxNGUOITHU;
     }
 }
