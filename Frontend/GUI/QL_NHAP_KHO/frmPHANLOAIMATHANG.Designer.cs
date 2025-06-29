@@ -120,7 +120,7 @@
             // gridColMAMATHANG
             // 
             this.gridColMAMATHANG.Caption = "Mã mặt hàng";
-            this.gridColMAMATHANG.FieldName = "MAMATHANG";
+            this.gridColMAMATHANG.FieldName = "MaMatHang";
             this.gridColMAMATHANG.Name = "gridColMAMATHANG";
             this.gridColMAMATHANG.Visible = true;
             this.gridColMAMATHANG.VisibleIndex = 0;
@@ -129,7 +129,7 @@
             // gridColTENMATHANG
             // 
             this.gridColTENMATHANG.Caption = "Tên mặt hàng";
-            this.gridColTENMATHANG.FieldName = "TENMATHANG";
+            this.gridColTENMATHANG.FieldName = "TenMatHang";
             this.gridColTENMATHANG.Name = "gridColTENMATHANG";
             this.gridColTENMATHANG.Visible = true;
             this.gridColTENMATHANG.VisibleIndex = 1;
@@ -138,7 +138,7 @@
             // gridColSOLUONG
             // 
             this.gridColSOLUONG.Caption = "Số lượng";
-            this.gridColSOLUONG.FieldName = "SOLUONG";
+            this.gridColSOLUONG.FieldName = "SoLuong";
             this.gridColSOLUONG.Name = "gridColSOLUONG";
             this.gridColSOLUONG.UnboundDataType = typeof(System.DateOnly);
             this.gridColSOLUONG.Visible = true;
@@ -148,7 +148,7 @@
             // gridColTONGCHIPHI
             // 
             this.gridColTONGCHIPHI.Caption = "Tổng chi phí";
-            this.gridColTONGCHIPHI.FieldName = "TONGCHIPHI";
+            this.gridColTONGCHIPHI.FieldName = "TongChiPhi";
             this.gridColTONGCHIPHI.Name = "gridColTONGCHIPHI";
             this.gridColTONGCHIPHI.Visible = true;
             this.gridColTONGCHIPHI.VisibleIndex = 3;
@@ -456,7 +456,6 @@
             this.Name = "frmPHANLOAIMATHANG";
             this.Text = "Phân loại mặt hàng";
             this.Load += new System.EventHandler(this.frmPHANLOAIMATHANG_Load);
-            this.Resize += new System.EventHandler(this.frmPHANLOAIMATHANG_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();

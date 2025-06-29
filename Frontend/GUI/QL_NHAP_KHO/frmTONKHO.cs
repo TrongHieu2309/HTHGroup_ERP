@@ -1,19 +1,32 @@
-﻿using BLL.QL_NHAP_KHO_BLL;
+﻿using BLL.QL_NHAP_KHO;
+using BLL.QL_NHAP_KHO_BLL;
 using DAL;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_NHAP_KHO
 {
     public partial class frmTONKHO : DevExpress.XtraEditors.XtraForm
     {
+        private readonly TONKHO_BLL tonkhoBLL = new TONKHO_BLL();
+        private readonly SANPHAM_BLL spBLL = new SANPHAM_BLL();
+        private readonly KHOHANG_BLL khoBLL = new KHOHANG_BLL();
+        private bool isEditMode = false;
+        private Dictionary<int, string> spDict = new Dictionary<int, string>();
+
+
         public frmTONKHO()
         {
             InitializeComponent();
         }
 
-        void _showHide(bool kt)
+        private void _showHide(bool kt)
         {
             barbtnThem.Enabled = kt;
             barbtnSua.Enabled = !kt;
@@ -22,22 +35,66 @@ namespace GUI.QL_NHAP_KHO
             barbtnHuybo.Enabled = !kt;
         }
 
-        void _groupEmpty()
+        private void _groupEmpty()
         {
-            txtMATONKHO.Text = string.Empty;
+            txtMATONKHO.Text = "";
             comboMASP.SelectedIndex = -1;
-            txtTENSP.Text = string.Empty;
+            txtTENSP.Text = "";
             comboMAKHO.SelectedIndex = -1;
-            txtSOLUONGTON.Text = string.Empty;
+            txtSOLUONGTON.Text = "";
             dateEditNGAYCAPNHAT.EditValue = null;
         }
 
-        private void frmTONKHO_Load(object sender, EventArgs e)
+        private async Task LoadDataAsync()
         {
-            TONKHO_BLL db = new TONKHO_BLL();
-            gridControl1.DataSource = db.GetList();
-            groupNhap.Enabled = false;
+            var list = await tonkhoBLL.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private async Task LoadComboBoxAsync()
+        {
+            spDict = await spBLL.GetProductDictionaryAsync();
+            var khoDict = await khoBLL.GetInventoryDictionaryAsync();
+
+            comboMASP.Properties.Items.Clear();
+            comboMAKHO.Properties.Items.Clear();
+
+            foreach (var item in spDict)
+                comboMASP.Properties.Items.Add($"{item.Key}: {item.Value}");
+
+            foreach (var item in khoDict)
+                comboMAKHO.Properties.Items.Add($"{item.Key}: {item.Value}");
+        }
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem != null)
+            {
+                var selected = combo.SelectedItem.ToString();
+                if (int.TryParse(selected.Split(':')[0], out int key))
+                    return key;
+            }
+            return 0;
+        }
+
+        private async void frmTONKHO_Load(object sender, EventArgs e)
+        {
+            await LoadComboBoxAsync();
+            await LoadDataAsync();
             _showHide(true);
+            groupNhap.Enabled = false;
         }
 
         private void frmTONKHO_Resize(object sender, EventArgs e)
@@ -49,41 +106,65 @@ namespace GUI.QL_NHAP_KHO
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (int.TryParse(txtMATONKHO.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await tonkhoBLL.DeleteAsync(id);
+                    MessageBox.Show(result);
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var input = new AvailableStockInputDto
+            {
+                MaSP = ExtractKeyFromCombo(comboMASP),
+                TenSP = txtTENSP.Text,
+                MaKho = ExtractKeyFromCombo(comboMAKHO),
+                SoLuongTon = int.TryParse(txtSOLUONGTON.Text, out var sl) ? sl : 0,
+                NgayCapNhat = dateEditNGAYCAPNHAT.DateTime
+            };
+
+            string result;
+            if (isEditMode && int.TryParse(txtMATONKHO.Text, out int id))
+                result = await tonkhoBLL.UpdateAsync(id, input);
+            else
+                result = await tonkhoBLL.CreateAsync(input);
+
+            MessageBox.Show(result);
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -93,6 +174,7 @@ namespace GUI.QL_NHAP_KHO
 
         private void gridView1_RowClick_1(object sender, RowClickEventArgs e)
         {
+            _showHide(true);
             barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
@@ -102,19 +184,26 @@ namespace GUI.QL_NHAP_KHO
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var item = view?.GetRow(e.RowHandle) as AvailableStockDto;
+
+                if (item != null)
                 {
-                    var tonkho = view.GetRow(e.RowHandle) as TONKHO;
-                    if (tonkho != null)
-                    {
-                        txtMATONKHO.Text = tonkho.ID.ToString();
-                        comboMASP.Text = tonkho.MASP.ToString();
-                        txtTENSP.Text = tonkho.TENSP;
-                        comboMAKHO.Text = tonkho.MAKHO.ToString();
-                        txtSOLUONGTON.Text = tonkho.SOLUONGTON.ToString();
-                        dateEditNGAYCAPNHAT.EditValue = tonkho.NGAYCAPNHAT;
-                    }
+                    txtMATONKHO.Text = item.Id.ToString();
+                    SetComboBoxSelectedItemByKey(comboMASP, item.MaSP);
+                    txtTENSP.Text = item.TenSP;
+                    SetComboBoxSelectedItemByKey(comboMAKHO, item.MaKho);
+                    txtSOLUONGTON.Text = item.SoLuongTon.ToString();
+                    dateEditNGAYCAPNHAT.EditValue = item.NgayCapNhat;
                 }
+            }
+        }
+
+        private void comboMASP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int maSP = ExtractKeyFromCombo(comboMASP);
+            if (maSP > 0 && spDict.TryGetValue(maSP, out var tenSP))
+            {
+                txtTENSP.Text = tenSP;
             }
         }
     }

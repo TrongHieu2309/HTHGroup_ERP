@@ -162,7 +162,7 @@ namespace GUI.QL_TAICHINH
                 {
                     txtMAPC.Text = data.MaPC.ToString();
                     txtTENPC.Text = data.TenPhuCap;
-                    txtSOTIEN.Text = data.SoTien.ToString("N0");
+                    txtSOTIEN.Text = data.SoTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
                 }
             }
         }

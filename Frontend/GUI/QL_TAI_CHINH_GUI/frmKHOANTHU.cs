@@ -49,6 +49,14 @@ namespace GUI.QL_TAI_CHINH_GUI
             return int.TryParse(parts[0], out int key) ? key : -1;
         }
 
+        private string ExtractValueFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return string.Empty;
+
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return parts.Length > 1 ? parts[1].Trim() : string.Empty;
+        }
+
         private async Task LoadComboNhanVienAsync()
         {
             var dict = await nhanSuBLL.GetEmployeeDictionaryAsync();
@@ -61,7 +69,7 @@ namespace GUI.QL_TAI_CHINH_GUI
             // Load comboBoxNGUOITHU
             comboBoxNGUOITHU.Properties.Items.Clear();
             foreach (var item in dict)
-                comboBoxNGUOITHU.Properties.Items.Add(item.Value); // chỉ cần tên
+                comboBoxNGUOITHU.Properties.Items.Add($"{item.Key}: {item.Value}");
         }
 
 
@@ -140,7 +148,7 @@ namespace GUI.QL_TAI_CHINH_GUI
                 NgayThu = Convert.ToDateTime(dateEditNGAY.EditValue),
                 NoiDung = txtNOIDUNG.Text.Trim(),
                 SoTien = soTien,
-                NguoiThu = comboBoxNGUOITHU.Text.Trim(),
+                NguoiThu = ExtractValueFromCombo(comboBoxNGUOITHU),
                 GhiChu = txtGHICHU.Text.Trim()
             };
 
@@ -171,6 +179,35 @@ namespace GUI.QL_TAI_CHINH_GUI
             Close();
         }
 
+        private void SetComboBoxSelectedItemByValue(ComboBoxEdit comboBox, string value)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr)
+                {
+                    var parts = itemStr.Split(new[] { ':' }, 2);
+                    if (parts.Length == 2 && parts[1].Trim().Equals(value.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        comboBox.SelectedItem = itemStr;
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
         private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
             barbtnSua.Enabled = true;
@@ -183,19 +220,28 @@ namespace GUI.QL_TAI_CHINH_GUI
                 if (data != null)
                 {
                     txtMATHU.Text = data.MaThu.ToString();
-                    comboMANV.Text = data.MaNV.ToString();
+                    SetComboBoxSelectedItemByKey(comboMANV, data.MaNV);
                     dateEditNGAY.EditValue = data.NgayThu;
                     txtNOIDUNG.Text = data.NoiDung;
-                    txtSOTIEN.Text = data.SoTien.ToString("0.##");
-                    comboBoxNGUOITHU.Text = data.NguoiThu;
+                    txtSOTIEN.Text = data.SoTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                    SetComboBoxSelectedItemByValue(comboBoxNGUOITHU, data.NguoiThu);
                     txtGHICHU.Text = data.GhiChu;
                 }
             }
         }
 
-        private void comboMANV_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtSOTIEN_TextChanged(object sender, EventArgs e)
         {
-
+            if (txtSOTIEN.Focused)
+            {
+                string raw = txtSOTIEN.Text.Replace(".", "");
+                if (decimal.TryParse(raw, out decimal value))
+                {
+                    int cursor = txtSOTIEN.SelectionStart;
+                    txtSOTIEN.Text = string.Format("{0:N0}", value);
+                    txtSOTIEN.SelectionStart = txtSOTIEN.Text.Length;
+                }
+            }
         }
     }
 }

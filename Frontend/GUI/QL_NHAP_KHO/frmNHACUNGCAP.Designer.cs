@@ -53,28 +53,17 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label13 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSDT = new System.Windows.Forms.TextBox();
             this.txtDIACHI = new System.Windows.Forms.TextBox();
+            this.txtMOTA = new System.Windows.Forms.TextBox();
             this.txtMANCC = new System.Windows.Forms.TextBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNGUOITIEPNHAN = new System.Windows.Forms.TextBox();
-            this.txtGHICHU = new System.Windows.Forms.TextBox();
-            this.txtEMAIL = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColMANCC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColTENNCC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColSDT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColGHICHU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColNGUOITIEPNHAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.comboNGUOITIEPNHAN = new DevExpress.XtraEditors.ComboBoxEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barbtnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -83,6 +72,17 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.txtEMAIL = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColMANCC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColTENNCC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColMOTA = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColSDT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColNGUOITIEPNHAN = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,10 +100,11 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOITIEPNHAN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTENNCC
@@ -114,7 +115,7 @@
             this.txtTENNCC.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENNCC.Location = new System.Drawing.Point(12, 41);
             this.txtTENNCC.Name = "txtTENNCC";
-            this.txtTENNCC.Size = new System.Drawing.Size(393, 22);
+            this.txtTENNCC.Size = new System.Drawing.Size(402, 22);
             this.txtTENNCC.TabIndex = 25;
             // 
             // barbtnXoa
@@ -228,14 +229,14 @@
             // 
             this.splitContainer3.Panel1.Controls.Add(this.label13);
             this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Controls.Add(this.label5);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
-            this.splitContainer3.Panel1.Controls.Add(this.label3);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.txtSDT);
             this.splitContainer3.Panel2.Controls.Add(this.txtDIACHI);
             this.splitContainer3.Panel2.Controls.Add(this.txtTENNCC);
+            this.splitContainer3.Panel2.Controls.Add(this.txtMOTA);
             this.splitContainer3.Panel2.Controls.Add(this.txtMANCC);
             this.splitContainer3.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer3.Size = new System.Drawing.Size(551, 136);
@@ -264,6 +265,16 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "&3. Địa chỉ:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 15);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "&4. Mô tả:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -274,27 +285,6 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "&2. Tên nhà cung cấp:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 15);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "&4. Số điện thoại:";
-            // 
-            // txtSDT
-            // 
-            this.txtSDT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(12, 98);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(393, 22);
-            this.txtSDT.TabIndex = 27;
-            // 
             // txtDIACHI
             // 
             this.txtDIACHI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -303,8 +293,19 @@
             this.txtDIACHI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDIACHI.Location = new System.Drawing.Point(12, 68);
             this.txtDIACHI.Name = "txtDIACHI";
-            this.txtDIACHI.Size = new System.Drawing.Size(393, 22);
+            this.txtDIACHI.Size = new System.Drawing.Size(402, 22);
             this.txtDIACHI.TabIndex = 26;
+            // 
+            // txtMOTA
+            // 
+            this.txtMOTA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMOTA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMOTA.Location = new System.Drawing.Point(12, 96);
+            this.txtMOTA.Name = "txtMOTA";
+            this.txtMOTA.Size = new System.Drawing.Size(402, 22);
+            this.txtMOTA.TabIndex = 25;
             // 
             // txtMANCC
             // 
@@ -315,7 +316,7 @@
             this.txtMANCC.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMANCC.Location = new System.Drawing.Point(12, 14);
             this.txtMANCC.Name = "txtMANCC";
-            this.txtMANCC.Size = new System.Drawing.Size(393, 22);
+            this.txtMANCC.Size = new System.Drawing.Size(402, 22);
             this.txtMANCC.TabIndex = 24;
             // 
             // splitContainer4
@@ -329,12 +330,12 @@
             // 
             this.splitContainer4.Panel1.Controls.Add(this.label4);
             this.splitContainer4.Panel1.Controls.Add(this.label6);
-            this.splitContainer4.Panel1.Controls.Add(this.label5);
+            this.splitContainer4.Panel1.Controls.Add(this.label3);
             // 
             // splitContainer4.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.txtNGUOITIEPNHAN);
-            this.splitContainer4.Panel2.Controls.Add(this.txtGHICHU);
+            this.splitContainer4.Panel2.Controls.Add(this.txtSDT);
+            this.splitContainer4.Panel2.Controls.Add(this.comboNGUOITIEPNHAN);
             this.splitContainer4.Panel2.Controls.Add(this.txtEMAIL);
             this.splitContainer4.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer4.Size = new System.Drawing.Size(557, 136);
@@ -346,173 +347,55 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 18);
+            this.label4.Location = new System.Drawing.Point(3, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 20;
-            this.label4.Text = "&5. Email:";
+            this.label4.Text = "&6. Email:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 73);
+            this.label6.Location = new System.Drawing.Point(2, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 15);
             this.label6.TabIndex = 22;
             this.label6.Text = "&7. Người tiếp dận:";
             // 
-            // label5
+            // label3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 15);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "&6. Ghi chú:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 15);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "&5. Số điện thoại:";
             // 
-            // txtNGUOITIEPNHAN
+            // txtSDT
             // 
-            this.txtNGUOITIEPNHAN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtSDT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOITIEPNHAN.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNGUOITIEPNHAN.Location = new System.Drawing.Point(15, 68);
-            this.txtNGUOITIEPNHAN.Name = "txtNGUOITIEPNHAN";
-            this.txtNGUOITIEPNHAN.Size = new System.Drawing.Size(410, 22);
-            this.txtNGUOITIEPNHAN.TabIndex = 26;
+            this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSDT.Location = new System.Drawing.Point(15, 14);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(402, 22);
+            this.txtSDT.TabIndex = 27;
             // 
-            // txtGHICHU
+            // comboNGUOITIEPNHAN
             // 
-            this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboNGUOITIEPNHAN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGHICHU.Location = new System.Drawing.Point(15, 41);
-            this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(410, 22);
-            this.txtGHICHU.TabIndex = 25;
-            // 
-            // txtEMAIL
-            // 
-            this.txtEMAIL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEMAIL.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEMAIL.Location = new System.Drawing.Point(15, 14);
-            this.txtEMAIL.Name = "txtEMAIL";
-            this.txtEMAIL.Size = new System.Drawing.Size(410, 22);
-            this.txtEMAIL.TabIndex = 20;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.gridControl1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1118, 335);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bảng dữ liệu";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 21);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1112, 311);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColMANCC,
-            this.gridColTENNCC,
-            this.gridColDIACHI,
-            this.gridColSDT,
-            this.gridColEMAIL,
-            this.gridColGHICHU,
-            this.gridColNGUOITIEPNHAN});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            // 
-            // gridColMANCC
-            // 
-            this.gridColMANCC.Caption = "Mã nhà cung cấp";
-            this.gridColMANCC.FieldName = "MANCC";
-            this.gridColMANCC.Name = "gridColMANCC";
-            this.gridColMANCC.Visible = true;
-            this.gridColMANCC.VisibleIndex = 2;
-            this.gridColMANCC.Width = 124;
-            // 
-            // gridColTENNCC
-            // 
-            this.gridColTENNCC.Caption = "Tên nhà cung cấp";
-            this.gridColTENNCC.FieldName = "TENNCC";
-            this.gridColTENNCC.Name = "gridColTENNCC";
-            this.gridColTENNCC.Visible = true;
-            this.gridColTENNCC.VisibleIndex = 0;
-            this.gridColTENNCC.Width = 98;
-            // 
-            // gridColDIACHI
-            // 
-            this.gridColDIACHI.Caption = "Địa chỉ";
-            this.gridColDIACHI.FieldName = "DIACHI";
-            this.gridColDIACHI.Name = "gridColDIACHI";
-            this.gridColDIACHI.UnboundDataType = typeof(System.DateOnly);
-            this.gridColDIACHI.Visible = true;
-            this.gridColDIACHI.VisibleIndex = 1;
-            this.gridColDIACHI.Width = 98;
-            // 
-            // gridColSDT
-            // 
-            this.gridColSDT.Caption = "Số điện thoại";
-            this.gridColSDT.FieldName = "SODIENTHOAI";
-            this.gridColSDT.Name = "gridColSDT";
-            this.gridColSDT.Visible = true;
-            this.gridColSDT.VisibleIndex = 3;
-            this.gridColSDT.Width = 164;
-            // 
-            // gridColEMAIL
-            // 
-            this.gridColEMAIL.Caption = "Email";
-            this.gridColEMAIL.FieldName = "EMAIL";
-            this.gridColEMAIL.Name = "gridColEMAIL";
-            this.gridColEMAIL.Visible = true;
-            this.gridColEMAIL.VisibleIndex = 4;
-            this.gridColEMAIL.Width = 103;
-            // 
-            // gridColGHICHU
-            // 
-            this.gridColGHICHU.Caption = "Ghi chú";
-            this.gridColGHICHU.FieldName = "GHICHU";
-            this.gridColGHICHU.Name = "gridColGHICHU";
-            this.gridColGHICHU.Visible = true;
-            this.gridColGHICHU.VisibleIndex = 5;
-            this.gridColGHICHU.Width = 116;
-            // 
-            // gridColNGUOITIEPNHAN
-            // 
-            this.gridColNGUOITIEPNHAN.Caption = "Người tiếp nhận";
-            this.gridColNGUOITIEPNHAN.FieldName = "NGUOITIEPNHAN";
-            this.gridColNGUOITIEPNHAN.Name = "gridColNGUOITIEPNHAN";
-            this.gridColNGUOITIEPNHAN.Visible = true;
-            this.gridColNGUOITIEPNHAN.VisibleIndex = 6;
-            this.gridColNGUOITIEPNHAN.Width = 142;
+            this.comboNGUOITIEPNHAN.Location = new System.Drawing.Point(15, 69);
+            this.comboNGUOITIEPNHAN.MenuManager = this.barManager1;
+            this.comboNGUOITIEPNHAN.Name = "comboNGUOITIEPNHAN";
+            this.comboNGUOITIEPNHAN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboNGUOITIEPNHAN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboNGUOITIEPNHAN.Size = new System.Drawing.Size(402, 20);
+            this.comboNGUOITIEPNHAN.TabIndex = 26;
             // 
             // barManager1
             // 
@@ -607,6 +490,125 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 499);
             // 
+            // txtEMAIL
+            // 
+            this.txtEMAIL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEMAIL.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEMAIL.Location = new System.Drawing.Point(15, 41);
+            this.txtEMAIL.Name = "txtEMAIL";
+            this.txtEMAIL.Size = new System.Drawing.Size(402, 22);
+            this.txtEMAIL.TabIndex = 20;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gridControl1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1118, 335);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Bảng dữ liệu";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(3, 21);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1112, 311);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColMANCC,
+            this.gridColTENNCC,
+            this.gridColDIACHI,
+            this.gridColMOTA,
+            this.gridColSDT,
+            this.gridColEMAIL,
+            this.gridColNGUOITIEPNHAN});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            // 
+            // gridColMANCC
+            // 
+            this.gridColMANCC.Caption = "Mã nhà cung cấp";
+            this.gridColMANCC.FieldName = "MaNCC";
+            this.gridColMANCC.Name = "gridColMANCC";
+            this.gridColMANCC.Visible = true;
+            this.gridColMANCC.VisibleIndex = 0;
+            this.gridColMANCC.Width = 124;
+            // 
+            // gridColTENNCC
+            // 
+            this.gridColTENNCC.Caption = "Tên nhà cung cấp";
+            this.gridColTENNCC.FieldName = "TenNCC";
+            this.gridColTENNCC.Name = "gridColTENNCC";
+            this.gridColTENNCC.Visible = true;
+            this.gridColTENNCC.VisibleIndex = 1;
+            this.gridColTENNCC.Width = 98;
+            // 
+            // gridColDIACHI
+            // 
+            this.gridColDIACHI.Caption = "Địa chỉ";
+            this.gridColDIACHI.FieldName = "DiaChi";
+            this.gridColDIACHI.Name = "gridColDIACHI";
+            this.gridColDIACHI.UnboundDataType = typeof(System.DateOnly);
+            this.gridColDIACHI.Visible = true;
+            this.gridColDIACHI.VisibleIndex = 2;
+            this.gridColDIACHI.Width = 98;
+            // 
+            // gridColMOTA
+            // 
+            this.gridColMOTA.Caption = "Mô tả";
+            this.gridColMOTA.FieldName = "MoTa";
+            this.gridColMOTA.Name = "gridColMOTA";
+            this.gridColMOTA.Visible = true;
+            this.gridColMOTA.VisibleIndex = 3;
+            // 
+            // gridColSDT
+            // 
+            this.gridColSDT.Caption = "Số điện thoại";
+            this.gridColSDT.FieldName = "SoDienThoai";
+            this.gridColSDT.Name = "gridColSDT";
+            this.gridColSDT.Visible = true;
+            this.gridColSDT.VisibleIndex = 4;
+            this.gridColSDT.Width = 164;
+            // 
+            // gridColEMAIL
+            // 
+            this.gridColEMAIL.Caption = "Email";
+            this.gridColEMAIL.FieldName = "Email";
+            this.gridColEMAIL.Name = "gridColEMAIL";
+            this.gridColEMAIL.Visible = true;
+            this.gridColEMAIL.VisibleIndex = 5;
+            this.gridColEMAIL.Width = 103;
+            // 
+            // gridColNGUOITIEPNHAN
+            // 
+            this.gridColNGUOITIEPNHAN.Caption = "Người tiếp nhận";
+            this.gridColNGUOITIEPNHAN.FieldName = "NguoiTiepNhan";
+            this.gridColNGUOITIEPNHAN.Name = "gridColNGUOITIEPNHAN";
+            this.gridColNGUOITIEPNHAN.Visible = true;
+            this.gridColNGUOITIEPNHAN.VisibleIndex = 6;
+            this.gridColNGUOITIEPNHAN.Width = 142;
+            // 
             // frmNHACUNGCAP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -642,10 +644,11 @@
             this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOITIEPNHAN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -680,7 +683,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtGHICHU;
+        private System.Windows.Forms.TextBox txtMOTA;
         private System.Windows.Forms.TextBox txtEMAIL;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -690,9 +693,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColMANCC;
         private DevExpress.XtraGrid.Columns.GridColumn gridColSDT;
         private DevExpress.XtraGrid.Columns.GridColumn gridColEMAIL;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColGHICHU;
         private DevExpress.XtraGrid.Columns.GridColumn gridColNGUOITIEPNHAN;
         private System.Windows.Forms.TextBox txtSDT;
-        private System.Windows.Forms.TextBox txtNGUOITIEPNHAN;
+        private DevExpress.XtraEditors.ComboBoxEdit comboNGUOITIEPNHAN;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColMOTA;
     }
 }

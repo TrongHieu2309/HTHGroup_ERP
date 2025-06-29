@@ -164,7 +164,7 @@
             // gridColMATONKHO
             // 
             this.gridColMATONKHO.Caption = "Mã tồn kho";
-            this.gridColMATONKHO.FieldName = "ID";
+            this.gridColMATONKHO.FieldName = "Id";
             this.gridColMATONKHO.Name = "gridColMATONKHO";
             this.gridColMATONKHO.Visible = true;
             this.gridColMATONKHO.VisibleIndex = 0;
@@ -173,7 +173,7 @@
             // gridColMASP
             // 
             this.gridColMASP.Caption = "Mã sản phẩm";
-            this.gridColMASP.FieldName = "MASP";
+            this.gridColMASP.FieldName = "MaSP";
             this.gridColMASP.Name = "gridColMASP";
             this.gridColMASP.Visible = true;
             this.gridColMASP.VisibleIndex = 1;
@@ -182,7 +182,7 @@
             // gridColTENSP
             // 
             this.gridColTENSP.Caption = "Tên sản phẩm";
-            this.gridColTENSP.FieldName = "TENSP";
+            this.gridColTENSP.FieldName = "TenSP";
             this.gridColTENSP.Name = "gridColTENSP";
             this.gridColTENSP.UnboundDataType = typeof(System.DateOnly);
             this.gridColTENSP.Visible = true;
@@ -192,7 +192,7 @@
             // gridColMAKHO
             // 
             this.gridColMAKHO.Caption = "Mã kho";
-            this.gridColMAKHO.FieldName = "MAKHO";
+            this.gridColMAKHO.FieldName = "MaKho";
             this.gridColMAKHO.Name = "gridColMAKHO";
             this.gridColMAKHO.Visible = true;
             this.gridColMAKHO.VisibleIndex = 3;
@@ -201,7 +201,7 @@
             // gridColSOLUONGTON
             // 
             this.gridColSOLUONGTON.Caption = "Số lượng tồn";
-            this.gridColSOLUONGTON.FieldName = "SOLUONGTON";
+            this.gridColSOLUONGTON.FieldName = "SoLuongTon";
             this.gridColSOLUONGTON.Name = "gridColSOLUONGTON";
             this.gridColSOLUONGTON.Visible = true;
             this.gridColSOLUONGTON.VisibleIndex = 4;
@@ -210,7 +210,7 @@
             // gridColNGAYCAPNHAT
             // 
             this.gridColNGAYCAPNHAT.Caption = "Ngày cập nhật";
-            this.gridColNGAYCAPNHAT.FieldName = "NGAYCAPNHAT";
+            this.gridColNGAYCAPNHAT.FieldName = "NgayCapNhat";
             this.gridColNGAYCAPNHAT.Name = "gridColNGAYCAPNHAT";
             this.gridColNGAYCAPNHAT.Visible = true;
             this.gridColNGAYCAPNHAT.VisibleIndex = 5;
@@ -471,18 +471,21 @@
             this.comboMASP.Name = "comboMASP";
             this.comboMASP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMASP.Size = new System.Drawing.Size(394, 20);
+            this.comboMASP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMASP.Size = new System.Drawing.Size(400, 20);
             this.comboMASP.TabIndex = 27;
+            this.comboMASP.SelectedIndexChanged += new System.EventHandler(this.comboMASP_SelectedIndexChanged);
             // 
             // txtTENSP
             // 
             this.txtTENSP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTENSP.Enabled = false;
             this.txtTENSP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENSP.Location = new System.Drawing.Point(16, 68);
             this.txtTENSP.Name = "txtTENSP";
-            this.txtTENSP.Size = new System.Drawing.Size(395, 22);
+            this.txtTENSP.Size = new System.Drawing.Size(401, 22);
             this.txtTENSP.TabIndex = 26;
             // 
             // txtMATONKHO
@@ -494,7 +497,7 @@
             this.txtMATONKHO.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMATONKHO.Location = new System.Drawing.Point(16, 14);
             this.txtMATONKHO.Name = "txtMATONKHO";
-            this.txtMATONKHO.Size = new System.Drawing.Size(395, 22);
+            this.txtMATONKHO.Size = new System.Drawing.Size(401, 22);
             this.txtMATONKHO.TabIndex = 24;
             // 
             // splitContainer4
@@ -553,7 +556,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditNGAYCAPNHAT.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditNGAYCAPNHAT.Size = new System.Drawing.Size(410, 20);
+            this.dateEditNGAYCAPNHAT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateEditNGAYCAPNHAT.Size = new System.Drawing.Size(416, 20);
             this.dateEditNGAYCAPNHAT.TabIndex = 29;
             // 
             // comboMAKHO
@@ -566,7 +570,8 @@
             this.comboMAKHO.Name = "comboMAKHO";
             this.comboMAKHO.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMAKHO.Size = new System.Drawing.Size(410, 20);
+            this.comboMAKHO.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMAKHO.Size = new System.Drawing.Size(416, 20);
             this.comboMAKHO.TabIndex = 28;
             // 
             // txtSOLUONGTON
@@ -577,7 +582,7 @@
             this.txtSOLUONGTON.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSOLUONGTON.Location = new System.Drawing.Point(16, 41);
             this.txtSOLUONGTON.Name = "txtSOLUONGTON";
-            this.txtSOLUONGTON.Size = new System.Drawing.Size(410, 22);
+            this.txtSOLUONGTON.Size = new System.Drawing.Size(416, 22);
             this.txtSOLUONGTON.TabIndex = 25;
             // 
             // frmTONKHO

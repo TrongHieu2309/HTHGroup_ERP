@@ -1,14 +1,8 @@
 ﻿using BLL.QL_NHAP_KHO;
-using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +10,10 @@ namespace GUI.QL_NHAP_KHO
 {
     public partial class frmPHANLOAIMATHANG : DevExpress.XtraEditors.XtraForm
     {
+        private readonly PHANLOAIMATHANG_BLL phanLoaiService = new PHANLOAIMATHANG_BLL();
+        private bool isNew = false;
+        private int selectedId = -1;
+
         public frmPHANLOAIMATHANG()
         {
             InitializeComponent();
@@ -38,56 +36,111 @@ namespace GUI.QL_NHAP_KHO
             txtTONGCHIPHI.Text = string.Empty;
         }
 
-        private void frmPHANLOAIMATHANG_Load(object sender, EventArgs e)
+        async void LoadData()
         {
-            PHANLOAIMATHANG_BLL db = new PHANLOAIMATHANG_BLL();
-            gridControl1.DataSource = db.GetList();
-            groupNhap.Enabled = false;
-            _showHide(true);
+            var data = await phanLoaiService.GetAllAsync();
+            gridControl1.DataSource = data;
         }
 
-        private void frmPHANLOAIMATHANG_Resize(object sender, EventArgs e)
+        private async void frmPHANLOAIMATHANG_Load(object sender, EventArgs e)
         {
-            
+            await Task.Delay(100);
+            LoadData();
+            groupNhap.Enabled = false;
+            _showHide(true);
         }
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
+            isNew = true;
             groupNhap.Enabled = true;
             _groupEmpty();
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (selectedId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn mặt hàng cần sửa.");
+                return;
+            }
+
+            isNew = false;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (selectedId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn mặt hàng để xóa.");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Bạn có chắc muốn xóa mặt hàng này?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                string msg = await phanLoaiService.DeleteAsync(selectedId);
+                MessageBox.Show(msg);
+                LoadData();
+                _groupEmpty();
+                _showHide(true);
+                selectedId = -1;
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTENMATHANG.Text) ||
+                string.IsNullOrWhiteSpace(txtSOLUONG.Text) ||
+                string.IsNullOrWhiteSpace(txtTONGCHIPHI.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
+                return;
+            }
+
+            if (!int.TryParse(txtSOLUONG.Text, out int soLuong) ||
+                !long.TryParse(txtTONGCHIPHI.Text, out long tongChiPhi))
+            {
+                MessageBox.Show("Số lượng và tổng chi phí phải là số hợp lệ.");
+                return;
+            }
+
+            var input = new ProductCategoryInputDto
+            {
+                TenMatHang = txtTENMATHANG.Text.Trim(),
+                SoLuong = soLuong,
+                TongChiPhi = tongChiPhi
+            };
+
+            string msg;
+            if (isNew)
+            {
+                msg = await phanLoaiService.CreateAsync(input);
+            }
+            else
+            {
+                msg = await phanLoaiService.UpdateAsync(selectedId, input);
+            }
+
+            MessageBox.Show(msg);
+            LoadData();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            selectedId = -1;
+            isNew = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            _groupEmpty();
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            selectedId = -1;
+            isNew = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -95,27 +148,23 @@ namespace GUI.QL_NHAP_KHO
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = false;
-            barbtnSua.Enabled = true;
-            barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
-            groupNhap.Enabled = false;
-
-            if (e.RowHandle >= 0)
+            var view = sender as GridView;
+            if (view != null && e.RowHandle >= 0)
             {
-                var view = sender as GridView;
-                if (view != null)
+                var row = view.GetRow(e.RowHandle) as dynamic;
+                if (row != null)
                 {
-                    var mathang = view.GetRow(e.RowHandle) as PHANLOAIMATHANG;
-                    if (mathang != null)
-                    {
-                        txtMAMATHANG.Text = mathang.MAMATHANG.ToString();
-                        txtTENMATHANG.Text = mathang.TENMATHANG;
-                        txtSOLUONG.Text = mathang.SOLUONG.ToString();
-                        txtTONGCHIPHI.Text = mathang.TONGCHIPHI.ToString();
-                    }
+                    txtMAMATHANG.Text = row.MaMatHang.ToString();
+                    txtTENMATHANG.Text = row.TenMatHang;
+                    txtSOLUONG.Text = row.SoLuong.ToString();
+                    txtTONGCHIPHI.Text = row.TongChiPhi.ToString();
+
+                    selectedId = row.MaMatHang;
+                    barbtnSua.Enabled = true;
+                    barbtnXoa.Enabled = true;
+                    barbtnHuybo.Enabled = true;
                 }
             }
         }

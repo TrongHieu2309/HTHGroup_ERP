@@ -84,7 +84,6 @@
     <Compile Include="DTOs\StockOutDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="DTOs\WorkRecordDto.cs" />
-    <Compile Include="QL_BAN_HANG\CHITIETHOADON_BLL.cs" />
     <Compile Include="QL_BAN_HANG\HOADON_BLL.cs" />
     <Compile Include="QL_BAN_HANG\XUATKHO_BLL.cs" />
     <Compile Include="QL_KHACH_HANG\KHACHHANG_BLL.cs" />

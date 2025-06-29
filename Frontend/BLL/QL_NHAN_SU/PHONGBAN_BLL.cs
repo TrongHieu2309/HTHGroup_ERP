@@ -13,7 +13,7 @@ namespace BLL.QL_NHAN_SU
     {
         private readonly string baseUrl = "https://localhost:7086"; // Cập nhật đúng port của backend
 
-        public async Task<Dictionary<int, string>> GetDepartmentDictionaryAsync() // lấy dữ liệu lên comboBox
+        public async Task<Dictionary<int, string>> GetDepartmentDictionaryAsync()
         {
             var list = await GetAllAsync();
             return list.ToDictionary(pb => pb.MaPhongBan, pb => $"{pb.TenPhongBan}");

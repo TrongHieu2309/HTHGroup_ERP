@@ -42,12 +42,6 @@
             DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTRANGTHAI = new System.Windows.Forms.TextBox();
-            this.dateNGAYNHAP = new DevExpress.XtraEditors.DateEdit();
-            this.txtDONGIA = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -60,9 +54,6 @@
             this.gridColSOLUONGTON = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColNGAYNHAP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColTRANGTHAI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.txtSOLUONGTON = new System.Windows.Forms.TextBox();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barbtnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -81,27 +72,30 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label7 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboMAMATHANG = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboMMH = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboMANCC = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtMOTA = new System.Windows.Forms.TextBox();
             this.txtTENSP = new System.Windows.Forms.TextBox();
             this.txtMASP = new System.Windows.Forms.TextBox();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtDONGIA = new System.Windows.Forms.TextBox();
+            this.txtSOLUONGTON = new System.Windows.Forms.TextBox();
+            this.dateNGAYNHAP = new DevExpress.XtraEditors.DateEdit();
+            this.txtTRANGTHAI = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtTIMKIEM = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties.CalendarTimeProperties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -116,75 +110,16 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboMAMATHANG.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboMMH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboMANCC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties.CalendarTimeProperties)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "&6. Đơn giá:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(16, 100);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 15);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "&9. Trạng thái:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 15);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "&7. Số lượng tồn:";
-            // 
-            // txtTRANGTHAI
-            // 
-            this.txtTRANGTHAI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTRANGTHAI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTRANGTHAI.Location = new System.Drawing.Point(13, 97);
-            this.txtTRANGTHAI.Name = "txtTRANGTHAI";
-            this.txtTRANGTHAI.Size = new System.Drawing.Size(409, 22);
-            this.txtTRANGTHAI.TabIndex = 24;
-            // 
-            // dateNGAYNHAP
-            // 
-            this.dateNGAYNHAP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNGAYNHAP.EditValue = null;
-            this.dateNGAYNHAP.Location = new System.Drawing.Point(13, 68);
-            this.dateNGAYNHAP.Name = "dateNGAYNHAP";
-            this.dateNGAYNHAP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNGAYNHAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNGAYNHAP.Properties.MaskSettings.Set("mask", "d");
-            this.dateNGAYNHAP.Size = new System.Drawing.Size(409, 20);
-            this.dateNGAYNHAP.TabIndex = 1;
-            // 
-            // txtDONGIA
-            // 
-            this.txtDONGIA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDONGIA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDONGIA.Location = new System.Drawing.Point(13, 14);
-            this.txtDONGIA.Name = "txtDONGIA";
-            this.txtDONGIA.Size = new System.Drawing.Size(409, 22);
-            this.txtDONGIA.TabIndex = 20;
             // 
             // groupBox1
             // 
@@ -193,7 +128,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1102, 367);
+            this.groupBox1.Size = new System.Drawing.Size(1102, 350);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bảng dữ liệu";
@@ -204,7 +139,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 21);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1096, 343);
+            this.gridControl1.Size = new System.Drawing.Size(1096, 326);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -236,7 +171,7 @@
             // gridColMASP
             // 
             this.gridColMASP.Caption = "Mã sản phẩm";
-            this.gridColMASP.FieldName = "MASP";
+            this.gridColMASP.FieldName = "MaSP";
             this.gridColMASP.Name = "gridColMASP";
             this.gridColMASP.Visible = true;
             this.gridColMASP.VisibleIndex = 0;
@@ -245,7 +180,7 @@
             // gridColTENSP
             // 
             this.gridColTENSP.Caption = "Tên sản phẩm";
-            this.gridColTENSP.FieldName = "TENSP";
+            this.gridColTENSP.FieldName = "TenSanPham";
             this.gridColTENSP.Name = "gridColTENSP";
             this.gridColTENSP.Visible = true;
             this.gridColTENSP.VisibleIndex = 1;
@@ -254,7 +189,7 @@
             // gridColMOTA
             // 
             this.gridColMOTA.Caption = "Mô tả";
-            this.gridColMOTA.FieldName = "MOTA";
+            this.gridColMOTA.FieldName = "MoTa";
             this.gridColMOTA.Name = "gridColMOTA";
             this.gridColMOTA.UnboundDataType = typeof(System.DateOnly);
             this.gridColMOTA.Visible = true;
@@ -264,7 +199,7 @@
             // gridColMANCC
             // 
             this.gridColMANCC.Caption = "Mã nhà cung cấp";
-            this.gridColMANCC.FieldName = "MANCC";
+            this.gridColMANCC.FieldName = "MaNCC";
             this.gridColMANCC.Name = "gridColMANCC";
             this.gridColMANCC.Visible = true;
             this.gridColMANCC.VisibleIndex = 3;
@@ -273,7 +208,7 @@
             // gridColMAMATHANG
             // 
             this.gridColMAMATHANG.Caption = "Mã mặt hàng";
-            this.gridColMAMATHANG.FieldName = "MAMATHANG";
+            this.gridColMAMATHANG.FieldName = "MaMatHang";
             this.gridColMAMATHANG.Name = "gridColMAMATHANG";
             this.gridColMAMATHANG.Visible = true;
             this.gridColMAMATHANG.VisibleIndex = 4;
@@ -282,7 +217,7 @@
             // gridColDONGIA
             // 
             this.gridColDONGIA.Caption = "Đơn giá";
-            this.gridColDONGIA.FieldName = "DONGIA";
+            this.gridColDONGIA.FieldName = "DonGia";
             this.gridColDONGIA.Name = "gridColDONGIA";
             this.gridColDONGIA.Visible = true;
             this.gridColDONGIA.VisibleIndex = 5;
@@ -291,7 +226,7 @@
             // gridColSOLUONGTON
             // 
             this.gridColSOLUONGTON.Caption = "Số lượng tồn";
-            this.gridColSOLUONGTON.FieldName = "SOLUONGTON";
+            this.gridColSOLUONGTON.FieldName = "SoLuongTon";
             this.gridColSOLUONGTON.Name = "gridColSOLUONGTON";
             this.gridColSOLUONGTON.Visible = true;
             this.gridColSOLUONGTON.VisibleIndex = 6;
@@ -300,7 +235,7 @@
             // gridColNGAYNHAP
             // 
             this.gridColNGAYNHAP.Caption = "Ngày nhập";
-            this.gridColNGAYNHAP.FieldName = "NGAYNHAP";
+            this.gridColNGAYNHAP.FieldName = "NgayNhap";
             this.gridColNGAYNHAP.Name = "gridColNGAYNHAP";
             this.gridColNGAYNHAP.Visible = true;
             this.gridColNGAYNHAP.VisibleIndex = 7;
@@ -309,56 +244,11 @@
             // gridColTRANGTHAI
             // 
             this.gridColTRANGTHAI.Caption = "Trạng thái";
-            this.gridColTRANGTHAI.FieldName = "TRANGTHAI";
+            this.gridColTRANGTHAI.FieldName = "TrangThai";
             this.gridColTRANGTHAI.Name = "gridColTRANGTHAI";
             this.gridColTRANGTHAI.Visible = true;
             this.gridColTRANGTHAI.VisibleIndex = 8;
             this.gridColTRANGTHAI.Width = 122;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 15);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "&8. Ngày nhập:";
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.IsSplitterFixed = true;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.label4);
-            this.splitContainer4.Panel1.Controls.Add(this.label6);
-            this.splitContainer4.Panel1.Controls.Add(this.label17);
-            this.splitContainer4.Panel1.Controls.Add(this.label5);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.txtSOLUONGTON);
-            this.splitContainer4.Panel2.Controls.Add(this.txtTRANGTHAI);
-            this.splitContainer4.Panel2.Controls.Add(this.dateNGAYNHAP);
-            this.splitContainer4.Panel2.Controls.Add(this.txtDONGIA);
-            this.splitContainer4.Size = new System.Drawing.Size(557, 166);
-            this.splitContainer4.SplitterDistance = 120;
-            this.splitContainer4.SplitterWidth = 1;
-            this.splitContainer4.TabIndex = 1;
-            // 
-            // txtSOLUONGTON
-            // 
-            this.txtSOLUONGTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSOLUONGTON.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSOLUONGTON.Location = new System.Drawing.Point(13, 41);
-            this.txtSOLUONGTON.Name = "txtSOLUONGTON";
-            this.txtSOLUONGTON.Size = new System.Drawing.Size(409, 22);
-            this.txtSOLUONGTON.TabIndex = 25;
             // 
             // barManager1
             // 
@@ -528,29 +418,24 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1102, 561);
-            this.splitContainer1.SplitterDistance = 190;
+            this.splitContainer1.SplitterDistance = 207;
             this.splitContainer1.TabIndex = 29;
             // 
             // groupNhap
             // 
-            this.groupNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupNhap.Controls.Add(this.splitContainer2);
+            this.groupNhap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupNhap.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupNhap.Location = new System.Drawing.Point(0, 0);
             this.groupNhap.Name = "groupNhap";
-            this.groupNhap.Size = new System.Drawing.Size(1082, 190);
-            this.groupNhap.TabIndex = 0;
+            this.groupNhap.Size = new System.Drawing.Size(1102, 207);
+            this.groupNhap.TabIndex = 1;
             this.groupNhap.TabStop = false;
             this.groupNhap.Text = "Mục nhập liệu";
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(3, 21);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -561,113 +446,112 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1096, 166);
-            this.splitContainer2.SplitterDistance = 535;
+            this.splitContainer2.Size = new System.Drawing.Size(1096, 183);
+            this.splitContainer2.SplitterDistance = 563;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.IsSplitterFixed = true;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.label7);
-            this.splitContainer3.Panel1.Controls.Add(this.label13);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.label3);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Controls.Add(this.label13);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.comboMAMATHANG);
+            this.splitContainer3.Panel2.Controls.Add(this.comboMMH);
             this.splitContainer3.Panel2.Controls.Add(this.comboMANCC);
             this.splitContainer3.Panel2.Controls.Add(this.txtMOTA);
             this.splitContainer3.Panel2.Controls.Add(this.txtTENSP);
             this.splitContainer3.Panel2.Controls.Add(this.txtMASP);
-            this.splitContainer3.Size = new System.Drawing.Size(535, 166);
-            this.splitContainer3.SplitterDistance = 126;
-            this.splitContainer3.SplitterWidth = 1;
+            this.splitContainer3.Size = new System.Drawing.Size(563, 183);
+            this.splitContainer3.SplitterDistance = 149;
             this.splitContainer3.TabIndex = 0;
-            this.splitContainer3.TabStop = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 131);
+            this.label7.Location = new System.Drawing.Point(9, 156);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 15);
-            this.label7.TabIndex = 20;
+            this.label7.TabIndex = 33;
             this.label7.Text = "&5. Mã mặt hàng:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(3, 17);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(95, 15);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "&1. Mã sản phẩm:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 15);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "&3. Mô tả:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 15);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "&2. Tên sản phẩm:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 101);
+            this.label3.Location = new System.Drawing.Point(9, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 15);
-            this.label3.TabIndex = 18;
+            this.label3.TabIndex = 31;
             this.label3.Text = "&4. Mã nhà cung cấp:";
             // 
-            // comboMAMATHANG
+            // label2
             // 
-            this.comboMAMATHANG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 15);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "&3. Mô tả:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(9, 17);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(95, 15);
+            this.label13.TabIndex = 32;
+            this.label13.Text = "&1. Mã sản phẩm:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 15);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "&2. Tên sản phẩm:";
+            // 
+            // comboMMH
+            // 
+            this.comboMMH.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboMAMATHANG.Location = new System.Drawing.Point(14, 129);
-            this.comboMAMATHANG.MenuManager = this.barManager1;
-            this.comboMAMATHANG.Name = "comboMAMATHANG";
-            this.comboMAMATHANG.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboMMH.Location = new System.Drawing.Point(14, 151);
+            this.comboMMH.MenuManager = this.barManager1;
+            this.comboMMH.Name = "comboMMH";
+            this.comboMMH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMAMATHANG.Size = new System.Drawing.Size(382, 20);
-            this.comboMAMATHANG.TabIndex = 28;
+            this.comboMMH.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMMH.Size = new System.Drawing.Size(380, 20);
+            this.comboMMH.TabIndex = 44;
             // 
             // comboMANCC
             // 
             this.comboMANCC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboMANCC.Location = new System.Drawing.Point(14, 99);
+            this.comboMANCC.Location = new System.Drawing.Point(14, 122);
             this.comboMANCC.MenuManager = this.barManager1;
             this.comboMANCC.Name = "comboMANCC";
             this.comboMANCC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMANCC.Size = new System.Drawing.Size(382, 20);
-            this.comboMANCC.TabIndex = 27;
+            this.comboMANCC.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMANCC.Size = new System.Drawing.Size(380, 20);
+            this.comboMANCC.TabIndex = 43;
             // 
             // txtMOTA
             // 
@@ -675,10 +559,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMOTA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMOTA.Location = new System.Drawing.Point(14, 68);
+            this.txtMOTA.Location = new System.Drawing.Point(14, 87);
             this.txtMOTA.Name = "txtMOTA";
-            this.txtMOTA.Size = new System.Drawing.Size(382, 22);
-            this.txtMOTA.TabIndex = 26;
+            this.txtMOTA.Size = new System.Drawing.Size(380, 22);
+            this.txtMOTA.TabIndex = 42;
             // 
             // txtTENSP
             // 
@@ -686,10 +570,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTENSP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTENSP.Location = new System.Drawing.Point(14, 41);
+            this.txtTENSP.Location = new System.Drawing.Point(14, 49);
             this.txtTENSP.Name = "txtTENSP";
-            this.txtTENSP.Size = new System.Drawing.Size(382, 22);
-            this.txtTENSP.TabIndex = 25;
+            this.txtTENSP.Size = new System.Drawing.Size(380, 22);
+            this.txtTENSP.TabIndex = 40;
             // 
             // txtMASP
             // 
@@ -700,8 +584,117 @@
             this.txtMASP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMASP.Location = new System.Drawing.Point(14, 14);
             this.txtMASP.Name = "txtMASP";
-            this.txtMASP.Size = new System.Drawing.Size(382, 22);
-            this.txtMASP.TabIndex = 24;
+            this.txtMASP.Size = new System.Drawing.Size(380, 22);
+            this.txtMASP.TabIndex = 38;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.label4);
+            this.splitContainer4.Panel1.Controls.Add(this.label5);
+            this.splitContainer4.Panel1.Controls.Add(this.label6);
+            this.splitContainer4.Panel1.Controls.Add(this.label17);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.txtDONGIA);
+            this.splitContainer4.Panel2.Controls.Add(this.txtSOLUONGTON);
+            this.splitContainer4.Panel2.Controls.Add(this.dateNGAYNHAP);
+            this.splitContainer4.Panel2.Controls.Add(this.txtTRANGTHAI);
+            this.splitContainer4.Size = new System.Drawing.Size(529, 183);
+            this.splitContainer4.SplitterDistance = 152;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(18, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 15);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "&6. Đơn giá:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(18, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 15);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "&7. Số lượng tồn:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(18, 87);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 15);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "&8. Ngày nhập:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(18, 124);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(81, 15);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "&9. Trạng thái:";
+            // 
+            // txtDONGIA
+            // 
+            this.txtDONGIA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDONGIA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDONGIA.Location = new System.Drawing.Point(17, 14);
+            this.txtDONGIA.Name = "txtDONGIA";
+            this.txtDONGIA.Size = new System.Drawing.Size(347, 22);
+            this.txtDONGIA.TabIndex = 34;
+            // 
+            // txtSOLUONGTON
+            // 
+            this.txtSOLUONGTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSOLUONGTON.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSOLUONGTON.Location = new System.Drawing.Point(17, 49);
+            this.txtSOLUONGTON.Name = "txtSOLUONGTON";
+            this.txtSOLUONGTON.Size = new System.Drawing.Size(348, 22);
+            this.txtSOLUONGTON.TabIndex = 41;
+            // 
+            // dateNGAYNHAP
+            // 
+            this.dateNGAYNHAP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateNGAYNHAP.EditValue = null;
+            this.dateNGAYNHAP.Location = new System.Drawing.Point(16, 85);
+            this.dateNGAYNHAP.Name = "dateNGAYNHAP";
+            this.dateNGAYNHAP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNGAYNHAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNGAYNHAP.Properties.MaskSettings.Set("mask", "d");
+            this.dateNGAYNHAP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateNGAYNHAP.Size = new System.Drawing.Size(348, 20);
+            this.dateNGAYNHAP.TabIndex = 28;
+            // 
+            // txtTRANGTHAI
+            // 
+            this.txtTRANGTHAI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTRANGTHAI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTRANGTHAI.Location = new System.Drawing.Point(16, 121);
+            this.txtTRANGTHAI.Name = "txtTRANGTHAI";
+            this.txtTRANGTHAI.Size = new System.Drawing.Size(348, 22);
+            this.txtTRANGTHAI.TabIndex = 39;
             // 
             // contextMenuStrip1
             // 
@@ -720,6 +713,8 @@
             // 
             // txtTIMKIEM
             // 
+            this.txtTIMKIEM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTIMKIEM.Location = new System.Drawing.Point(765, 3);
             this.txtTIMKIEM.Name = "txtTIMKIEM";
             this.txtTIMKIEM.Size = new System.Drawing.Size(298, 21);
@@ -741,17 +736,9 @@
             this.Text = "Sản phẩm";
             this.Load += new System.EventHandler(this.frmSANPHAM_Load);
             this.Resize += new System.EventHandler(this.frmSANPHAM_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            this.splitContainer4.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -768,8 +755,16 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.comboMAMATHANG.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboMMH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboMANCC.Properties)).EndInit();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNGAYNHAP.Properties)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -777,13 +772,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtTRANGTHAI;
-        private DevExpress.XtraEditors.DateEdit dateNGAYNHAP;
-        private System.Windows.Forms.TextBox txtDONGIA;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -795,8 +783,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColDONGIA;
         private DevExpress.XtraGrid.Columns.GridColumn gridColSOLUONGTON;
         private DevExpress.XtraGrid.Columns.GridColumn gridColNGAYNHAP;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.SplitContainer splitContainer4;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.BarButtonItem barbtnThem;
@@ -810,24 +796,32 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.GroupBox groupNhap;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMASP;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtTENSP;
-        private System.Windows.Forms.TextBox txtSOLUONGTON;
-        private DevExpress.XtraEditors.ComboBoxEdit comboMAMATHANG;
-        private DevExpress.XtraEditors.ComboBoxEdit comboMANCC;
-        private System.Windows.Forms.TextBox txtMOTA;
         private DevExpress.XtraGrid.Columns.GridColumn gridColTRANGTHAI;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.TextBox txtTIMKIEM;
         private DevExpress.XtraBars.BarButtonItem barbtnTIMKIEM;
+        private System.Windows.Forms.GroupBox groupNhap;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.ComboBoxEdit comboMANCC;
+        private System.Windows.Forms.TextBox txtMOTA;
+        private System.Windows.Forms.TextBox txtTENSP;
+        private System.Windows.Forms.TextBox txtMASP;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtTRANGTHAI;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDONGIA;
+        private System.Windows.Forms.TextBox txtSOLUONGTON;
+        private DevExpress.XtraEditors.DateEdit dateNGAYNHAP;
+        private System.Windows.Forms.Label label7;
+        private DevExpress.XtraEditors.ComboBoxEdit comboMMH;
     }
 }

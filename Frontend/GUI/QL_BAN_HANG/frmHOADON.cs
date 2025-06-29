@@ -1,6 +1,9 @@
 ﻿using BLL.QL_BAN_HANG;
 using BLL.QL_KHACH_HANG;
+using BLL.QL_NHAN_SU;
+using BLL.QL_NHAP_KHO_BLL;
 using DAL;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using ERP.Application.DTOs;
 using System;
@@ -13,67 +16,31 @@ namespace GUI.QL_BAN_HANG
 {
     public partial class frmHOADON : DevExpress.XtraEditors.XtraForm
     {
-        private readonly HOADON_BLL db = new HOADON_BLL();
-        private readonly CHITIETHOADON_BLL detailBLL = new CHITIETHOADON_BLL();
+        private readonly HOADON_BLL bll = new HOADON_BLL();
+        private readonly KHACHHANG_BLL khBLL = new KHACHHANG_BLL();
+        private readonly SANPHAM_BLL spBLL = new SANPHAM_BLL();
+        private readonly NHANSU_BLL nhanSuBLL = new NHANSU_BLL();
+
         private bool isEditMode = false;
+        private int currentChiTietId = 0;
 
         public frmHOADON()
         {
             InitializeComponent();
         }
 
-        private async Task LoadComboBoxMAKHAsync()
-        {
-            var bll = new KHACHHANG_BLL();
-            var dict = await bll.GetCustomerDictionaryAsync();
-
-            comboMAKH.Properties.Items.Clear();
-            foreach (var item in dict)
-            {
-                comboMAKH.Properties.Items.Add($"{item.Key}: {item.Value}");
-            }
-        }
-
-        void _showHide(bool kt)
-        {
-            barbtnThem.Enabled = kt;
-            barbtnSua.Enabled = !kt;
-            barbtnXoa.Enabled = !kt;
-            barbtnLuu.Enabled = !kt;
-            barbtnHuybo.Enabled = !kt;
-        }
-
-        void _groupEmpty()
-        {
-            txtMAHD.Text = string.Empty;
-            comboMAKH.SelectedIndex = -1;
-            txtLOAIHD.Text = string.Empty;
-            dateEditNGAYLAP.EditValue = null;
-            txtNGUOILAP.Text = string.Empty;
-            txtTONGTIEN.Text = string.Empty;
-            txtTRANGTHAI.Text = string.Empty;
-
-            txtID.Text = string.Empty;
-            comboMASP.SelectedIndex = -1;
-            txtSOLUONG.Text = string.Empty;
-            txtDONGIA.Text = string.Empty;
-            txtCHIETKHAU.Text = string.Empty;
-            txtVAT.Text = string.Empty;
-            txtGHICHU.Text = string.Empty;
-        }
-
-        private async Task LoadReceiptsAsync()
-        {
-            var list = await db.GetAllReceiptsAsync();
-            gridControl1.DataSource = list;
-        }
-
         private async void frmHOADON_Load(object sender, EventArgs e)
         {
-            await LoadComboBoxMAKHAsync();
+            await LoadCombosAsync();
             await LoadReceiptsAsync();
             groupNhap.Enabled = false;
             _showHide(true);
+
+            comboMASP.SelectedIndexChanged += ComboMASP_SelectedIndexChanged;
+            txtSOLUONG.TextChanged += txtSOLUONG_TextChanged_1;
+            txtCHIETKHAU.TextChanged += TinhToan_TextChanged;
+            txtVAT.TextChanged += TinhToan_TextChanged;
+
         }
 
         private void frmHOADON_Resize(object sender, EventArgs e)
@@ -84,44 +51,123 @@ namespace GUI.QL_BAN_HANG
             splitContainer5.SplitterDistance = 100;
         }
 
+        private async Task LoadCombosAsync()
+        {
+            var khDict = await khBLL.GetCustomerDictionaryAsync();
+            var spList = await spBLL.GetAllAsync();
+            var nvDict = await nhanSuBLL.GetEmployeeDictionaryAsync();
+
+            comboMAKH.Properties.Items.Clear();
+            comboMASP.Properties.Items.Clear();
+            comboNGUOILAP.Properties.Items.Clear();
+
+
+            foreach (var kv in khDict)
+                comboMAKH.Properties.Items.Add($"{kv.Key}: {kv.Value}");
+            foreach (var nv in nvDict)
+                comboNGUOILAP.Properties.Items.Add($"{nv.Key}: {nv.Value}");
+            foreach (var sp in spList)
+                comboMASP.Properties.Items.Add($"{sp.MaSP}: {sp.TenSanPham}");
+        }
+
+        private async Task LoadReceiptsAsync()
+        {
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private void _showHide(bool kt)
+        {
+            barbtnThem.Enabled = kt;
+            barbtnSua.Enabled = !kt;
+            barbtnXoa.Enabled = !kt;
+            barbtnLuu.Enabled = !kt;
+            barbtnHuybo.Enabled = !kt;
+        }
+
+        private void _groupEmpty()
+        {
+            txtMAHD.Text = string.Empty;
+            comboMAKH.SelectedIndex = -1;
+            txtLOAIHD.Text = string.Empty;
+            dateEditNGAYLAP.EditValue = null;
+            comboNGUOILAP.SelectedIndex = -1;
+            txtTONGTIEN.Text = string.Empty;
+            txtTRANGTHAI.Text = string.Empty;
+
+            txtID.Text = string.Empty;
+            comboMASP.SelectedIndex = -1;
+            txtSOLUONG.Text = string.Empty;
+            txtDONGIA.Text = string.Empty;
+            txtCHIETKHAU.Text = string.Empty;
+            txtVAT.Text = string.Empty;
+            txtGHICHU.Text = string.Empty;
+
+            gridControl2.DataSource = null;
+        }
+
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return -1;
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return int.TryParse(parts[0], out int key) ? key : -1;
+        }
+
+        private string ExtractValueFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return string.Empty;
+
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return parts.Length > 1 ? parts[1].Trim() : string.Empty;
+        }
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private void SetComboBoxSelectedItemByValue(ComboBoxEdit comboBox, string value)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.Trim().EndsWith($": {value}"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             isEditMode = false;
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
         private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (int.TryParse(txtMAHD.Text, out int id))
             {
-                var confirm = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
-                if (confirm == DialogResult.Yes)
+                if (MessageBox.Show("Xóa hóa đơn và chi tiết?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    // Xóa chi tiết hóa đơn trước
-                    var details = await detailBLL.GetDetailsByReceiptIdAsync(id);
-                    foreach (var d in details)
-                    {
-                        await detailBLL.DeleteDetailAsync(d.Id);
-                    }
-
-                    // Xóa hóa đơn
-                    var result = await db.DeleteReceiptAsync(id);
-                    MessageBox.Show(result, "Thông báo");
+                    var res = await bll.DeleteAsync(id);
+                    MessageBox.Show(res);
                     await LoadReceiptsAsync();
                     _groupEmpty();
                     _showHide(true);
@@ -131,112 +177,175 @@ namespace GUI.QL_BAN_HANG
 
         private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var dto = new ReceiptDto
+            try
             {
-                MaHD = int.TryParse(txtMAHD.Text, out int id) ? id : 0,
-                MaKH = int.TryParse(comboMAKH.Text.Split(':')[0], out int makh) ? makh : 0,
-                LoaiHD = txtLOAIHD.Text.Trim(),
-                NgayLap = dateEditNGAYLAP.DateTime,
-                NguoiLap = txtNGUOILAP.Text.Trim(),
-                TongTien = long.TryParse(txtTONGTIEN.Text, out long tien) ? tien : 0,
-                TrangThai = txtTRANGTHAI.Text.Trim()
-            };
+                var maHDStr = txtMAHD.Text.Trim();
+                var idCTStr = txtID.Text.Trim();
+                var culture = new System.Globalization.CultureInfo("vi-VN");
 
-            var detailDto = new ReceiptDetailInputDto
-            {
-                MaSP = int.TryParse(comboMASP.Text, out int masp) ? masp : 0,
-                SoLuong = int.TryParse(txtSOLUONG.Text, out int sl) ? sl : 0,
-                DonGia = long.TryParse(txtDONGIA.Text, out long dg) ? dg : 0,
-                ChietKhau = float.TryParse(txtCHIETKHAU.Text, out float ck) ? ck : 0,
-                VAT = float.TryParse(txtVAT.Text, out float vat) ? vat : 0,
-                GhiChu = txtGHICHU.Text
-            };
-
-            string result = "";
-
-            if (isEditMode && dto.MaHD > 0)
-            {
-                result = await db.UpdateReceiptAsync(dto.MaHD, dto);
-
-                detailDto.MaHD = dto.MaHD;
-                int idCT = int.TryParse(txtID.Text, out int tmpId) ? tmpId : 0;
-                if (idCT > 0)
+                if (!int.TryParse(txtSOLUONG.Text, out int soluong) ||
+                    !long.TryParse(txtDONGIA.Text, System.Globalization.NumberStyles.Any, culture, out long dongia) ||
+                    !long.TryParse(txtTONGTIEN.Text, System.Globalization.NumberStyles.Any, culture, out long tongTien) ||
+                    !float.TryParse(txtCHIETKHAU.Text, System.Globalization.NumberStyles.Any, culture, out float chietkhau) ||
+                    !float.TryParse(txtVAT.Text, System.Globalization.NumberStyles.Any, culture, out float vat))
                 {
-                    result += "\n" + await detailBLL.UpdateDetailAsync(idCT, detailDto);
+                    MessageBox.Show("Lỗi!!!");
+                    return;
                 }
-            }
-            else
-            {
-                result = await db.CreateReceiptAsync(dto);
-                var ds = await db.GetAllReceiptsAsync();
-                var newHD = ds.OrderByDescending(x => x.MaHD).FirstOrDefault();
-                if (newHD != null)
-                {
-                    detailDto.MaHD = newHD.MaHD;
-                    result += "\n" + await detailBLL.CreateDetailAsync(detailDto);
-                }
-            }
 
-            MessageBox.Show(result, "Thông báo");
-            await LoadReceiptsAsync();
-            _showHide(true);
-            groupNhap.Enabled = false;
-            _groupEmpty();
-            isEditMode = false;
+                var inputPhieu = new ReceiptInputDto
+                {
+                    MaKH = ExtractKeyFromCombo(comboMAKH),
+                    LoaiHD = txtLOAIHD.Text.Trim(),
+                    NgayLap = dateEditNGAYLAP.DateTime,
+                    NguoiLap = ExtractValueFromCombo(comboNGUOILAP),
+                    TongTien = tongTien,
+                    TrangThai = txtTRANGTHAI.Text.Trim()
+                };
+
+                var inputDetail = new ReceiptDetailInputDto
+                {
+                    MaSP = ExtractKeyFromCombo(comboMASP),
+                    SoLuong = soluong,
+                    DonGia = dongia,
+                    ChietKhau = chietkhau,
+                    VAT = vat,
+                    GhiChu = txtGHICHU.Text
+                };
+
+                string result = "";
+
+                bool hoaDonTonTai = int.TryParse(maHDStr, out int maHD) && (await bll.GetByIdAsync(maHD)) != null;
+                bool chiTietTonTai = int.TryParse(idCTStr, out int idCT) && idCT > 0;
+
+                if (hoaDonTonTai && chiTietTonTai)
+                {
+                    result = await bll.UpdateAsync(maHD, inputPhieu, idCT, inputDetail);
+                }
+                else
+                {
+                    result = await bll.CreateAsync(inputPhieu, inputDetail);
+                }
+
+                MessageBox.Show(result, "Thông báo");
+                await LoadReceiptsAsync();
+                _groupEmpty();
+                groupNhap.Enabled = false;
+                _showHide(true);
+                isEditMode = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu: " + ex.Message);
+            }
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
-            isEditMode = false;
+            groupNhap.Enabled = false;
+            _showHide(true);
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private async void gridView1_RowClick_1(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = true;
+            if (e.RowHandle < 0) return;
+            var view = sender as GridView;
+            var phieu = view.GetRow(e.RowHandle) as ReceiptDto;
+            if (phieu == null) return;
+
+            txtMAHD.Text = phieu.MaHD.ToString();
+            SetComboBoxSelectedItemByKey(comboMAKH, phieu.MaKH);
+            txtLOAIHD.Text = phieu.LoaiHD;
+            dateEditNGAYLAP.EditValue = phieu.NgayLap;
+            SetComboBoxSelectedItemByValue(comboNGUOILAP, phieu.NguoiLap);
+            txtTONGTIEN.Text = phieu.TongTien.ToString();
+            txtTRANGTHAI.Text = phieu.TrangThai;
+
+            var details = await bll.GetDetailsByMaHDAsync(phieu.MaHD);
+            gridControl2.DataSource = details;
+
+            if (details.Count > 0)
+            {
+                var ct = details[0];
+                txtID.Text = ct.Id.ToString();
+                SetComboBoxSelectedItemByKey(comboMASP, ct.MaSP);
+                txtSOLUONG.Text = ct.SoLuong.ToString();
+                txtDONGIA.Text = ct.DonGia.ToString();
+                txtCHIETKHAU.Text = ct.ChietKhau.ToString();
+                txtVAT.Text = ct.VAT.ToString();
+                txtGHICHU.Text = ct.GhiChu;
+                currentChiTietId = ct.Id;
+            }
+
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
+            barbtnHuybo.Enabled = true;
             groupNhap.Enabled = false;
+        }
 
-            if (e.RowHandle >= 0)
+        private async void ComboMASP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int maSP = ExtractKeyFromCombo(comboMASP);
+            if (maSP == -1) return;
+
+            // Lấy danh sách sản phẩm từ BLL (nếu chưa có danhSachSanPham)
+            var sp = await spBLL.GetByIdAsync(maSP);
+            if (sp == null) return;
+
+            txtDONGIA.Text = sp.DonGia.ToString("N0");
+            txtDONGIA.Tag = sp.DonGia; // Lưu tạm để tính
+
+            TinhToanHoaDon(); // Gọi hàm tính tổng tiền
+        }
+
+        private void TinhToanHoaDon()
+        {
+            if (!int.TryParse(txtSOLUONG.Text, out int soLuong)) return;
+
+            long donGia = 0;
+            if (txtDONGIA.Tag != null)
             {
-                var view = sender as GridView;
-                if (view != null)
-                {
-                    var hoadon = view.GetRow(e.RowHandle) as ReceiptDto;
-                    if (hoadon != null)
-                    {
-                        txtMAHD.Text = hoadon.MaHD.ToString();
-                        comboMAKH.Text = hoadon.MaKH.ToString();
-                        txtLOAIHD.Text = hoadon.LoaiHD;
-                        dateEditNGAYLAP.EditValue = hoadon.NgayLap;
-                        txtNGUOILAP.Text = hoadon.NguoiLap;
-                        txtTONGTIEN.Text = hoadon.TongTien.ToString();
-                        txtTRANGTHAI.Text = hoadon.TrangThai;
-
-                        var details = await detailBLL.GetDetailsByReceiptIdAsync(hoadon.MaHD);
-                        if (details.Count > 0)
-                        {
-                            var detail = details[0];
-                            txtID.Text = detail.Id.ToString();
-                            comboMASP.Text = detail.MaSP.ToString();
-                            txtSOLUONG.Text = detail.SoLuong.ToString();
-                            txtDONGIA.Text = detail.DonGia.ToString();
-                            txtCHIETKHAU.Text = detail.ChietKhau.ToString();
-                            txtVAT.Text = detail.VAT.ToString();
-                            txtGHICHU.Text = detail.GhiChu;
-                        }
-                    }
-                }
+                long.TryParse(txtDONGIA.Tag.ToString(), out donGia);
             }
+            else
+            {
+                long.TryParse(txtDONGIA.Text.Replace(".", "").Replace(",", ""), out donGia);
+            }
+
+            if (donGia == 0) return;
+
+            double chietKhau = 0, vat = 0;
+            double.TryParse(txtCHIETKHAU.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out chietKhau);
+            double.TryParse(txtVAT.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out vat);
+
+            double tongTien = (soLuong * donGia) * (1 - chietKhau) * (1 + vat);
+            txtTONGTIEN.Text = tongTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+        }
+
+        private void TinhToan_TextChanged(object sender, EventArgs e)
+        {
+            TinhToanHoaDon();
+        }
+
+        private void txtSOLUONG_TextChanged_1(object sender, EventArgs e)
+        {
+            TinhToanHoaDon();
+        }
+
+        private void txtCHIETKHAU_TextChanged(object sender, EventArgs e)
+        {
+            TinhToanHoaDon();
+        }
+
+        private void txtVAT_TextChanged(object sender, EventArgs e)
+        {
+            TinhToanHoaDon();
         }
     }
 }

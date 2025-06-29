@@ -358,7 +358,6 @@
             this.comboMANV.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboMANV.Size = new System.Drawing.Size(371, 20);
             this.comboMANV.TabIndex = 1;
-            this.comboMANV.SelectedIndexChanged += new System.EventHandler(this.comboMANV_SelectedIndexChanged);
             // 
             // txtMATHU
             // 
@@ -456,6 +455,7 @@
             this.txtSOTIEN.Name = "txtSOTIEN";
             this.txtSOTIEN.Size = new System.Drawing.Size(342, 25);
             this.txtSOTIEN.TabIndex = 11;
+            this.txtSOTIEN.TextChanged += new System.EventHandler(this.txtSOTIEN_TextChanged);
             // 
             // gridColNOIDUNG
             // 

@@ -1,50 +1,36 @@
-﻿using BLL.QL_NHAP_KHO_BLL;
-using DAL;
+﻿using BLL.QL_NHAP_KHO;
+using BLL.QL_NHAP_KHO_BLL;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI.QL_NHAP_KHO_GUI
 {
-    public partial class frmNHAPKHO : DevExpress.XtraEditors.XtraForm
+    public partial class frmNHAPKHO : XtraForm
     {
+        private readonly NHAPKHO_BLL bll = new NHAPKHO_BLL();
+        private readonly SANPHAM_BLL sanPhamBLL = new SANPHAM_BLL();
+        private readonly NHACUNGCAP_BLL nccBll = new NHACUNGCAP_BLL();
+        private readonly KHOHANG_BLL khoBLL = new KHOHANG_BLL();
+        private bool isEditMode = false;
+        private int currentChiTietId = 0;
+
         public frmNHAPKHO()
         {
             InitializeComponent();
         }
 
-        void _showHide(bool kt)
+        private async void frmNHAPKHO_Load(object sender, EventArgs e)
         {
-            barbtnThem.Enabled = kt;
-            barbtnSua.Enabled = !kt;
-            barbtnXoa.Enabled = !kt;
-            barbtnLuu.Enabled = !kt;
-            barbtnHuybo.Enabled = !kt;
-        }
-
-        void _groupEmpty()
-        {
-            txtMAPHIEUNHAP.Text = string.Empty;
-            dateEditNGAYNHAP.Text = string.Empty;
-            comboMANCC.SelectedIndex = -1;
-            comboMAKHO.SelectedIndex = -1;
-            txtGHICHU.Text = string.Empty;
-
-            txtID.Text = string.Empty;
-            comboMAKHO.SelectedIndex = -1;
-            comboMASP.SelectedIndex = -1;
-            txtSOLUONGNHAP.Text = string.Empty;
-            txtDONGIA.Text = string.Empty;
-        }
-
-        private NHAPKHO_BLL db = new NHAPKHO_BLL();
-
-        private void frmNHAPKHO_Load(object sender, EventArgs e)
-        {
-            gridControl1.DataSource = db.GetList();
-            groupNhap.Enabled = false;
+            await LoadComboBoxAsync();
+            await LoadDataAsync();
             _showHide(true);
+            groupNhap.Enabled = false;
         }
 
         private void frmNHAPKHO_Resize(object sender, EventArgs e)
@@ -55,43 +41,181 @@ namespace GUI.QL_NHAP_KHO_GUI
             splitContainer5.SplitterDistance = 100;
         }
 
+        private async Task LoadDataAsync()
+        {
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private void _showHide(bool kt)
+        {
+            barbtnThem.Enabled = kt;
+            barbtnSua.Enabled = !kt;
+            barbtnXoa.Enabled = !kt;
+            barbtnLuu.Enabled = !kt;
+            barbtnHuybo.Enabled = !kt;
+        }
+
+        private void _groupEmpty()
+        {
+            txtMAPHIEUNHAP.Text = string.Empty;
+            dateEditNGAYNHAP.EditValue = null;
+            comboMANCC.SelectedIndex = -1;
+            comboMAKHO.SelectedIndex = -1;
+            txtGHICHU.Text = string.Empty;
+
+            txtID.Text = string.Empty;
+            comboMASP.SelectedIndex = -1;
+            txtSOLUONGNHAP.Text = string.Empty;
+            txtDONGIA.Text = string.Empty;
+
+            gridControl2.DataSource = null;
+        }
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private void SetComboBoxSelectedItemByValue(ComboBoxEdit comboBox, string value)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.Trim().EndsWith($": {value}"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private async Task LoadComboBoxAsync()
+        {
+            var nccDict = await nccBll.GetProviderDictionaryAsync();
+            var spBLL = await sanPhamBLL.GetProductDictionaryAsync();
+            var khoDict = await khoBLL.GetInventoryDictionaryAsync();
+
+            comboMANCC.Properties.Items.Clear();
+            comboMASP.Properties.Items.Clear();
+            comboMAKHO.Properties.Items.Clear();
+
+            foreach (var item in nccDict)
+                comboMANCC.Properties.Items.Add($"{item.Key}: {item.Value}");
+
+            foreach (var item in spBLL)
+                comboMASP.Properties.Items.Add($"{item.Key}: {item.Value}");
+            foreach (var item in khoDict)
+                comboMAKHO.Properties.Items.Add($"{item.Key}: {item.Value}");
+        }
+
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem != null)
+            {
+                var selected = combo.SelectedItem.ToString();
+                if (int.TryParse(selected.Split(':')[0], out int key))
+                    return key;
+            }
+            return 0;
+        }
+
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            _groupEmpty();
+            if (int.TryParse(txtMAPHIEUNHAP.Text, out int id))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập và chi tiết không?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await bll.DeleteAsync(id);
+                    MessageBox.Show(result);
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
         }
 
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
-            _groupEmpty();
+            try
+            {
+                var maPhieu = txtMAPHIEUNHAP.Text.Trim();
+                var idChiTiet = txtID.Text.Trim();
+
+                var inputPhieu = new StockInInputDto
+                {
+                    MaNCC = ExtractKeyFromCombo(comboMANCC),
+                    MaKho = ExtractKeyFromCombo(comboMAKHO),
+                    NgayNhap = dateEditNGAYNHAP.DateTime,
+                    GhiChu = txtGHICHU.Text
+                };
+
+                var inputChiTiet = new StockInDetailInputDto
+                {
+                    MaSP = ExtractKeyFromCombo(comboMASP),
+                    SoLuongNhap = int.Parse(txtSOLUONGNHAP.Text),
+                    DonGia = long.Parse(txtDONGIA.Text)
+                };
+
+                string result;
+
+                // Kiểm tra nếu MAPHIEUNHAP và ID đã tồn tại
+                bool phieuTonTai = false;
+                if (int.TryParse(maPhieu, out int maPhieuInt))
+                    phieuTonTai = (await bll.GetByIdAsync(maPhieuInt)) != null;
+                bool chiTietTonTai = int.TryParse(idChiTiet, out int idChiTietInt) && idChiTietInt > 0;
+
+                if (phieuTonTai && chiTietTonTai)
+                {
+                    // Cập nhật
+                    result = await bll.UpdateAsync(maPhieuInt, inputPhieu, idChiTietInt, inputChiTiet);
+                }
+                else
+                {
+                    // Thêm mới
+                    result = await bll.CreateAsync(inputPhieu, inputChiTiet);
+                }
+
+                MessageBox.Show(result);
+                await LoadDataAsync();
+                _groupEmpty();
+                groupNhap.Enabled = false;
+                _showHide(true);
+                isEditMode = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu: " + ex.Message);
+            }
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            _groupEmpty();
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -99,7 +223,7 @@ namespace GUI.QL_NHAP_KHO_GUI
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private async void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
             barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
@@ -110,49 +234,35 @@ namespace GUI.QL_NHAP_KHO_GUI
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var phieu = view?.GetRow(e.RowHandle) as StockInDto;
+
+                if (phieu != null)
                 {
-                    var nhapkho = view.GetRow(e.RowHandle) as NHAPKHO;
-                    if (nhapkho != null)
+                    txtMAPHIEUNHAP.Text = phieu.MaPhieuNhap.ToString();
+                    SetComboBoxSelectedItemByKey(comboMANCC, phieu.MaNCC);
+                    SetComboBoxSelectedItemByKey(comboMAKHO, phieu.MaKho);
+                    dateEditNGAYNHAP.EditValue = phieu.NgayNhap;
+                    txtGHICHU.Text = phieu.GhiChu;
+
+                    var chiTietList = await bll.GetDetailsByPhieuNhapAsync(phieu.MaPhieuNhap);
+                    gridControl2.DataSource = chiTietList;
+
+                    if (chiTietList.Any())
                     {
-                        try
-                        {
-                            // Hiển thị dữ liệu từ NHAPKHO vào các trường tương ứng
-                            txtMAPHIEUNHAP.Text = nhapkho.MAPHIEUNHAP.ToString();
-                            dateEditNGAYNHAP.EditValue = nhapkho.NGAYNHAP;
-                            comboMANCC.Text = nhapkho.MANCC.ToString();
-                            comboMAKHO.Text = nhapkho.MAKHO.ToString();
-                            txtGHICHU.Text = nhapkho.GHICHU;
-
-                            // Lấy dữ liệu từ CHITIETNHAPHANG dựa trên MAPHIEUNHAP
-                            var chiTietList = db.LayMAPHIEUNHAP(nhapkho.MAPHIEUNHAP);
-
-                            // Hiển thị dữ liệu từ CHITIETNHAPHANG vào các trường tương ứng
-                            if (chiTietList != null && chiTietList.Any())
-                            {
-                                var chiTiet = chiTietList.First(); // Lấy bản ghi đầu tiên, có thể điều chỉnh logic nếu cần nhiều hơn
-                                txtID.Text = chiTiet.ID.ToString();
-                                comboMASP.Text = chiTiet.MASP.ToString();
-                                txtSOLUONGNHAP.Text = chiTiet.SOLUONGNHAP.ToString();
-                                txtDONGIA.Text = chiTiet.DONGIA.ToString();
-                            }
-                            else
-                            {
-                                // Xóa dữ liệu nếu không có chi tiết nhập hàng
-                                txtID.Text = string.Empty;
-                                comboMASP.Text = string.Empty;
-                                txtSOLUONGNHAP.Text = string.Empty;
-                                txtDONGIA.Text = string.Empty;
-                            }
-
-                            // Gán dữ liệu vào gridControl2 để hiển thị chi tiết
-                            gridControl2.DataSource = chiTietList;
-                            gridControl2.Enabled = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        var ct = chiTietList.First();
+                        txtID.Text = ct.Id.ToString();
+                        SetComboBoxSelectedItemByKey(comboMASP, ct.MaSP);
+                        txtSOLUONGNHAP.Text = ct.SoLuongNhap.ToString();
+                        txtDONGIA.Text = ct.DonGia.ToString();
+                        currentChiTietId = ct.Id;
+                    }
+                    else
+                    {
+                        txtID.Text = "";
+                        comboMASP.Text = "";
+                        txtSOLUONGNHAP.Text = "";
+                        txtDONGIA.Text = "";
+                        currentChiTietId = 0;
                     }
                 }
             }

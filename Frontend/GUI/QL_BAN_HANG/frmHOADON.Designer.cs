@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHOADON));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip19 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem19 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip20 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem20 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip21 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem21 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip22 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem22 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip23 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem23 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip24 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem24 = new DevExpress.Utils.ToolTipItem();
             this.label8 = new System.Windows.Forms.Label();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -55,7 +55,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.txtNGUOILAP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboMASP = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtDONGIA = new System.Windows.Forms.TextBox();
@@ -101,6 +100,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboNGUOILAP = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtTRANGTHAI = new System.Windows.Forms.TextBox();
             this.txtTONGTIEN = new System.Windows.Forms.TextBox();
             this.dateEditNGAYLAP = new DevExpress.XtraEditors.DateEdit();
@@ -141,6 +141,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOILAP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAYLAP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAYLAP.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
@@ -203,9 +204,9 @@
             this.barbtnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnThem.ImageOptions.Image")));
             this.barbtnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnThem.ImageOptions.LargeImage")));
             this.barbtnThem.Name = "barbtnThem";
-            toolTipItem1.Text = "Thêm dữ liệu";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.barbtnThem.SuperTip = superToolTip1;
+            toolTipItem19.Text = "Thêm dữ liệu";
+            superToolTip19.Items.Add(toolTipItem19);
+            this.barbtnThem.SuperTip = superToolTip19;
             this.barbtnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThem_ItemClick);
             // 
             // barbtnSua
@@ -215,9 +216,9 @@
             this.barbtnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnSua.ImageOptions.Image")));
             this.barbtnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnSua.ImageOptions.LargeImage")));
             this.barbtnSua.Name = "barbtnSua";
-            toolTipItem2.Text = "Sửa dữ liệu";
-            superToolTip2.Items.Add(toolTipItem2);
-            this.barbtnSua.SuperTip = superToolTip2;
+            toolTipItem20.Text = "Sửa dữ liệu";
+            superToolTip20.Items.Add(toolTipItem20);
+            this.barbtnSua.SuperTip = superToolTip20;
             this.barbtnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnSua_ItemClick);
             // 
             // barbtnXoa
@@ -227,9 +228,9 @@
             this.barbtnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnXoa.ImageOptions.Image")));
             this.barbtnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnXoa.ImageOptions.LargeImage")));
             this.barbtnXoa.Name = "barbtnXoa";
-            toolTipItem3.Text = "Xóa dữ liệu";
-            superToolTip3.Items.Add(toolTipItem3);
-            this.barbtnXoa.SuperTip = superToolTip3;
+            toolTipItem21.Text = "Xóa dữ liệu";
+            superToolTip21.Items.Add(toolTipItem21);
+            this.barbtnXoa.SuperTip = superToolTip21;
             this.barbtnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnXoa_ItemClick);
             // 
             // barbtnLuu
@@ -239,9 +240,9 @@
             this.barbtnLuu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnLuu.ImageOptions.Image")));
             this.barbtnLuu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnLuu.ImageOptions.LargeImage")));
             this.barbtnLuu.Name = "barbtnLuu";
-            toolTipItem4.Text = "Lưu dữ liệu";
-            superToolTip4.Items.Add(toolTipItem4);
-            this.barbtnLuu.SuperTip = superToolTip4;
+            toolTipItem22.Text = "Lưu dữ liệu";
+            superToolTip22.Items.Add(toolTipItem22);
+            this.barbtnLuu.SuperTip = superToolTip22;
             this.barbtnLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnLuu_ItemClick);
             // 
             // barbtnHuybo
@@ -251,9 +252,9 @@
             this.barbtnHuybo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnHuybo.ImageOptions.Image")));
             this.barbtnHuybo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnHuybo.ImageOptions.LargeImage")));
             this.barbtnHuybo.Name = "barbtnHuybo";
-            toolTipItem5.Text = "Hủy bỏ";
-            superToolTip5.Items.Add(toolTipItem5);
-            this.barbtnHuybo.SuperTip = superToolTip5;
+            toolTipItem23.Text = "Hủy bỏ";
+            superToolTip23.Items.Add(toolTipItem23);
+            this.barbtnHuybo.SuperTip = superToolTip23;
             this.barbtnHuybo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnHuybo_ItemClick);
             // 
             // barbtnThoat
@@ -263,9 +264,9 @@
             this.barbtnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnThoat.ImageOptions.Image")));
             this.barbtnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnThoat.ImageOptions.LargeImage")));
             this.barbtnThoat.Name = "barbtnThoat";
-            toolTipItem6.Text = "Thoát";
-            superToolTip6.Items.Add(toolTipItem6);
-            this.barbtnThoat.SuperTip = superToolTip6;
+            toolTipItem24.Text = "Thoát";
+            superToolTip24.Items.Add(toolTipItem24);
+            this.barbtnThoat.SuperTip = superToolTip24;
             this.barbtnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThoat_ItemClick);
             // 
             // barDockControlTop
@@ -300,17 +301,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 576);
             // 
-            // txtNGUOILAP
-            // 
-            this.txtNGUOILAP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOILAP.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNGUOILAP.Location = new System.Drawing.Point(17, 128);
-            this.txtNGUOILAP.Name = "txtNGUOILAP";
-            this.txtNGUOILAP.Size = new System.Drawing.Size(419, 22);
-            this.txtNGUOILAP.TabIndex = 28;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -331,7 +321,8 @@
             this.comboMASP.Name = "comboMASP";
             this.comboMASP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMASP.Size = new System.Drawing.Size(432, 20);
+            this.comboMASP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMASP.Size = new System.Drawing.Size(416, 20);
             this.comboMASP.TabIndex = 28;
             // 
             // txtDONGIA
@@ -339,10 +330,11 @@
             this.txtDONGIA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDONGIA.Enabled = false;
             this.txtDONGIA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDONGIA.Location = new System.Drawing.Point(12, 98);
             this.txtDONGIA.Name = "txtDONGIA";
-            this.txtDONGIA.Size = new System.Drawing.Size(432, 22);
+            this.txtDONGIA.Size = new System.Drawing.Size(416, 22);
             this.txtDONGIA.TabIndex = 27;
             // 
             // txtID
@@ -354,7 +346,7 @@
             this.txtID.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(12, 14);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(432, 22);
+            this.txtID.Size = new System.Drawing.Size(416, 22);
             this.txtID.TabIndex = 20;
             // 
             // groupBox1
@@ -596,7 +588,7 @@
             this.txtLOAIHD.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLOAIHD.Location = new System.Drawing.Point(17, 70);
             this.txtLOAIHD.Name = "txtLOAIHD";
-            this.txtLOAIHD.Size = new System.Drawing.Size(419, 22);
+            this.txtLOAIHD.Size = new System.Drawing.Size(413, 22);
             this.txtLOAIHD.TabIndex = 32;
             // 
             // comboMAKH
@@ -609,7 +601,8 @@
             this.comboMAKH.Name = "comboMAKH";
             this.comboMAKH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboMAKH.Size = new System.Drawing.Size(419, 20);
+            this.comboMAKH.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboMAKH.Size = new System.Drawing.Size(413, 20);
             this.comboMAKH.TabIndex = 31;
             // 
             // label7
@@ -636,7 +629,7 @@
             this.txtMAHD.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMAHD.Location = new System.Drawing.Point(17, 14);
             this.txtMAHD.Name = "txtMAHD";
-            this.txtMAHD.Size = new System.Drawing.Size(419, 22);
+            this.txtMAHD.Size = new System.Drawing.Size(413, 22);
             this.txtMAHD.TabIndex = 24;
             // 
             // txtSOLUONG
@@ -647,8 +640,9 @@
             this.txtSOLUONG.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSOLUONG.Location = new System.Drawing.Point(12, 68);
             this.txtSOLUONG.Name = "txtSOLUONG";
-            this.txtSOLUONG.Size = new System.Drawing.Size(432, 22);
+            this.txtSOLUONG.Size = new System.Drawing.Size(416, 22);
             this.txtSOLUONG.TabIndex = 26;
+            this.txtSOLUONG.TextChanged += new System.EventHandler(this.txtSOLUONG_TextChanged_1);
             // 
             // splitContainer1
             // 
@@ -719,12 +713,12 @@
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.comboNGUOILAP);
             this.splitContainer3.Panel2.Controls.Add(this.txtTRANGTHAI);
             this.splitContainer3.Panel2.Controls.Add(this.txtTONGTIEN);
             this.splitContainer3.Panel2.Controls.Add(this.dateEditNGAYLAP);
             this.splitContainer3.Panel2.Controls.Add(this.txtLOAIHD);
             this.splitContainer3.Panel2.Controls.Add(this.comboMAKH);
-            this.splitContainer3.Panel2.Controls.Add(this.txtNGUOILAP);
             this.splitContainer3.Panel2.Controls.Add(this.txtMAHD);
             this.splitContainer3.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer3.Size = new System.Drawing.Size(565, 222);
@@ -803,6 +797,20 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "&4. Ngày lập:";
             // 
+            // comboNGUOILAP
+            // 
+            this.comboNGUOILAP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboNGUOILAP.Location = new System.Drawing.Point(17, 129);
+            this.comboNGUOILAP.MenuManager = this.barManager1;
+            this.comboNGUOILAP.Name = "comboNGUOILAP";
+            this.comboNGUOILAP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboNGUOILAP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboNGUOILAP.Size = new System.Drawing.Size(413, 20);
+            this.comboNGUOILAP.TabIndex = 36;
+            // 
             // txtTRANGTHAI
             // 
             this.txtTRANGTHAI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -811,7 +819,7 @@
             this.txtTRANGTHAI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTRANGTHAI.Location = new System.Drawing.Point(17, 190);
             this.txtTRANGTHAI.Name = "txtTRANGTHAI";
-            this.txtTRANGTHAI.Size = new System.Drawing.Size(419, 22);
+            this.txtTRANGTHAI.Size = new System.Drawing.Size(413, 22);
             this.txtTRANGTHAI.TabIndex = 35;
             // 
             // txtTONGTIEN
@@ -819,10 +827,11 @@
             this.txtTONGTIEN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTONGTIEN.Enabled = false;
             this.txtTONGTIEN.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTONGTIEN.Location = new System.Drawing.Point(17, 159);
             this.txtTONGTIEN.Name = "txtTONGTIEN";
-            this.txtTONGTIEN.Size = new System.Drawing.Size(419, 22);
+            this.txtTONGTIEN.Size = new System.Drawing.Size(413, 22);
             this.txtTONGTIEN.TabIndex = 34;
             // 
             // dateEditNGAYLAP
@@ -838,7 +847,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditNGAYLAP.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditNGAYLAP.Size = new System.Drawing.Size(419, 20);
+            this.dateEditNGAYLAP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.dateEditNGAYLAP.Size = new System.Drawing.Size(413, 20);
             this.dateEditNGAYLAP.TabIndex = 33;
             // 
             // splitContainer4
@@ -921,7 +931,7 @@
             this.txtGHICHU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGHICHU.Location = new System.Drawing.Point(12, 190);
             this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(432, 22);
+            this.txtGHICHU.Size = new System.Drawing.Size(416, 22);
             this.txtGHICHU.TabIndex = 31;
             // 
             // txtVAT
@@ -932,8 +942,9 @@
             this.txtVAT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVAT.Location = new System.Drawing.Point(12, 159);
             this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(432, 22);
+            this.txtVAT.Size = new System.Drawing.Size(416, 22);
             this.txtVAT.TabIndex = 30;
+            this.txtVAT.TextChanged += new System.EventHandler(this.txtVAT_TextChanged);
             // 
             // txtCHIETKHAU
             // 
@@ -943,8 +954,9 @@
             this.txtCHIETKHAU.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCHIETKHAU.Location = new System.Drawing.Point(12, 128);
             this.txtCHIETKHAU.Name = "txtCHIETKHAU";
-            this.txtCHIETKHAU.Size = new System.Drawing.Size(432, 22);
+            this.txtCHIETKHAU.Size = new System.Drawing.Size(416, 22);
             this.txtCHIETKHAU.TabIndex = 29;
+            this.txtCHIETKHAU.TextChanged += new System.EventHandler(this.txtCHIETKHAU_TextChanged);
             // 
             // frmHOADON
             // 
@@ -991,6 +1003,7 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOILAP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAYLAP.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditNGAYLAP.Properties)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
@@ -1030,7 +1043,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtLOAIHD;
         private DevExpress.XtraEditors.ComboBoxEdit comboMAKH;
-        private System.Windows.Forms.TextBox txtNGUOILAP;
         private System.Windows.Forms.TextBox txtMAHD;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Label label5;
@@ -1076,5 +1088,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColCHIETKHAU;
         private DevExpress.XtraGrid.Columns.GridColumn gridColVAT;
         private DevExpress.XtraGrid.Columns.GridColumn gridColGHICHU;
+        private DevExpress.XtraEditors.ComboBoxEdit comboNGUOILAP;
     }
 }

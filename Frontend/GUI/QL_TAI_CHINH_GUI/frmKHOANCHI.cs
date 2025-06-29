@@ -47,6 +47,14 @@ namespace GUI.QL_TAI_CHINH_GUI
             return int.TryParse(parts[0], out int key) ? key : -1;
         }
 
+        private string ExtractValueFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return string.Empty;
+
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return parts.Length > 1 ? parts[1].Trim() : string.Empty;
+        }
+
         private async Task LoadComboNhanVienAsync()
         {
             var dict = await nhanSuBLL.GetEmployeeDictionaryAsync();
@@ -57,7 +65,31 @@ namespace GUI.QL_TAI_CHINH_GUI
             foreach (var item in dict)
             {
                 comboMANV.Properties.Items.Add($"{item.Key}: {item.Value}");
-                comboNGUOICHI.Properties.Items.Add(item.Value);
+                comboNGUOICHI.Properties.Items.Add($"{item.Key}: {item.Value}");
+            }
+        }
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private void SetComboBoxSelectedItemByValue(ComboBoxEdit comboBox, string value)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.Trim().EndsWith($": {value}"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
             }
         }
 
@@ -136,7 +168,7 @@ namespace GUI.QL_TAI_CHINH_GUI
                 NgayChi = Convert.ToDateTime(dateEditNGAY.EditValue),
                 NoiDung = txtNOIDUNG.Text.Trim(),
                 SoTien = soTien,
-                NguoiChi = comboNGUOICHI.Text.Trim(),
+                NguoiChi = ExtractValueFromCombo(comboNGUOICHI),
                 GhiChu = txtGHICHU.Text?.Trim()
             };
 
@@ -179,12 +211,26 @@ namespace GUI.QL_TAI_CHINH_GUI
                 if (data != null)
                 {
                     txtMACHI.Text = data.MaChi.ToString();
-                    comboMANV.Text = data.MaNV.ToString(); // Có thể dùng Find nếu cần hiển thị dạng "{id}: Tên"
+                    SetComboBoxSelectedItemByKey(comboMANV, data.MaNV);
                     dateEditNGAY.EditValue = data.NgayChi;
                     txtNOIDUNG.Text = data.NoiDung;
-                    txtSOTIEN.Text = data.SoTien.ToString("0.##");
-                    comboNGUOICHI.Text = data.NguoiChi;
+                    txtSOTIEN.Text = data.SoTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                    SetComboBoxSelectedItemByValue(comboNGUOICHI, data.NguoiChi);
                     txtGHICHU.Text = data.GhiChu;
+                }
+            }
+        }
+
+        private void txtSOTIEN_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSOTIEN.Focused)
+            {
+                string raw = txtSOTIEN.Text.Replace(".", "");
+                if (decimal.TryParse(raw, out decimal value))
+                {
+                    int cursor = txtSOTIEN.SelectionStart;
+                    txtSOTIEN.Text = string.Format("{0:N0}", value);
+                    txtSOTIEN.SelectionStart = txtSOTIEN.Text.Length;
                 }
             }
         }

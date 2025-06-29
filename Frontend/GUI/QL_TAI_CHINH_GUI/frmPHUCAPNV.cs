@@ -63,6 +63,18 @@ namespace GUI.QL_TAI_CHINH_GUI
                 comboMAPC.Properties.Items.Add($"{pc.MaPC}: {pc.TenPhuCap}");
         }
 
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
         private async Task LoadGridDataAsync()
         {
             var list = await db.GetAllAsync();
@@ -179,11 +191,11 @@ namespace GUI.QL_TAI_CHINH_GUI
                 if (data != null)
                 {
                     txtMAPCNV.Text = data.MaPhuCapNV.ToString();
-                    comboMANV.EditValue = data.MaNV;
-                    comboMAPC.EditValue = data.MaPC;
+                    SetComboBoxSelectedItemByKey(comboMANV, data.MaNV);
+                    SetComboBoxSelectedItemByKey(comboMAPC, data.MaPC);
                     dateEditTHANG.EditValue = new DateTime(2025, data.Thang, 1);
                     dateEditNAM.EditValue = new DateTime(data.Nam, 1, 1);
-                    txtSoTien.Text = data.SoTien.ToString("N0");
+                    txtSoTien.Text = data.SoTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
                 }
             }
         }

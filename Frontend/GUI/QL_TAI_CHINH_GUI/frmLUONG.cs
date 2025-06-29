@@ -65,6 +65,18 @@ namespace GUI.QL_TAI_CHINH_GUI
             gridControl1.DataSource = list;
         }
 
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
         private async void frmLUONG_Load(object sender, EventArgs e)
         {
             await LoadComboDataAsync();
@@ -183,13 +195,13 @@ namespace GUI.QL_TAI_CHINH_GUI
                 if (data != null)
                 {
                     txtMALUONG.Text = data.MaLuong.ToString();
-                    comboMANV.Text = data.MaNV.ToString();
+                    SetComboBoxSelectedItemByKey(comboMANV, data.MaNV);
                     dateEditTHANG.EditValue = new DateTime(2024, data.Thang, 1); // placeholder year
                     dateEditNAM.EditValue = new DateTime(data.Nam, 1, 1);
-                    txtLUONGCB.Text = data.LuongCoBan.ToString("0.##");
-                    txtTONG_TANGCA.Text = data.TongTC.ToString("0.##");
-                    txtTONGPC.Text = data.TongPC.ToString("0.##");
-                    txtTHUCLINH.Text = data.ThucLinh.ToString("0.##");
+                    txtLUONGCB.Text = data.LuongCoBan.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                    txtTONG_TANGCA.Text = data.TongTC.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                    txtTONGPC.Text = data.TongPC.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                    txtTHUCLINH.Text = data.ThucLinh.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
                 }
             }
         }

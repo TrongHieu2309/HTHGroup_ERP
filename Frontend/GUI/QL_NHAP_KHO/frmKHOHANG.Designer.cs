@@ -54,8 +54,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboNGUOIQL = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.barbtnThem = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnXoa = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.txtGHICHU = new System.Windows.Forms.TextBox();
-            this.txtNGUOIQL = new System.Windows.Forms.TextBox();
             this.txtTENKHO = new System.Windows.Forms.TextBox();
             this.txtMAKHO = new System.Windows.Forms.TextBox();
             this.txtDIACHI = new System.Windows.Forms.TextBox();
@@ -67,14 +75,6 @@
             this.gridColDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColNGUOIQUANLY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColGHICHU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.barbtnThem = new DevExpress.XtraBars.BarButtonItem();
-            this.barbtnXoa = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -84,10 +84,11 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOIQL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // barbtnSua
@@ -185,8 +186,8 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.comboNGUOIQL);
             this.splitContainer2.Panel2.Controls.Add(this.txtGHICHU);
-            this.splitContainer2.Panel2.Controls.Add(this.txtNGUOIQL);
             this.splitContainer2.Panel2.Controls.Add(this.txtTENKHO);
             this.splitContainer2.Panel2.Controls.Add(this.txtMAKHO);
             this.splitContainer2.Panel2.Controls.Add(this.txtDIACHI);
@@ -245,153 +246,17 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "&4. Người quản lý:";
             // 
-            // txtGHICHU
+            // comboNGUOIQL
             // 
-            this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboNGUOIQL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGHICHU.Location = new System.Drawing.Point(13, 117);
-            this.txtGHICHU.Name = "txtGHICHU";
-            this.txtGHICHU.Size = new System.Drawing.Size(887, 25);
-            this.txtGHICHU.TabIndex = 8;
-            // 
-            // txtNGUOIQL
-            // 
-            this.txtNGUOIQL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOIQL.Location = new System.Drawing.Point(13, 89);
-            this.txtNGUOIQL.Name = "txtNGUOIQL";
-            this.txtNGUOIQL.Size = new System.Drawing.Size(887, 25);
-            this.txtNGUOIQL.TabIndex = 6;
-            // 
-            // txtTENKHO
-            // 
-            this.txtTENKHO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTENKHO.Location = new System.Drawing.Point(13, 34);
-            this.txtTENKHO.Name = "txtTENKHO";
-            this.txtTENKHO.Size = new System.Drawing.Size(887, 25);
-            this.txtTENKHO.TabIndex = 5;
-            // 
-            // txtMAKHO
-            // 
-            this.txtMAKHO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMAKHO.Enabled = false;
-            this.txtMAKHO.Location = new System.Drawing.Point(13, 7);
-            this.txtMAKHO.Name = "txtMAKHO";
-            this.txtMAKHO.Size = new System.Drawing.Size(887, 25);
-            this.txtMAKHO.TabIndex = 4;
-            // 
-            // txtDIACHI
-            // 
-            this.txtDIACHI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDIACHI.Location = new System.Drawing.Point(13, 61);
-            this.txtDIACHI.Name = "txtDIACHI";
-            this.txtDIACHI.Size = new System.Drawing.Size(887, 25);
-            this.txtDIACHI.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.gridControl1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1080, 343);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bảng dữ liệu";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 21);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1074, 319);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColMAKHO,
-            this.gridColTENKHO,
-            this.gridColDIACHI,
-            this.gridColNGUOIQUANLY,
-            this.gridColGHICHU});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            // 
-            // gridColMAKHO
-            // 
-            this.gridColMAKHO.Caption = "Mã kho";
-            this.gridColMAKHO.FieldName = "MAKHO";
-            this.gridColMAKHO.Name = "gridColMAKHO";
-            this.gridColMAKHO.Visible = true;
-            this.gridColMAKHO.VisibleIndex = 0;
-            this.gridColMAKHO.Width = 102;
-            // 
-            // gridColTENKHO
-            // 
-            this.gridColTENKHO.Caption = "Tên kho";
-            this.gridColTENKHO.FieldName = "TENKHO";
-            this.gridColTENKHO.Name = "gridColTENKHO";
-            this.gridColTENKHO.Visible = true;
-            this.gridColTENKHO.VisibleIndex = 1;
-            this.gridColTENKHO.Width = 96;
-            // 
-            // gridColDIACHI
-            // 
-            this.gridColDIACHI.Caption = "Địa chỉ";
-            this.gridColDIACHI.FieldName = "DIACHI";
-            this.gridColDIACHI.Name = "gridColDIACHI";
-            this.gridColDIACHI.UnboundDataType = typeof(System.DateOnly);
-            this.gridColDIACHI.Visible = true;
-            this.gridColDIACHI.VisibleIndex = 2;
-            this.gridColDIACHI.Width = 96;
-            // 
-            // gridColNGUOIQUANLY
-            // 
-            this.gridColNGUOIQUANLY.Caption = "Người quản lý";
-            this.gridColNGUOIQUANLY.FieldName = "NGUOIQUANLY";
-            this.gridColNGUOIQUANLY.Name = "gridColNGUOIQUANLY";
-            this.gridColNGUOIQUANLY.Visible = true;
-            this.gridColNGUOIQUANLY.VisibleIndex = 3;
-            this.gridColNGUOIQUANLY.Width = 121;
-            // 
-            // gridColGHICHU
-            // 
-            this.gridColGHICHU.Caption = "Ghi chú";
-            this.gridColGHICHU.FieldName = "GHICHU";
-            this.gridColGHICHU.Name = "gridColGHICHU";
-            this.gridColGHICHU.Visible = true;
-            this.gridColGHICHU.VisibleIndex = 4;
-            this.gridColGHICHU.Width = 160;
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 522);
+            this.comboNGUOIQL.Location = new System.Drawing.Point(13, 92);
+            this.comboNGUOIQL.MenuManager = this.barManager1;
+            this.comboNGUOIQL.Name = "comboNGUOIQL";
+            this.comboNGUOIQL.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboNGUOIQL.Size = new System.Drawing.Size(887, 20);
+            this.comboNGUOIQL.TabIndex = 9;
             // 
             // barManager1
             // 
@@ -470,6 +335,14 @@
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1080, 0);
             // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 522);
+            // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
@@ -477,6 +350,136 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1080, 24);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 522);
+            // 
+            // txtGHICHU
+            // 
+            this.txtGHICHU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGHICHU.Location = new System.Drawing.Point(13, 117);
+            this.txtGHICHU.Name = "txtGHICHU";
+            this.txtGHICHU.Size = new System.Drawing.Size(887, 25);
+            this.txtGHICHU.TabIndex = 8;
+            // 
+            // txtTENKHO
+            // 
+            this.txtTENKHO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTENKHO.Location = new System.Drawing.Point(13, 34);
+            this.txtTENKHO.Name = "txtTENKHO";
+            this.txtTENKHO.Size = new System.Drawing.Size(887, 25);
+            this.txtTENKHO.TabIndex = 5;
+            // 
+            // txtMAKHO
+            // 
+            this.txtMAKHO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMAKHO.Enabled = false;
+            this.txtMAKHO.Location = new System.Drawing.Point(13, 7);
+            this.txtMAKHO.Name = "txtMAKHO";
+            this.txtMAKHO.Size = new System.Drawing.Size(887, 25);
+            this.txtMAKHO.TabIndex = 4;
+            // 
+            // txtDIACHI
+            // 
+            this.txtDIACHI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDIACHI.Location = new System.Drawing.Point(13, 61);
+            this.txtDIACHI.Name = "txtDIACHI";
+            this.txtDIACHI.Size = new System.Drawing.Size(887, 25);
+            this.txtDIACHI.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.gridControl1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1080, 343);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Bảng dữ liệu";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(3, 21);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1074, 319);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColMAKHO,
+            this.gridColTENKHO,
+            this.gridColDIACHI,
+            this.gridColNGUOIQUANLY,
+            this.gridColGHICHU});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            // 
+            // gridColMAKHO
+            // 
+            this.gridColMAKHO.Caption = "Mã kho";
+            this.gridColMAKHO.FieldName = "MaKho";
+            this.gridColMAKHO.Name = "gridColMAKHO";
+            this.gridColMAKHO.Visible = true;
+            this.gridColMAKHO.VisibleIndex = 0;
+            this.gridColMAKHO.Width = 102;
+            // 
+            // gridColTENKHO
+            // 
+            this.gridColTENKHO.Caption = "Tên kho";
+            this.gridColTENKHO.FieldName = "TenKho";
+            this.gridColTENKHO.Name = "gridColTENKHO";
+            this.gridColTENKHO.Visible = true;
+            this.gridColTENKHO.VisibleIndex = 1;
+            this.gridColTENKHO.Width = 96;
+            // 
+            // gridColDIACHI
+            // 
+            this.gridColDIACHI.Caption = "Địa chỉ";
+            this.gridColDIACHI.FieldName = "DiaChi";
+            this.gridColDIACHI.Name = "gridColDIACHI";
+            this.gridColDIACHI.UnboundDataType = typeof(System.DateOnly);
+            this.gridColDIACHI.Visible = true;
+            this.gridColDIACHI.VisibleIndex = 2;
+            this.gridColDIACHI.Width = 96;
+            // 
+            // gridColNGUOIQUANLY
+            // 
+            this.gridColNGUOIQUANLY.Caption = "Người quản lý";
+            this.gridColNGUOIQUANLY.FieldName = "NguoiQuanLy";
+            this.gridColNGUOIQUANLY.Name = "gridColNGUOIQUANLY";
+            this.gridColNGUOIQUANLY.Visible = true;
+            this.gridColNGUOIQUANLY.VisibleIndex = 3;
+            this.gridColNGUOIQUANLY.Width = 121;
+            // 
+            // gridColGHICHU
+            // 
+            this.gridColGHICHU.Caption = "Ghi chú";
+            this.gridColGHICHU.FieldName = "GhiChu";
+            this.gridColGHICHU.Name = "gridColGHICHU";
+            this.gridColGHICHU.Visible = true;
+            this.gridColGHICHU.VisibleIndex = 4;
+            this.gridColGHICHU.Width = 160;
             // 
             // frmKHOHANG
             // 
@@ -503,10 +506,11 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboNGUOIQL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,7 +549,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColNGUOIQUANLY;
         private DevExpress.XtraGrid.Columns.GridColumn gridColGHICHU;
         private System.Windows.Forms.TextBox txtTENKHO;
-        private System.Windows.Forms.TextBox txtNGUOIQL;
         private System.Windows.Forms.TextBox txtGHICHU;
+        private DevExpress.XtraEditors.ComboBoxEdit comboNGUOIQL;
     }
 }

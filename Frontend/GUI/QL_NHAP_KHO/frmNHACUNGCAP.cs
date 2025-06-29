@@ -1,13 +1,21 @@
-﻿using BLL.QL_NHAP_KHO_BLL;
-using DAL;
+﻿using BLL.QL_NHAN_SU;
+using BLL.QL_NHAP_KHO_BLL;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUI.QL_NHAP_KHO_GUI
 {
-    public partial class frmNHACUNGCAP : DevExpress.XtraEditors.XtraForm
+    public partial class frmNHACUNGCAP : XtraForm
     {
+        private readonly NHACUNGCAP_BLL nccService = new NHACUNGCAP_BLL();
+        private readonly NHANSU_BLL nhanSuBLL = new NHANSU_BLL();
+        private bool isNew = false;
+        private int selectedMaNCC = -1;
+
         public frmNHACUNGCAP()
         {
             InitializeComponent();
@@ -29,15 +37,52 @@ namespace GUI.QL_NHAP_KHO_GUI
             txtDIACHI.Text = string.Empty;
             txtSDT.Text = string.Empty;
             txtEMAIL.Text = string.Empty;
-            txtGHICHU.Text = string.Empty;
-            txtNGUOITIEPNHAN.Text = string.Empty;
-
+            txtMOTA.Text = string.Empty;
+            comboNGUOITIEPNHAN.SelectedIndex = -1;
         }
 
-        private void frmNHACUNGCAP_Load(object sender, EventArgs e)
+        async Task LoadData()
         {
-            NHACUNGCAP_BLL db = new NHACUNGCAP_BLL();
-            gridControl1.DataSource = db.GetList();
+            var data = await nccService.GetAllAsync();
+            gridControl1.DataSource = data;
+        }
+
+        private string ExtractValueFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem == null) return string.Empty;
+
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return parts.Length > 1 ? parts[1].Trim() : string.Empty;
+        }
+
+        private void SetComboBoxSelectedItemByValue(ComboBoxEdit comboBox, string value)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string itemStr && itemStr.Trim().EndsWith($": {value}"))
+                {
+                    comboBox.SelectedItem = itemStr;
+                    break;
+                }
+            }
+        }
+
+        private async Task LoadComboNhanVienAsync()
+        {
+            var dict = await nhanSuBLL.GetEmployeeDictionaryAsync();
+
+            comboNGUOITIEPNHAN.Properties.Items.Clear();
+
+            foreach (var item in dict)
+            {
+                comboNGUOITIEPNHAN.Properties.Items.Add($"{item.Key}: {item.Value}");
+            }
+        }
+
+        private async void frmNHACUNGCAP_Load(object sender, EventArgs e)
+        {
+            await LoadComboNhanVienAsync();
+            await LoadData();
             groupNhap.Enabled = false;
             _showHide(true);
         }
@@ -51,41 +96,94 @@ namespace GUI.QL_NHAP_KHO_GUI
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
+            isNew = true;
             groupNhap.Enabled = true;
             _groupEmpty();
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (selectedMaNCC == -1)
+            {
+                MessageBox.Show("Vui lòng chọn nhà cung cấp để sửa.");
+                return;
+            }
+
+            isNew = false;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (selectedMaNCC == -1)
+            {
+                MessageBox.Show("Vui lòng chọn nhà cung cấp để xóa.");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Bạn có chắc muốn xóa nhà cung cấp này?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                string msg = await nccService.DeleteAsync(selectedMaNCC);
+                MessageBox.Show(msg);
+                await LoadData();
+                _groupEmpty();
+                _showHide(true);
+                selectedMaNCC = -1;
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTENNCC.Text) ||
+                string.IsNullOrWhiteSpace(txtDIACHI.Text) ||
+                string.IsNullOrWhiteSpace(txtSDT.Text) ||
+                string.IsNullOrWhiteSpace(txtEMAIL.Text) ||
+                comboNGUOITIEPNHAN.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin bắt buộc.");
+                return;
+            }
+
+            var input = new ProviderInputDto
+            {
+                TenNCC = txtTENNCC.Text.Trim(),
+                DiaChi = txtDIACHI.Text.Trim(),
+                SoDienThoai = txtSDT.Text.Trim(),
+                MoTa = txtMOTA.Text?.Trim(),
+                Email = txtEMAIL.Text.Trim(),
+                NguoiTiepNhan = ExtractValueFromCombo(comboNGUOITIEPNHAN)
+            };
+
+            string msg;
+
+            if (isNew)
+            {
+                msg = await nccService.CreateAsync(input);
+            }
+            else
+            {
+                msg = await nccService.UpdateAsync(selectedMaNCC, input);
+            }
+
+            MessageBox.Show(msg);
+            await LoadData();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            isNew = false;
+            selectedMaNCC = -1;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            _groupEmpty();
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            isNew = false;
+            selectedMaNCC = -1;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -93,30 +191,27 @@ namespace GUI.QL_NHAP_KHO_GUI
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = true;
-            barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
             groupNhap.Enabled = false;
-
-            if (e.RowHandle >= 0)
+            var view = sender as GridView;
+            if (view != null && e.RowHandle >= 0)
             {
-                var view = sender as GridView;
-                if (view != null)
+                var ncc = view.GetRow(e.RowHandle) as ProviderDto;
+                if (ncc != null)
                 {
-                    var nhacungcap = view.GetRow(e.RowHandle) as NHACUNGCAP;
-                    if (nhacungcap != null)
-                    {
-                        txtMANCC.Text = nhacungcap.MANCC.ToString();
-                        txtTENNCC.Text = nhacungcap.TENNCC;
-                        txtDIACHI.Text = nhacungcap.DIACHI;
-                        txtSDT.Text = nhacungcap.SODIENTHOAI;
-                        txtEMAIL.Text = nhacungcap.EMAIL;
-                        txtGHICHU.Text = nhacungcap.GHICHU;
-                        txtNGUOITIEPNHAN.Text = nhacungcap.NGUOITIEPNHAN;
-                    }
+                    txtMANCC.Text = ncc.MaNCC.ToString();
+                    txtTENNCC.Text = ncc.TenNCC;
+                    txtDIACHI.Text = ncc.DiaChi;
+                    txtMOTA.Text = ncc.MoTa;
+                    txtSDT.Text = ncc.SoDienThoai;
+                    txtEMAIL.Text = ncc.Email;
+                    SetComboBoxSelectedItemByValue(comboNGUOITIEPNHAN, ncc.NguoiTiepNhan);
+
+                    selectedMaNCC = ncc.MaNCC;
+                    barbtnSua.Enabled = true;
+                    barbtnXoa.Enabled = true;
+                    barbtnHuybo.Enabled = true;
                 }
             }
         }
