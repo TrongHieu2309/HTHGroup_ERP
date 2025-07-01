@@ -181,15 +181,16 @@ namespace GUI.QL_BAN_HANG
             {
                 var maHDStr = txtMAHD.Text.Trim();
                 var idCTStr = txtID.Text.Trim();
-                var culture = new System.Globalization.CultureInfo("vi-VN");
+
+                var invariant = System.Globalization.CultureInfo.InvariantCulture;
 
                 if (!int.TryParse(txtSOLUONG.Text, out int soluong) ||
-                    !long.TryParse(txtDONGIA.Text, System.Globalization.NumberStyles.Any, culture, out long dongia) ||
-                    !long.TryParse(txtTONGTIEN.Text, System.Globalization.NumberStyles.Any, culture, out long tongTien) ||
-                    !float.TryParse(txtCHIETKHAU.Text, System.Globalization.NumberStyles.Any, culture, out float chietkhau) ||
-                    !float.TryParse(txtVAT.Text, System.Globalization.NumberStyles.Any, culture, out float vat))
+                    !long.TryParse(txtDONGIA.Text.Replace(".", ""), out long dongia) ||
+                    !long.TryParse(txtTONGTIEN.Text.Replace(".", ""), out long tongTien) ||
+                    !float.TryParse(txtCHIETKHAU.Text, System.Globalization.NumberStyles.Any, invariant, out float chietkhau) ||
+                    !float.TryParse(txtVAT.Text, System.Globalization.NumberStyles.Any, invariant, out float vat))
                 {
-                    MessageBox.Show("Lỗi!!!");
+                    MessageBox.Show("Lỗi!!! Không thể chuyển đổi dữ liệu. Vui lòng kiểm tra lại các giá trị nhập vào.");
                     return;
                 }
 
@@ -259,14 +260,21 @@ namespace GUI.QL_BAN_HANG
             var phieu = view.GetRow(e.RowHandle) as ReceiptDto;
             if (phieu == null) return;
 
+            // Tạm ngắt các sự kiện tính toán
+            txtSOLUONG.TextChanged -= txtSOLUONG_TextChanged_1;
+            txtCHIETKHAU.TextChanged -= TinhToan_TextChanged;
+            txtVAT.TextChanged -= TinhToan_TextChanged;
+
+            // Gán dữ liệu hóa đơn
             txtMAHD.Text = phieu.MaHD.ToString();
             SetComboBoxSelectedItemByKey(comboMAKH, phieu.MaKH);
             txtLOAIHD.Text = phieu.LoaiHD;
             dateEditNGAYLAP.EditValue = phieu.NgayLap;
             SetComboBoxSelectedItemByValue(comboNGUOILAP, phieu.NguoiLap);
-            txtTONGTIEN.Text = phieu.TongTien.ToString();
+            txtTONGTIEN.Text = phieu.TongTien.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
             txtTRANGTHAI.Text = phieu.TrangThai;
 
+            // Load chi tiết hóa đơn
             var details = await bll.GetDetailsByMaHDAsync(phieu.MaHD);
             gridControl2.DataSource = details;
 
@@ -276,12 +284,18 @@ namespace GUI.QL_BAN_HANG
                 txtID.Text = ct.Id.ToString();
                 SetComboBoxSelectedItemByKey(comboMASP, ct.MaSP);
                 txtSOLUONG.Text = ct.SoLuong.ToString();
-                txtDONGIA.Text = ct.DonGia.ToString();
-                txtCHIETKHAU.Text = ct.ChietKhau.ToString();
-                txtVAT.Text = ct.VAT.ToString();
+                txtDONGIA.Text = ct.DonGia.ToString("N0", new System.Globalization.CultureInfo("vi-VN"));
+                txtDONGIA.Tag = ct.DonGia; // Để phục vụ tính toán chính xác về sau
+                txtCHIETKHAU.Text = ct.ChietKhau.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
+                txtVAT.Text = ct.VAT.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture);
                 txtGHICHU.Text = ct.GhiChu;
                 currentChiTietId = ct.Id;
             }
+
+            // Gán lại sự kiện sau khi load xong dữ liệu
+            txtSOLUONG.TextChanged += txtSOLUONG_TextChanged_1;
+            txtCHIETKHAU.TextChanged += TinhToan_TextChanged;
+            txtVAT.TextChanged += TinhToan_TextChanged;
 
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;

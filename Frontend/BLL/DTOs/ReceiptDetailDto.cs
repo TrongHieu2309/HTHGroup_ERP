@@ -30,11 +30,11 @@ namespace ERP.Application.DTOs
         [Range(0, long.MaxValue, ErrorMessage = "Đơn giá không hợp lệ")]
         public long DonGia { get; set; }
 
-        [Range(0.01, 1, ErrorMessage = "Chiết khấu phải nằm trong khoảng 0.01 đến 1")]
-        public float ChietKhau { get; set; } = 0.1f;
+        [Range(0.0, 1.0, ErrorMessage = "Chiết khấu phải từ 0 đến 1")]
+        public float ChietKhau { get; set; } = 0.0f;
 
-        [Range(0.01, 1, ErrorMessage = "VAT phải nằm trong khoảng 0.01 đến 1")]
-        public float VAT { get; set; } = 0.1f;
+        [Range(0.0, 1.0, ErrorMessage = "VAT phải từ 0 đến 1")]
+        public float VAT { get; set; } = 0.0f;
 
         [StringLength(255)]
         public string? GhiChu { get; set; }
