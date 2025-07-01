@@ -1,14 +1,10 @@
 ﻿using BLL.QL_PHAN_QUYEN;
-using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,12 +12,19 @@ namespace GUI
 {
     public partial class frmPHANQUYEN : DevExpress.XtraEditors.XtraForm
     {
+        private readonly PHANQUYEN_BLL bll = new PHANQUYEN_BLL();
+        private readonly VAITRO_BLL vaitroBLL = new VAITRO_BLL();
+        private readonly QUYEN_BLL quyenBLL = new QUYEN_BLL();
+        private bool isEditMode = false;
+        private string selectedMaVaiTro = "";
+        private int selectedMaQuyen = 0;
+
         public frmPHANQUYEN()
         {
             InitializeComponent();
         }
 
-        void _showHide(bool kt)
+        private void _showHide(bool kt)
         {
             barbtnThem.Enabled = kt;
             barbtnSua.Enabled = !kt;
@@ -30,17 +33,37 @@ namespace GUI
             barbtnHuybo.Enabled = !kt;
         }
 
-        void _groupEmpty()
+        private void _groupEmpty()
         {
             comboBoxEditMAVT.SelectedIndex = -1;
             comboBoxEditMAQUYEN.SelectedIndex = -1;
             txtHANHDONG.Text = string.Empty;
         }
 
-        private void frmPHANQUYEN_Load(object sender, EventArgs e)
+        private async Task LoadComboBoxesAsync()
         {
-            PHANQUYEN_BLL db = new PHANQUYEN_BLL();
-            gridControl1.DataSource = db.GetList();
+            var vaiTroList = await vaitroBLL.GetRolesDictionaryAsync();
+            var quyenDict = await quyenBLL.GetAuthorisationDictionaryAsync();
+
+            comboBoxEditMAVT.Properties.Items.Clear();
+            foreach (var vt in vaiTroList)
+                comboBoxEditMAVT.Properties.Items.Add($"{vt.Key}: {vt.Value}");
+
+            comboBoxEditMAQUYEN.Properties.Items.Clear();
+            foreach (var q in quyenDict)
+                comboBoxEditMAQUYEN.Properties.Items.Add($"{q.Key}: {q.Value}");
+        }
+
+        private async Task LoadDataAsync()
+        {
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
+        }
+
+        private async void frmPHANQUYEN_Load(object sender, EventArgs e)
+        {
+            await LoadComboBoxesAsync();
+            await LoadDataAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
@@ -53,41 +76,70 @@ namespace GUI
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            groupNhap.Enabled = true;
+            isEditMode = false;
             _groupEmpty();
+            groupNhap.Enabled = true;
+            _showHide(false);
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            if (!string.IsNullOrWhiteSpace(selectedMaVaiTro) && selectedMaQuyen > 0)
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await bll.DeleteAsync(selectedMaVaiTro, selectedMaQuyen);
+                    MessageBox.Show(result);
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (comboBoxEditMAVT.SelectedIndex == -1 || comboBoxEditMAQUYEN.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn đầy đủ Vai trò và Quyền.");
+                return;
+            }
+
+            var input = new AuthoriseInputDto
+            {
+                MaVaiTro = ExtractKeyStringFromCombo(comboBoxEditMAVT),
+                MaQuyen = ExtractKeyFromCombo(comboBoxEditMAQUYEN),
+                HanhDong = txtHANHDONG.Text.Trim()
+            };
+
+            string message;
+
+            if (isEditMode)
+                message = await bll.UpdateAsync(input.MaVaiTro, input.MaQuyen, input);
+            else
+                message = await bll.CreateAsync(input);
+
+            MessageBox.Show(message);
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            _showHide(true);
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
-            groupNhap.Enabled = false;
             _groupEmpty();
+            groupNhap.Enabled = false;
+            _showHide(true);
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -95,26 +147,72 @@ namespace GUI
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private int ExtractKeyFromCombo(ComboBoxEdit combo)
         {
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = true;
-            barbtnXoa.Enabled = true;
-            barbtnLuu.Enabled = false;
-            groupNhap.Enabled = false;
+            if (combo.SelectedItem != null)
+            {
+                var selected = combo.SelectedItem.ToString();
+                if (int.TryParse(selected.Split(':')[0], out int key))
+                    return key;
+            }
+            return 0;
+        }
 
+        private string ExtractKeyStringFromCombo(ComboBoxEdit combo)
+        {
+            if (combo.SelectedItem != null)
+            {
+                var selected = combo.SelectedItem.ToString();
+                var parts = selected.Split(':');
+                if (parts.Length > 0)
+                    return parts[0].Trim(); // Lấy phần mã (key) dạng chuỗi
+            }
+            return string.Empty;
+        }
+
+        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, string key)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string str && str.StartsWith(key))
+                {
+                    comboBox.SelectedItem = str;
+                    break;
+                }
+            }
+        }
+
+        private void SetComboBoxSelectedItemByQuyenId(ComboBoxEdit comboBox, int maQuyen)
+        {
+            foreach (var item in comboBox.Properties.Items)
+            {
+                if (item is string str && str.StartsWith($"{maQuyen}:"))
+                {
+                    comboBox.SelectedItem = str;
+                    break;
+                }
+            }
+        }
+
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
+        {
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var pq = view?.GetRow(e.RowHandle) as AuthoriseDto;
+                if (pq != null)
                 {
-                    var phanquyen = view.GetRow(e.RowHandle) as PHANQUYEN;
-                    if (phanquyen != null)
-                    {
-                        comboBoxEditMAVT.SelectedItem = phanquyen.MAVAITRO.ToString();
-                        comboBoxEditMAQUYEN.SelectedItem = phanquyen.MAQUYEN.ToString();
-                        txtHANHDONG.Text = phanquyen.HANHDONG.ToString();
-                    }
+                    selectedMaVaiTro = pq.MaVaiTro;
+                    selectedMaQuyen = pq.MaQuyen;
+
+                    SetComboBoxSelectedItemByKey(comboBoxEditMAVT, pq.MaVaiTro);
+                    SetComboBoxSelectedItemByQuyenId(comboBoxEditMAQUYEN, pq.MaQuyen);
+                    txtHANHDONG.Text = pq.HanhDong;
+
+                    _showHide(true);
+                    barbtnSua.Enabled = true;
+                    barbtnXoa.Enabled = true;
+                    groupNhap.Enabled = false;
                 }
             }
         }

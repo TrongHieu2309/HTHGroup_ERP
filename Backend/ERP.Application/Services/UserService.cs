@@ -14,6 +14,7 @@ namespace ERP.Application.Services
             {
                 Id = u.Id,
                 TenDangNhap = u.TenDangNhap,
+                MatKhau = u.MatKhau,
                 MaVaiTro = u.MaVaiTro
             });
         }
@@ -27,6 +28,7 @@ namespace ERP.Application.Services
             {
                 Id = user.Id,
                 TenDangNhap = user.TenDangNhap,
+                MatKhau = user.MatKhau,
                 MaVaiTro = user.MaVaiTro
             };
         }
@@ -43,7 +45,7 @@ namespace ERP.Application.Services
             var user = new User
             {
                 TenDangNhap = dto.TenDangNhap,
-                MatKhau = hashedPassword, // TODO: băm mật khẩu khi triển khai thật
+                MatKhau = hashedPassword,
                 MaVaiTro = dto.MaVaiTro
             };
 
@@ -58,9 +60,11 @@ namespace ERP.Application.Services
 
         public async Task<UserDto?> LoginAsync(UserLoginDto dto)
         {
-            var user = await repository.LoginAsync(dto.TenDangNhap, dto.MatKhau);
+            // Tìm theo username thôi
+            var user = await repository.GetByUsernameAsync(dto.TenDangNhap);
             if (user == null) return null;
 
+            // So sánh mật khẩu bằng BCrypt
             var isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.MatKhau, user.MatKhau);
             if (!isPasswordValid) return null;
 

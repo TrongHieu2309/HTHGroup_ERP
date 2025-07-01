@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using GUI.QL_KHACH_HANG;
 using GUI.QL_PHAN_QUYEN;
 using GUI.QuyTrinhHoatDong;
+using ERP.Application.DTOs;
 
 namespace GUI
 {
@@ -18,6 +19,14 @@ namespace GUI
         {
             InitializeComponent();
 
+        }
+
+        private UserDto currentUser;
+
+        public frmMAIN(UserDto user)
+        {
+            InitializeComponent();
+            currentUser = user;
         }
 
         void OpenForm(Type typeForm)
@@ -226,6 +235,18 @@ namespace GUI
         {
             comboBoxEdit1_SelectedIndexChanged(sender, e);
             barSubQUYTRINH.Enabled = false;
+
+            if (currentUser != null && currentUser.MaVaiTro.ToLower() == "staff")
+            {
+                for (int i = comboBoxEdit1.Properties.Items.Count - 1; i >= 0; i--)
+                {
+                    if (comboBoxEdit1.Properties.Items[i]?.ToString() == "Phân quyền")
+                    {
+                        comboBoxEdit1.Properties.Items.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
         }
 
         private void barButtonItem41_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -276,6 +297,13 @@ namespace GUI
         private void barbtnBANHANG_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             OpenForm(typeof(frmQT_BANHANG));
+        }
+
+        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+            frmDANGNHAP frmDangNhap = new frmDANGNHAP();
+            frmDangNhap.Show();
         }
     }
 }

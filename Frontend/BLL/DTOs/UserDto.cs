@@ -7,6 +7,7 @@ namespace ERP.Application.DTOs
         public int Id { get; set; }
         public string TenDangNhap { get; set; } = null!;
         public string MaVaiTro { get; set; } = null!;
+        public string MatKhau { get; set; }
     }
 
     public class UserLoginDto
@@ -29,7 +30,7 @@ namespace ERP.Application.DTOs
         public string TenDangNhap { get; set; } = null!;
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string MatKhau { get; set; } = null!;
 
         [Required]

@@ -1,14 +1,8 @@
 ﻿using BLL.QL_PHAN_QUYEN;
-using DAL;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using ERP.Application.DTOs;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +13,15 @@ namespace GUI.QL_PHAN_QUYEN
         public frmVAITRO()
         {
             InitializeComponent();
+        }
+
+        private bool isEditMode = false;
+        private readonly VAITRO_BLL bll = new VAITRO_BLL();
+
+        private async Task LoadDataAsync()
+        {
+            var list = await bll.GetAllAsync();
+            gridControl1.DataSource = list;
         }
 
         void _showHide(bool kt)
@@ -36,10 +39,9 @@ namespace GUI.QL_PHAN_QUYEN
             txtTENVT.Text = string.Empty;
         }
 
-        private void frmVAITRO_Load(object sender, EventArgs e)
+        private async void frmVAITRO_Load(object sender, EventArgs e)
         {
-            VAITRO_BLL db = new VAITRO_BLL();
-            gridControl1.DataSource = db.GetList();
+            await LoadDataAsync();
             groupNhap.Enabled = false;
             _showHide(true);
         }
@@ -52,34 +54,62 @@ namespace GUI.QL_PHAN_QUYEN
 
         private void barbtnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barbtnLuu.Enabled = true;
-            barbtnHuybo.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
+            isEditMode = false;
             groupNhap.Enabled = true;
+            _showHide(false);
             _groupEmpty();
         }
 
         private void barbtnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEditMode = true;
+            txtMAVT.Enabled = false;
             groupNhap.Enabled = true;
-            barbtnLuu.Enabled = true;
-            barbtnSua.Enabled = false;
-            barbtnXoa.Enabled = false;
-            barbtnHuybo.Enabled = true;
+            _showHide(false);
         }
 
-        private void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barbtnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _showHide(true);
+            var maVaiTro = txtMAVT.Text.Trim();
+            if (!string.IsNullOrEmpty(maVaiTro))
+            {
+                var confirm = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var result = await bll.DeleteAsync(maVaiTro);
+                    MessageBox.Show(result, "Thông báo");
+                    await LoadDataAsync();
+                    _groupEmpty();
+                    _showHide(true);
+                }
+            }
+        }
+
+        private async void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var dto = new RolesInputDto
+            {
+                MaVaiTro = txtMAVT.Text.Trim(),
+                TenVaiTro = txtTENVT.Text.Trim()
+            };
+
+            string result;
+
+            if (isEditMode)
+            {
+                result = await bll.UpdateAsync(dto.MaVaiTro, dto);
+            }
+            else
+            {
+                result = await bll.AddAsync(dto);
+            }
+
+            MessageBox.Show(result, "Thông báo");
+            await LoadDataAsync();
             _groupEmpty();
-        }
-
-        private void barbtnLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
             _showHide(true);
             groupNhap.Enabled = false;
-            _groupEmpty();
+            isEditMode = false;
         }
 
         private void barbtnHuybo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -87,6 +117,7 @@ namespace GUI.QL_PHAN_QUYEN
             _showHide(true);
             groupNhap.Enabled = false;
             _groupEmpty();
+            isEditMode = false;
         }
 
         private void barbtnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -94,25 +125,22 @@ namespace GUI.QL_PHAN_QUYEN
             this.Close();
         }
 
-        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
-            barbtnHuybo.Enabled = true;
             barbtnSua.Enabled = true;
             barbtnXoa.Enabled = true;
             barbtnLuu.Enabled = false;
+            barbtnHuybo.Enabled = false;
             groupNhap.Enabled = false;
 
             if (e.RowHandle >= 0)
             {
                 var view = sender as GridView;
-                if (view != null)
+                var vaitro = view.GetRow(e.RowHandle) as RolesDto;
+                if (vaitro != null)
                 {
-                    var vaitro = view.GetRow(e.RowHandle) as VAITRO;
-                    if (vaitro != null)
-                    {
-                        txtMAVT.Text = vaitro.MAVAITRO.ToString();
-                        txtTENVT.Text = vaitro.TENVT;
-                    }
+                    txtMAVT.Text = vaitro.MaVaiTro;
+                    txtTENVT.Text = vaitro.TenVaiTro;
                 }
             }
         }

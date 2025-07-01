@@ -198,12 +198,13 @@
             // 
             this.comboBoxEditMAQUYEN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEditMAQUYEN.Location = new System.Drawing.Point(3, 37);
+            this.comboBoxEditMAQUYEN.Location = new System.Drawing.Point(15, 37);
             this.comboBoxEditMAQUYEN.MenuManager = this.barManager2;
             this.comboBoxEditMAQUYEN.Name = "comboBoxEditMAQUYEN";
             this.comboBoxEditMAQUYEN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMAQUYEN.Size = new System.Drawing.Size(917, 20);
+            this.comboBoxEditMAQUYEN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditMAQUYEN.Size = new System.Drawing.Size(881, 20);
             this.comboBoxEditMAQUYEN.TabIndex = 5;
             // 
             // barManager2
@@ -324,12 +325,13 @@
             // 
             this.comboBoxEditMAVT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEditMAVT.Location = new System.Drawing.Point(3, 9);
+            this.comboBoxEditMAVT.Location = new System.Drawing.Point(15, 9);
             this.comboBoxEditMAVT.MenuManager = this.barManager2;
             this.comboBoxEditMAVT.Name = "comboBoxEditMAVT";
             this.comboBoxEditMAVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMAVT.Size = new System.Drawing.Size(917, 20);
+            this.comboBoxEditMAVT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditMAVT.Size = new System.Drawing.Size(881, 20);
             this.comboBoxEditMAVT.TabIndex = 4;
             // 
             // txtHANHDONG
@@ -337,9 +339,9 @@
             this.txtHANHDONG.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHANHDONG.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHANHDONG.Location = new System.Drawing.Point(3, 66);
+            this.txtHANHDONG.Location = new System.Drawing.Point(15, 66);
             this.txtHANHDONG.Name = "txtHANHDONG";
-            this.txtHANHDONG.Size = new System.Drawing.Size(917, 22);
+            this.txtHANHDONG.Size = new System.Drawing.Size(881, 22);
             this.txtHANHDONG.TabIndex = 3;
             // 
             // groupBox1
@@ -387,7 +389,7 @@
             // gridColMAVT
             // 
             this.gridColMAVT.Caption = "Mã vai trò";
-            this.gridColMAVT.FieldName = "MAVAITRO";
+            this.gridColMAVT.FieldName = "MaVaiTro";
             this.gridColMAVT.Name = "gridColMAVT";
             this.gridColMAVT.Visible = true;
             this.gridColMAVT.VisibleIndex = 0;
@@ -396,7 +398,7 @@
             // gridColMAQUYEN
             // 
             this.gridColMAQUYEN.Caption = "Mã quyền";
-            this.gridColMAQUYEN.FieldName = "MAQUYEN";
+            this.gridColMAQUYEN.FieldName = "MaQuyen";
             this.gridColMAQUYEN.Name = "gridColMAQUYEN";
             this.gridColMAQUYEN.Visible = true;
             this.gridColMAQUYEN.VisibleIndex = 1;
@@ -405,7 +407,7 @@
             // gridColHANHDONG
             // 
             this.gridColHANHDONG.Caption = "Hành động";
-            this.gridColHANHDONG.FieldName = "HANHDONG";
+            this.gridColHANHDONG.FieldName = "HanhDong";
             this.gridColHANHDONG.Name = "gridColHANHDONG";
             this.gridColHANHDONG.Visible = true;
             this.gridColHANHDONG.VisibleIndex = 2;

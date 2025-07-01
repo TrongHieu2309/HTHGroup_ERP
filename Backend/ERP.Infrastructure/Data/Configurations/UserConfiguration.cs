@@ -23,7 +23,7 @@ namespace ERP.Infrastructure.Data.Configurations
 
             builder.Property(u => u.MatKhau)
                    .IsRequired()
-                   .HasColumnType("varchar(50)");
+                   .HasColumnType("varchar(100)");
 
             builder.HasIndex(u => u.MatKhau).IsUnique();
 

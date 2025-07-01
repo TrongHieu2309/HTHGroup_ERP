@@ -57,6 +57,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColTENNGUOIDUNG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColMATKHAU = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,9 +88,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupNhap = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtMANGUOIDUNG = new System.Windows.Forms.TextBox();
             this.comboBoxEditMAVT = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtMATKHAU = new System.Windows.Forms.TextBox();
             this.txtNGUOIDUNG = new System.Windows.Forms.TextBox();
@@ -121,7 +124,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1091, 423);
+            this.groupBox1.Size = new System.Drawing.Size(1091, 393);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bảng dữ liệu";
@@ -133,7 +136,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1085, 399);
+            this.gridControl1.Size = new System.Drawing.Size(1085, 369);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -145,6 +148,7 @@
             this.gridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
             this.gridView1.Appearance.OddRow.Options.UseBackColor = true;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColID,
             this.gridColTENNGUOIDUNG,
             this.gridColMATKHAU,
             this.gridColMAVT});
@@ -156,32 +160,41 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
+            // gridColID
+            // 
+            this.gridColID.Caption = "ID";
+            this.gridColID.FieldName = "Id";
+            this.gridColID.Name = "gridColID";
+            this.gridColID.Visible = true;
+            this.gridColID.VisibleIndex = 0;
+            this.gridColID.Width = 68;
+            // 
             // gridColTENNGUOIDUNG
             // 
-            this.gridColTENNGUOIDUNG.Caption = "Tên người dùng";
-            this.gridColTENNGUOIDUNG.FieldName = "TEN_ND";
+            this.gridColTENNGUOIDUNG.Caption = "Tên đăng nhập";
+            this.gridColTENNGUOIDUNG.FieldName = "TenDangNhap";
             this.gridColTENNGUOIDUNG.Name = "gridColTENNGUOIDUNG";
             this.gridColTENNGUOIDUNG.Visible = true;
-            this.gridColTENNGUOIDUNG.VisibleIndex = 0;
-            this.gridColTENNGUOIDUNG.Width = 159;
+            this.gridColTENNGUOIDUNG.VisibleIndex = 1;
+            this.gridColTENNGUOIDUNG.Width = 320;
             // 
             // gridColMATKHAU
             // 
             this.gridColMATKHAU.Caption = "Mật khẩu";
-            this.gridColMATKHAU.FieldName = "MATKHAU";
+            this.gridColMATKHAU.FieldName = "MatKhau";
             this.gridColMATKHAU.Name = "gridColMATKHAU";
             this.gridColMATKHAU.Visible = true;
-            this.gridColMATKHAU.VisibleIndex = 1;
-            this.gridColMATKHAU.Width = 181;
+            this.gridColMATKHAU.VisibleIndex = 2;
+            this.gridColMATKHAU.Width = 451;
             // 
             // gridColMAVT
             // 
             this.gridColMAVT.Caption = "Mã vai trò";
-            this.gridColMAVT.FieldName = "MAVAITRO";
+            this.gridColMAVT.FieldName = "MaVaiTro";
             this.gridColMAVT.Name = "gridColMAVT";
             this.gridColMAVT.Visible = true;
-            this.gridColMAVT.VisibleIndex = 2;
-            this.gridColMAVT.Width = 749;
+            this.gridColMAVT.VisibleIndex = 3;
+            this.gridColMAVT.Width = 221;
             // 
             // barManager2
             // 
@@ -465,7 +478,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1091, 547);
-            this.splitContainer1.SplitterDistance = 120;
+            this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 12;
             // 
             // groupNhap
@@ -475,7 +488,7 @@
             this.groupNhap.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupNhap.Location = new System.Drawing.Point(0, 0);
             this.groupNhap.Name = "groupNhap";
-            this.groupNhap.Size = new System.Drawing.Size(1091, 120);
+            this.groupNhap.Size = new System.Drawing.Size(1091, 150);
             this.groupNhap.TabIndex = 0;
             this.groupNhap.TabStop = false;
             this.groupNhap.Text = "Mục nhập liệu";
@@ -489,71 +502,94 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.label4);
             this.splitContainer2.Panel1.Controls.Add(this.label3);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.txtMANGUOIDUNG);
             this.splitContainer2.Panel2.Controls.Add(this.comboBoxEditMAVT);
             this.splitContainer2.Panel2.Controls.Add(this.txtMATKHAU);
             this.splitContainer2.Panel2.Controls.Add(this.txtNGUOIDUNG);
             this.splitContainer2.Panel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer2.Size = new System.Drawing.Size(1085, 96);
+            this.splitContainer2.Size = new System.Drawing.Size(1085, 126);
             this.splitContainer2.SplitterDistance = 182;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(19, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "&1. Mã người dùng:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 69);
+            this.label3.Location = new System.Drawing.Point(19, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "&3. Mã vai trò:";
+            this.label3.Text = "&4. Mã vai trò:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 11);
+            this.label2.Location = new System.Drawing.Point(19, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "&1. Tên người dùng:";
+            this.label2.Text = "&2. Tên người dùng:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 39);
+            this.label1.Location = new System.Drawing.Point(19, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "&2. Mật khẩu:";
+            this.label1.Text = "&3. Mật khẩu:";
+            // 
+            // txtMANGUOIDUNG
+            // 
+            this.txtMANGUOIDUNG.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMANGUOIDUNG.Enabled = false;
+            this.txtMANGUOIDUNG.Location = new System.Drawing.Point(16, 6);
+            this.txtMANGUOIDUNG.Name = "txtMANGUOIDUNG";
+            this.txtMANGUOIDUNG.Size = new System.Drawing.Size(883, 25);
+            this.txtMANGUOIDUNG.TabIndex = 4;
             // 
             // comboBoxEditMAVT
             // 
             this.comboBoxEditMAVT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEditMAVT.Location = new System.Drawing.Point(3, 67);
+            this.comboBoxEditMAVT.Location = new System.Drawing.Point(16, 98);
             this.comboBoxEditMAVT.MenuManager = this.barManager2;
             this.comboBoxEditMAVT.Name = "comboBoxEditMAVT";
             this.comboBoxEditMAVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditMAVT.Size = new System.Drawing.Size(905, 20);
+            this.comboBoxEditMAVT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditMAVT.Size = new System.Drawing.Size(883, 20);
             this.comboBoxEditMAVT.TabIndex = 3;
             // 
             // txtMATKHAU
             // 
             this.txtMATKHAU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMATKHAU.Location = new System.Drawing.Point(3, 34);
+            this.txtMATKHAU.Location = new System.Drawing.Point(16, 68);
             this.txtMATKHAU.Name = "txtMATKHAU";
             this.txtMATKHAU.PasswordChar = '*';
-            this.txtMATKHAU.Size = new System.Drawing.Size(905, 25);
+            this.txtMATKHAU.Size = new System.Drawing.Size(883, 25);
             this.txtMATKHAU.TabIndex = 2;
             this.txtMATKHAU.UseSystemPasswordChar = true;
             // 
@@ -561,9 +597,9 @@
             // 
             this.txtNGUOIDUNG.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNGUOIDUNG.Location = new System.Drawing.Point(3, 6);
+            this.txtNGUOIDUNG.Location = new System.Drawing.Point(16, 37);
             this.txtNGUOIDUNG.Name = "txtNGUOIDUNG";
-            this.txtNGUOIDUNG.Size = new System.Drawing.Size(905, 25);
+            this.txtNGUOIDUNG.Size = new System.Drawing.Size(883, 25);
             this.txtNGUOIDUNG.TabIndex = 1;
             // 
             // txtTIMKIEM
@@ -675,5 +711,8 @@
         private DevExpress.XtraBars.BarButtonItem barbtnTIMKIEM;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtMANGUOIDUNG;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColID;
     }
 }

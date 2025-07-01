@@ -1,8 +1,5 @@
-﻿using DAL;
+﻿using ERP.Application.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.QL_PHAN_QUYEN
@@ -21,18 +18,17 @@ namespace BLL.QL_PHAN_QUYEN
         /// </summary>
         /// <param name="taiKhoan">Tên tài khoản</param>
         /// <param name="matKhau">Mật khẩu</param>
-        /// <returns>Trả về đối tượng NGUOIDUNG nếu đúng, null nếu sai</returns>
-        public NGUOIDUNG KiemTraDangNhap(string taiKhoan, string matKhau)
+        /// <returns>Trả về UserDto nếu đăng nhập thành công, null nếu thất bại</returns>
+        public async Task<UserDto?> KiemTraDangNhapAsync(string taiKhoan, string matKhau)
         {
-            if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau))
-                return null;
+            var loginDto = new UserLoginDto
+            {
+                TenDangNhap = taiKhoan,
+                MatKhau = matKhau
+            };
 
-            var danhSachNguoiDung = _nguoiDungBLL.GetList();
-
-            var nguoiDung = danhSachNguoiDung
-                .FirstOrDefault(nd => nd.TEN_ND == taiKhoan && nd.MATKHAU == matKhau);
-
-            return nguoiDung;
+            var user = await _nguoiDungBLL.LoginAsync(loginDto);
+            return user;
         }
     }
 }

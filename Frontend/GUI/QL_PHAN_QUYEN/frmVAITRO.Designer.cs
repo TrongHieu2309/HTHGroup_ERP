@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip19 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem19 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip20 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem20 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip21 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem21 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip22 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem22 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip23 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem23 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip24 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem24 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip15 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem15 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip16 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem16 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip17 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem17 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip18 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem18 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip14 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem14 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVAITRO));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip11 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem11 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip12 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem12 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip13 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem13 = new DevExpress.Utils.ToolTipItem();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -157,9 +157,9 @@
             this.barbtnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnThem.ImageOptions.Image")));
             this.barbtnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnThem.ImageOptions.LargeImage")));
             this.barbtnThem.Name = "barbtnThem";
-            toolTipItem1.Text = "Thêm dữ liệu";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.barbtnThem.SuperTip = superToolTip1;
+            toolTipItem19.Text = "Thêm dữ liệu";
+            superToolTip19.Items.Add(toolTipItem19);
+            this.barbtnThem.SuperTip = superToolTip19;
             this.barbtnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThem_ItemClick);
             // 
             // barbtnSua
@@ -169,9 +169,9 @@
             this.barbtnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnSua.ImageOptions.Image")));
             this.barbtnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnSua.ImageOptions.LargeImage")));
             this.barbtnSua.Name = "barbtnSua";
-            toolTipItem2.Text = "Sửa dữ liệu";
-            superToolTip2.Items.Add(toolTipItem2);
-            this.barbtnSua.SuperTip = superToolTip2;
+            toolTipItem20.Text = "Sửa dữ liệu";
+            superToolTip20.Items.Add(toolTipItem20);
+            this.barbtnSua.SuperTip = superToolTip20;
             this.barbtnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnSua_ItemClick);
             // 
             // barbtnXoa
@@ -181,9 +181,9 @@
             this.barbtnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnXoa.ImageOptions.Image")));
             this.barbtnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnXoa.ImageOptions.LargeImage")));
             this.barbtnXoa.Name = "barbtnXoa";
-            toolTipItem3.Text = "Xóa dữ liệu";
-            superToolTip3.Items.Add(toolTipItem3);
-            this.barbtnXoa.SuperTip = superToolTip3;
+            toolTipItem21.Text = "Xóa dữ liệu";
+            superToolTip21.Items.Add(toolTipItem21);
+            this.barbtnXoa.SuperTip = superToolTip21;
             this.barbtnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnXoa_ItemClick);
             // 
             // barbtnLuu
@@ -193,9 +193,9 @@
             this.barbtnLuu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnLuu.ImageOptions.Image")));
             this.barbtnLuu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnLuu.ImageOptions.LargeImage")));
             this.barbtnLuu.Name = "barbtnLuu";
-            toolTipItem4.Text = "Lưu dữ liệu";
-            superToolTip4.Items.Add(toolTipItem4);
-            this.barbtnLuu.SuperTip = superToolTip4;
+            toolTipItem22.Text = "Lưu dữ liệu";
+            superToolTip22.Items.Add(toolTipItem22);
+            this.barbtnLuu.SuperTip = superToolTip22;
             this.barbtnLuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnLuu_ItemClick);
             // 
             // barbtnHuybo
@@ -205,9 +205,9 @@
             this.barbtnHuybo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnHuybo.ImageOptions.Image")));
             this.barbtnHuybo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnHuybo.ImageOptions.LargeImage")));
             this.barbtnHuybo.Name = "barbtnHuybo";
-            toolTipItem5.Text = "Hủy bỏ";
-            superToolTip5.Items.Add(toolTipItem5);
-            this.barbtnHuybo.SuperTip = superToolTip5;
+            toolTipItem23.Text = "Hủy bỏ";
+            superToolTip23.Items.Add(toolTipItem23);
+            this.barbtnHuybo.SuperTip = superToolTip23;
             this.barbtnHuybo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnHuybo_ItemClick);
             // 
             // barbtnThoat
@@ -217,9 +217,9 @@
             this.barbtnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnThoat.ImageOptions.Image")));
             this.barbtnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnThoat.ImageOptions.LargeImage")));
             this.barbtnThoat.Name = "barbtnThoat";
-            toolTipItem6.Text = "Thoát";
-            superToolTip6.Items.Add(toolTipItem6);
-            this.barbtnThoat.SuperTip = superToolTip6;
+            toolTipItem24.Text = "Thoát";
+            superToolTip24.Items.Add(toolTipItem24);
+            this.barbtnThoat.SuperTip = superToolTip24;
             this.barbtnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnThoat_ItemClick);
             // 
             // barDockControlTop
@@ -253,9 +253,9 @@
             this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
             this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
             this.barButtonItem3.Name = "barButtonItem3";
-            toolTipItem9.Text = "Xóa dữ liệu";
-            superToolTip9.Items.Add(toolTipItem9);
-            this.barButtonItem3.SuperTip = superToolTip9;
+            toolTipItem15.Text = "Xóa dữ liệu";
+            superToolTip15.Items.Add(toolTipItem15);
+            this.barButtonItem3.SuperTip = superToolTip15;
             // 
             // barButtonItem4
             // 
@@ -264,9 +264,9 @@
             this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
             this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
             this.barButtonItem4.Name = "barButtonItem4";
-            toolTipItem10.Text = "Lưu dữ liệu";
-            superToolTip10.Items.Add(toolTipItem10);
-            this.barButtonItem4.SuperTip = superToolTip10;
+            toolTipItem16.Text = "Lưu dữ liệu";
+            superToolTip16.Items.Add(toolTipItem16);
+            this.barButtonItem4.SuperTip = superToolTip16;
             // 
             // barButtonItem5
             // 
@@ -275,9 +275,9 @@
             this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
             this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
             this.barButtonItem5.Name = "barButtonItem5";
-            toolTipItem11.Text = "Hủy bỏ";
-            superToolTip11.Items.Add(toolTipItem11);
-            this.barButtonItem5.SuperTip = superToolTip11;
+            toolTipItem17.Text = "Hủy bỏ";
+            superToolTip17.Items.Add(toolTipItem17);
+            this.barButtonItem5.SuperTip = superToolTip17;
             // 
             // barButtonItem6
             // 
@@ -286,9 +286,9 @@
             this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
             this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
             this.barButtonItem6.Name = "barButtonItem6";
-            toolTipItem12.Text = "Thoát";
-            superToolTip12.Items.Add(toolTipItem12);
-            this.barButtonItem6.SuperTip = superToolTip12;
+            toolTipItem18.Text = "Thoát";
+            superToolTip18.Items.Add(toolTipItem18);
+            this.barButtonItem6.SuperTip = superToolTip18;
             // 
             // barButtonItem2
             // 
@@ -297,9 +297,9 @@
             this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
             this.barButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
             this.barButtonItem2.Name = "barButtonItem2";
-            toolTipItem8.Text = "Sửa dữ liệu";
-            superToolTip8.Items.Add(toolTipItem8);
-            this.barButtonItem2.SuperTip = superToolTip8;
+            toolTipItem14.Text = "Sửa dữ liệu";
+            superToolTip14.Items.Add(toolTipItem14);
+            this.barButtonItem2.SuperTip = superToolTip14;
             // 
             // barButtonItem1
             // 
@@ -308,9 +308,9 @@
             this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
             this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
             this.barButtonItem1.Name = "barButtonItem1";
-            toolTipItem7.Text = "Thêm dữ liệu";
-            superToolTip7.Items.Add(toolTipItem7);
-            this.barButtonItem1.SuperTip = superToolTip7;
+            toolTipItem13.Text = "Thêm dữ liệu";
+            superToolTip13.Items.Add(toolTipItem13);
+            this.barButtonItem1.SuperTip = superToolTip13;
             // 
             // txtTENVT
             // 
@@ -319,7 +319,7 @@
             this.txtTENVT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENVT.Location = new System.Drawing.Point(3, 36);
             this.txtTENVT.Name = "txtTENVT";
-            this.txtTENVT.Size = new System.Drawing.Size(900, 22);
+            this.txtTENVT.Size = new System.Drawing.Size(894, 22);
             this.txtTENVT.TabIndex = 1;
             // 
             // splitContainer1
@@ -398,11 +398,10 @@
             // 
             this.txtMAVT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMAVT.Enabled = false;
             this.txtMAVT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMAVT.Location = new System.Drawing.Point(3, 8);
             this.txtMAVT.Name = "txtMAVT";
-            this.txtMAVT.Size = new System.Drawing.Size(900, 22);
+            this.txtMAVT.Size = new System.Drawing.Size(894, 22);
             this.txtMAVT.TabIndex = 2;
             // 
             // groupBox1
@@ -449,7 +448,7 @@
             // gridColMAVT
             // 
             this.gridColMAVT.Caption = "Mã vai trò";
-            this.gridColMAVT.FieldName = "MAVAITRO";
+            this.gridColMAVT.FieldName = "MaVaiTro";
             this.gridColMAVT.Name = "gridColMAVT";
             this.gridColMAVT.Visible = true;
             this.gridColMAVT.VisibleIndex = 0;
@@ -458,7 +457,7 @@
             // gridColTENVT
             // 
             this.gridColTENVT.Caption = "Tên vai trò";
-            this.gridColTENVT.FieldName = "TENVT";
+            this.gridColTENVT.FieldName = "TenVaiTro";
             this.gridColTENVT.Name = "gridColTENVT";
             this.gridColTENVT.Visible = true;
             this.gridColTENVT.VisibleIndex = 1;
