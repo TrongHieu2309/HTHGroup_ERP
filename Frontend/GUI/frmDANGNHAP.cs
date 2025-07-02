@@ -1,6 +1,7 @@
 ﻿using BLL.QL_PHAN_QUYEN;
 using ERP.Application.DTOs;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GUI
@@ -8,12 +9,11 @@ namespace GUI
     public partial class frmDANGNHAP : DevExpress.XtraEditors.XtraForm
     {
         private readonly DANGNHAP_BLL db = new DANGNHAP_BLL();
-        private UserDto user;
-        private string maVaiTro;
 
         public frmDANGNHAP()
         {
             InitializeComponent();
+
         }
 
         private async void btnDANGNHAP_Click(object sender, EventArgs e)
@@ -40,6 +40,14 @@ namespace GUI
             {
                 MessageBox.Show("Tài khoản hoặc mật khẩu không đúng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmDANGNHAP_Load(object sender, EventArgs e)
+        {
+
+            this.ActiveControl = null;
+            label2.BackColor = Color.Transparent;
+            label3.BackColor = Color.Transparent;
         }
     }
 }
