@@ -115,7 +115,7 @@
             this.txtTENNCC.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTENNCC.Location = new System.Drawing.Point(12, 41);
             this.txtTENNCC.Name = "txtTENNCC";
-            this.txtTENNCC.Size = new System.Drawing.Size(402, 22);
+            this.txtTENNCC.Size = new System.Drawing.Size(405, 22);
             this.txtTENNCC.TabIndex = 25;
             // 
             // barbtnXoa
@@ -293,7 +293,7 @@
             this.txtDIACHI.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDIACHI.Location = new System.Drawing.Point(12, 68);
             this.txtDIACHI.Name = "txtDIACHI";
-            this.txtDIACHI.Size = new System.Drawing.Size(402, 22);
+            this.txtDIACHI.Size = new System.Drawing.Size(405, 22);
             this.txtDIACHI.TabIndex = 26;
             // 
             // txtMOTA
@@ -304,7 +304,7 @@
             this.txtMOTA.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMOTA.Location = new System.Drawing.Point(12, 96);
             this.txtMOTA.Name = "txtMOTA";
-            this.txtMOTA.Size = new System.Drawing.Size(402, 22);
+            this.txtMOTA.Size = new System.Drawing.Size(405, 22);
             this.txtMOTA.TabIndex = 25;
             // 
             // txtMANCC
@@ -316,7 +316,7 @@
             this.txtMANCC.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMANCC.Location = new System.Drawing.Point(12, 14);
             this.txtMANCC.Name = "txtMANCC";
-            this.txtMANCC.Size = new System.Drawing.Size(402, 22);
+            this.txtMANCC.Size = new System.Drawing.Size(405, 22);
             this.txtMANCC.TabIndex = 24;
             // 
             // splitContainer4
@@ -359,9 +359,9 @@
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(2, 71);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 15);
+            this.label6.Size = new System.Drawing.Size(112, 15);
             this.label6.TabIndex = 22;
-            this.label6.Text = "&7. Người tiếp dận:";
+            this.label6.Text = "&7. Người tiếp nhận:";
             // 
             // label3
             // 
@@ -381,7 +381,7 @@
             this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDT.Location = new System.Drawing.Point(15, 14);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(402, 22);
+            this.txtSDT.Size = new System.Drawing.Size(405, 22);
             this.txtSDT.TabIndex = 27;
             // 
             // comboNGUOITIEPNHAN
@@ -394,7 +394,7 @@
             this.comboNGUOITIEPNHAN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboNGUOITIEPNHAN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboNGUOITIEPNHAN.Size = new System.Drawing.Size(402, 20);
+            this.comboNGUOITIEPNHAN.Size = new System.Drawing.Size(405, 20);
             this.comboNGUOITIEPNHAN.TabIndex = 26;
             // 
             // barManager1
@@ -498,7 +498,7 @@
             this.txtEMAIL.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEMAIL.Location = new System.Drawing.Point(15, 41);
             this.txtEMAIL.Name = "txtEMAIL";
-            this.txtEMAIL.Size = new System.Drawing.Size(402, 22);
+            this.txtEMAIL.Size = new System.Drawing.Size(405, 22);
             this.txtEMAIL.TabIndex = 20;
             // 
             // groupBox1

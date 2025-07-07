@@ -234,34 +234,34 @@
     <Compile Include="QL_PHAN_QUYEN\frmVAITRO.Designer.cs">
       <DependentUpon>frmVAITRO.cs</DependentUpon>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmKHOANCHI.cs">
+    <Compile Include="QL_TAI_CHINH\frmKHOANCHI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmKHOANCHI.Designer.cs">
+    <Compile Include="QL_TAI_CHINH\frmKHOANCHI.Designer.cs">
       <DependentUpon>frmKHOANCHI.cs</DependentUpon>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmKHOANTHU.cs">
+    <Compile Include="QL_TAI_CHINH\frmKHOANTHU.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmKHOANTHU.Designer.cs">
+    <Compile Include="QL_TAI_CHINH\frmKHOANTHU.Designer.cs">
       <DependentUpon>frmKHOANTHU.cs</DependentUpon>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmLUONG.cs">
+    <Compile Include="QL_TAI_CHINH\frmLUONG.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmLUONG.Designer.cs">
+    <Compile Include="QL_TAI_CHINH\frmLUONG.Designer.cs">
       <DependentUpon>frmLUONG.cs</DependentUpon>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmPHUCAP.cs">
+    <Compile Include="QL_TAI_CHINH\frmPHUCAP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmPHUCAP.Designer.cs">
+    <Compile Include="QL_TAI_CHINH\frmPHUCAP.Designer.cs">
       <DependentUpon>frmPHUCAP.cs</DependentUpon>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmPHUCAPNV.cs">
+    <Compile Include="QL_TAI_CHINH\frmPHUCAPNV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QL_TAI_CHINH_GUI\frmPHUCAPNV.Designer.cs">
+    <Compile Include="QL_TAI_CHINH\frmPHUCAPNV.Designer.cs">
       <DependentUpon>frmPHUCAPNV.cs</DependentUpon>
     </Compile>
     <Compile Include="QuyTrinhHoatDong\frmQT_BANHANG.cs">
@@ -369,19 +369,19 @@
     <EmbeddedResource Include="QL_PHAN_QUYEN\frmVAITRO.resx">
       <DependentUpon>frmVAITRO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QL_TAI_CHINH_GUI\frmKHOANCHI.resx">
+    <EmbeddedResource Include="QL_TAI_CHINH\frmKHOANCHI.resx">
       <DependentUpon>frmKHOANCHI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QL_TAI_CHINH_GUI\frmKHOANTHU.resx">
+    <EmbeddedResource Include="QL_TAI_CHINH\frmKHOANTHU.resx">
       <DependentUpon>frmKHOANTHU.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QL_TAI_CHINH_GUI\frmLUONG.resx">
+    <EmbeddedResource Include="QL_TAI_CHINH\frmLUONG.resx">
       <DependentUpon>frmLUONG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QL_TAI_CHINH_GUI\frmPHUCAP.resx">
+    <EmbeddedResource Include="QL_TAI_CHINH\frmPHUCAP.resx">
       <DependentUpon>frmPHUCAP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QL_TAI_CHINH_GUI\frmPHUCAPNV.resx">
+    <EmbeddedResource Include="QL_TAI_CHINH\frmPHUCAPNV.resx">
       <DependentUpon>frmPHUCAPNV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuyTrinhHoatDong\frmQT_BANHANG.resx">
