@@ -57,25 +57,9 @@ namespace GUI.QL_NHANSU
 
         private int ExtractKeyFromCombo(ComboBoxEdit combo)
         {
-            if (combo.SelectedItem != null)
-            {
-                var selected = combo.SelectedItem.ToString();
-                if (int.TryParse(selected.Split(':')[0], out int key))
-                    return key;
-            }
-            return 0;
-        }
-
-        private void SetComboBoxSelectedItemByKey(ComboBoxEdit comboBox, int key)
-        {
-            foreach (var item in comboBox.Properties.Items)
-            {
-                if (item is string itemStr && itemStr.StartsWith($"{key}:"))
-                {
-                    comboBox.SelectedItem = itemStr;
-                    break;
-                }
-            }
+            if (combo.SelectedItem == null) return -1;
+            var parts = combo.SelectedItem.ToString().Split(':');
+            return int.TryParse(parts[0], out int key) ? key : -1;
         }
 
         private async Task LoadDataAsync()
@@ -210,8 +194,8 @@ namespace GUI.QL_NHANSU
                     dateNGAY.EditValue = data.Ngay;
                     timeEditGIOVAO.EditValue = DateTime.Today.Add(data.GioVao);
                     timeEditGIORA.EditValue = DateTime.Today.Add(data.GioRa);
-                    SetComboBoxSelectedItemByKey(comboMANV, data.MaNhanVien);
-                    SetComboBoxSelectedItemByKey(comboMALC, data.MaLoaiCong);
+                    comboMANV.EditValue = data.MaNhanVien;
+                    comboMALC.EditValue = data.MaLoaiCong;
                 }
             }
         }
